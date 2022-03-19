@@ -1,9 +1,6 @@
-class homeController {
-   
-   //[GET] /
-   showIndex(req, res, next) {
-      res.render('home');
-   }  
+//[GET] /
+const showIndex = async(req, res, next) => {
+    res.render('TabHome/home', { layout: 'mainClient.hbs' });
 }
 
-module.exports = new homeController;
+module.exports = { showIndex }

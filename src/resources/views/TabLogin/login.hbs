@@ -1,0 +1,153 @@
+<!-- Start Cart modal -->
+<div class="site-cart">
+   <div class="site-cart-overlay"></div>
+
+   <div class="site-nav-container-last">
+      <div class="cart-modal-title">
+         <span class="modal-title-text">Giỏ hàng</span>
+         <span id="cart-btn-close" class="cart-close-btn">
+            <i class="fas fa-times"></i>
+         </span>
+      </div>
+
+      {{!-- Empty cart class --> cart-view-list-empty --}}
+      <div class="cart-view-list clearfix">
+         <table class="cart-view cart-view-empty">
+            <tr class="cart-item cart-item-empty">
+               <td>Chưa có sản phẩm trong giỏ hàng</td>
+            </tr>
+         </table>
+
+         <!-- Start Cart Table -->
+         <table class="cart-view">
+            <tbody>
+               <tr class="cart-item">
+                  <td class="item-img">
+                     <img class="img-fluid" src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab"
+                        alt="Card image cap" id="product-detail">
+                  </td>
+
+                  <td>
+                     <a href="" class="item-title">Snake High Chain</a>
+                     <span class="item-properties">Bạc, 16cm</span>
+                     <div class="item-amount">
+                        <form class="item-view-quantity">
+                           <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-
+                           </div>
+                           <input type="number" id="number" value="1" />
+                           <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+
+                           </div>
+                        </form>
+                        <span class="item-view-price">100.000đ</span>
+                     </div>
+                  </td>
+                  <td>
+                     <a class="remove-link" href="">
+                        <i class="fas fa-times"></i></a>
+                     </a>
+                  </td>
+               </tr>
+
+               <tr class="cart-item">
+                  <td class="item-img">
+                     <img class="img-fluid" src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab"
+                        alt="Card image cap" id="product-detail">
+                  </td>
+
+                  <td>
+                     <a href="" class="item-title">Snake High Chain</a>
+                     <span class="item-properties">Bạc, 16cm</span>
+                     <div class="item-amount">
+                        <!-- <span class="item-view-quantity">1</span> -->
+
+                        <form class="item-view-quantity">
+                           <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-
+                           </div>
+                           <input type="number" id="number" value="1" />
+                           <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+
+                           </div>
+                        </form>
+
+                        <span class="item-view-price">100.000đ</span>
+                     </div>
+                  </td>
+                  <td>
+                     <a class="remove-link" href="">
+                        <i class="fas fa-times"></i></a>
+                     </a>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <!-- End Cart Table -->
+
+         <span class="line"></span>
+
+         <!-- Start Total Table -->
+         <table class="table-total">
+            <tbody>
+               <tr>
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right">0đ</td>
+               </tr>
+            </tbody>
+         </table>
+
+         <a class="btn btn-success btn-site-cart" href="cart.html">THANH TOÁN</a>
+         <!-- End Total Table -->
+      </div>
+   </div>
+</div>
+<!-- End Cart modal -->
+
+<!-- Modal -->
+<div class="login-form w3_form">
+   <!--  Title-->
+   <div class="login w3_login">
+      <h3 class="text-center pt-5" style="color: #59ab6e;">ĐĂNG NHẬP</h3>
+      <div class="w3l_grid">
+
+         {{#if message}}
+         <div style="text-align: center" class="alert alert-{{message.type}}">
+            <strong>{{message.intro}}</strong> {{message.message}}
+         </div>
+         {{/if}}
+
+         <form class="login-container d-grid" method="POST" action="/login/loginStore">
+            <input class="form-control" type="text" placeholder="Số điện thoại" name="phonenumber" required />
+            <input class="form-control" type="password" placeholder="Mật khẩu" name="password" required />
+            <button type="submit" class="btn btn-success mt-3">Đăng nhập</button>
+         </form>
+         <div class="second-section w3_section">
+            <div class="bottom-header w3_bottom">
+               <h3>HOẶC</h3>
+            </div>
+            <div class="social-links w3_social">
+               <ul>
+                  <!-- facebook -->
+                  <li>
+                     <a class="facebook" href="#" target="blank"><i class="fab fa-facebook"></i></a>
+                  </li>
+
+                  <!-- twitter -->
+                  <li>
+                     <a class="twitter" href="#" target="blank"><i class="fab fa-twitter"></i></a>
+                  </li>
+
+                  <!-- google plus -->
+                  <li>
+                     <a class="googleplus" href="#" target="blank"><i class="fab fa-google"></i></a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+
+         <div class="bottom-text w3_bottom_text">
+            <p>Chưa có tài khoản?<a href="/register"><strong>Đăng ký</strong></a></p>
+            <h4> <a href="#"><strong>Quên mật khẩu?</strong></a></h4>
+         </div>
+
+      </div>
+   </div>
+
+</div>

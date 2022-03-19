@@ -1,0 +1,16 @@
+GET http://localhost:5000/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJkOWRlMTMyYTY2Y2FjNDdiN2IwZjEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDc2Nzc0ODksImV4cCI6MTY0NzY3NzUxOX0.mR0EoaaB174dvE31ZItHXNNpneaPysW5UGJWF-SkVBo
+
+###
+
+POST http://localhost:5000/login/loginStore
+Content-Type: application/json
+
+{
+    "phonenumber": "093685923",
+    "password": "Bin24681010"
+}
+
+###
+POST http://localhost:5000/login/loginStore
+Authorization: 
