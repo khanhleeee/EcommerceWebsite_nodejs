@@ -43,3 +43,4 @@ const showProductDetail = (req, res, next) => {
 
 module.exports = { showProductList, filterGender, showProductDetail}
 
+
