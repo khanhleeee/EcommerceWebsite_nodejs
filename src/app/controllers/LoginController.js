@@ -28,7 +28,7 @@ const loginStore = async(req, res, next) => {
 
     //Generate RefeshToken
     const generateRefeshToken = (req, res, next) => {
-        return jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_REFESH_TOKEN, { expiresIn: "365s" });
+        return jwt.sign({ _id: user._id, role: user.role    }, process.env.JWT_REFESH_TOKEN, { expiresIn: "365s" });
     }
 
     const checkPassword = await bcrypt.compare(req.body.password, user.password);
@@ -46,9 +46,9 @@ const loginStore = async(req, res, next) => {
         const { password, ...other } = data;
         res.cookie('Authorization', accessToken, { httpOnly: true, secure: false, maxAge: 30 })
 
-        if (user.role == 'customer') return res.render('TabCustomer/customerReward', { layout: 'mainClient.hbs' });
+        if (user.role == 'admin') res.render('TabAdmin/adminInfo', { layout: 'mainAdmin.hbs' });
         // return res.send(`User ${user.name} has logged in`);
-        return res.render('TabAdmin/adminInfo', { layout: 'mainAdmin.hbs' });
+        return res.render('TabCustomer/customerReward', { layout: 'mainClient.hbs' });
 
         // res.status(200).json({...other, accessToken });
 

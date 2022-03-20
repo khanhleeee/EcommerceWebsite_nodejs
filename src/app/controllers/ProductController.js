@@ -12,7 +12,7 @@ const showProductList = async (req, res, next) => {
     let colors = await Color.find();
     let categories = await Category.find();
 
-    res.render('product', { p: multipleToObject(p), color: multipleToObject(colors), category: multipleToObject(categories)});
+    res.render('TabProduct/product', {layout: 'mainClient.hbs', p: multipleToObject(p), color: multipleToObject(colors), category: multipleToObject(categories)});
 }
 
 // [GET] /product/category_id
@@ -23,7 +23,7 @@ const filterGender = async (req, res, next) => {
   let categories = await Category.find();
   let colors = await Color.find();
 
-  res.render('product', { p: multipleToObject(p), category: multipleToObject(categories), color: multipleToObject(colors) })
+  res.render('TabProduct/product', {layout: 'mainClient.hbs', p: multipleToObject(p), category: multipleToObject(categories), color: multipleToObject(colors) })
 }
 
 // [GET] /id
