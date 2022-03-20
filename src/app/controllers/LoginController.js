@@ -44,10 +44,13 @@ const loginStore = async(req, res, next) => {
         let accessToken = generateAccessToken(user);
         let refeshToken = generateRefeshToken(user);
         const { password, ...other } = data;
-        // res.status(200).json({...other, accessToken, refeshToken });
+        res.cookie('Authorization', accessToken, { httpOnly: true, secure: false, maxAge: 30 })
 
+        if (user.role == 'customer') return res.render('TabCustomer/customerReward', { layout: 'mainClient.hbs' });
+        // return res.send(`User ${user.name} has logged in`);
+        return res.render('TabAdmin/adminInfo', { layout: 'mainAdmin.hbs' });
 
-        //ĐANG ĐỨNG Ở ĐÂYYYYYYYYYYYYYYYYYYYYYYYYYY
+        // res.status(200).json({...other, accessToken });
 
         // try {
         //     res.cookie('Authorization', 'Bearer ' + accessToken, { expires: new Date(Date.now() + 24) });
@@ -56,9 +59,6 @@ const loginStore = async(req, res, next) => {
         //     res.json(error)
         // }
 
-        // if (user.role == 'customer') return res.render('TabCustomer/customerReward', { layout: 'mainClient.hbs' });
-        // // return res.send(`User ${user.name} has logged in`);
-        // return res.render('TabAdmin/adminInfo', { layout: 'mainAdmin.hbs' });
     }
 
     // const user = await User.findOne({email: request.body.email});

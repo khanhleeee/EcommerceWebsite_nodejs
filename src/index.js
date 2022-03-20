@@ -1,13 +1,13 @@
 const express = require('express');
 var handlebars = require('express-handlebars');
 const app = express();
-const route = require('./routes');
+const path = require('path');
+const port = 5000;
 const bodyParser = require('body-parser');
+const route = require('./routes');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const path = require('path');
-const port = 5000;
 const jwt = require('jsonwebtoken');
 
 const dotenv = require('dotenv');
