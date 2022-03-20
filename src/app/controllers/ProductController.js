@@ -1,9 +1,5 @@
 const Product = require('../models/Product')
 const Color = require('../models/Color')
-const Size = require('../models/Size')
-const Image = require('../models/Image')
-const Product_var = require('../models/Product_variation')
-const Gender = require('../models/Gender')
 const Category = require('../models/Category')
 const { mongooseToObject } = require('../../config/utility/mongoose')
 const { multipleToObject } = require('../../config/utility/mongoose')
@@ -28,8 +24,22 @@ const filterGender = async (req, res, next) => {
   let colors = await Color.find();
 
   res.render('product', { p: multipleToObject(p), category: multipleToObject(categories), color: multipleToObject(colors) })
+}
 
+// [GET] /id
+const showProductDetail = (req, res, next) => {
+  Product.findOne({_id: req.params.id}).populate([
+    { path: 'cat_id' },
+    { path: 'image_id' },
+    // { path: 'image_id' },
+    { path: 'p_variations.pv_id', populate: [{ path: 'vari_color' }, { path: 'vari_size' }, { path: 'SKU' }, { path: 'vari_image' },] }
+  ])
+      .then(product =>        
+        res.render('productdetail', { product: mongooseToObject(product) })
+      )
+      .catch(next);
 }
 
 
-module.exports = { showProductList, filterGender}
+module.exports = { showProductList, filterGender, showProductDetail}
+

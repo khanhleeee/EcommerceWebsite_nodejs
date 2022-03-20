@@ -7,4 +7,6 @@ router.get('/', productController.showProductList)
 router.get('/:gender', productController.filterGender)
 
 
+router.get('/:id', productController.showProductDetail);
+
 module.exports = router;
