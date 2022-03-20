@@ -2,13 +2,21 @@ const mongoose= require('mongoose');
 const Schema = mongoose.Schema;
 
 const Product = new Schema({
-   p_title: {type:String, maxlength: 100},
-   cat_id: {type: Schema.Types.ObjectId, ref: 'Categories'},
-   image_id: {type: Schema.Types.ObjectId, ref: 'Images'},
-   p_price: {type:String},
-   p_variations: [
-      { pv_id: {type:Schema.Types.ObjectId, ref: 'Product_variations'}}
-   ]
+   name:{type: String},
+   category:{type: String},
+   gender:{type: String},
+   price: {type: String},
+   skus: [
+      {
+        sku:{type: String, unique: true},
+        img:{type: String},        
+        color:{
+           title: {type: String},
+           color_code: {type: String}
+        },
+        sizes:[{size:{type: String}, qty:{type: String}}]
+      }
+    ]
 })
 
 module.exports = mongoose.model('Products', Product);

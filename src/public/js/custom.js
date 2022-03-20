@@ -43,4 +43,14 @@ siteCartContainer.addEventListener('click', function (event) {
 	event.stopPropagation();
 })
 
-
+//Show empty product list
+var productRow = document.querySelector('.js-product-area')
+var productRow2 = document.querySelector('.js-product-area-2')
+// console.log(productRow2.children[0].classList.contains('product-none')) 
+var products = productRow.querySelectorAll("#myDIV")
+	if(products == null || productRow2.children[0].classList.contains('product-none')) {
+		productRow.classList.add('p-list-empty')
+	}
+	else {
+		productRow.classList.remove('p-list-empty')
+	}
