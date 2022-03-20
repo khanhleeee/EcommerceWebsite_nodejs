@@ -37,6 +37,11 @@ var hbs = handlebars.create({
     extname: 'hbs'
 });
 
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set("views", path.join(__dirname,'resources', 'views'));
+
+
 hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
     if (v1 === v2) {
         return options.fn(this);
@@ -51,5 +56,6 @@ app.set("views", path.join(__dirname, 'resources', 'views'));
 route(app)
 
 app.listen(port, () => {
-    console.log(`app listen at http://localhost:${port}`)
+   console.log(`app listen at http://localhost:${port}`)
 })
+

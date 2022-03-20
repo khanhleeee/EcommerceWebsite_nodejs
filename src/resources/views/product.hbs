@@ -10,7 +10,8 @@
          </span>
       </div>
 
-      <div class="cart-view-list clearfix cart-view-list-empty">
+      {{!-- Empty cart class --> cart-view-list-empty --}}
+      <div class="cart-view-list clearfix">
          <table class="cart-view cart-view-empty">
             <tr class="cart-item cart-item-empty">
                <td>Chưa có sản phẩm trong giỏ hàng</td>
@@ -18,7 +19,7 @@
          </table>
 
          <!-- Start Cart Table -->
-         {{!-- <table class="cart-view">
+         <table class="cart-view">
             <tbody>
                <tr class="cart-item">
                   <td class="item-img">
@@ -77,7 +78,7 @@
                   </td>
                </tr>
             </tbody>
-         </table> --}}
+         </table>
          <!-- End Cart Table -->
 
          <span class="line"></span>
@@ -101,160 +102,97 @@
 
 <!-- Start Content -->
 <div class="container py-5">
-   <div class="row">
+   <div class="row js-product-row">
 
+      {{!-- Category --}}
       <div class="col-lg-3">
          <h1 class="h2 pb-4">Danh mục sản phẩm</h1>
-
-         <ul class="list-unstyled templatemo-accordion">
-            <li class="pb-3">
-               <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                  Loại
-                  <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-               </a>
-               <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Vòng tay</a></li>
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Vòng cổ</a></li>
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Nhẫn</a></li>
+         <ul class="list-unstyled">
+            <li class="pb-2">
+               <h3 class="h3" href="#">Loại</h3>
+               <ul class="list-unstyled pl-3">
+                  {{#each category}}
+                  <li>
+                     {{!-- <a class="sildeDown-item text-decoration-none"
+                        href="/product/query/{{this._id}}">{{this.cat_title}}</a> --}}
+                     <label class="attr-check-btn sildeDown-item text-decoration-none">{{this.title}}
+                        <input name="fooby[1][]" class="check-btn radio" value="{{this.title}}" type="checkbox">
+                        <span class="checkmark"></span>
+                     </label>
+                  </li>
+                  {{/each}}
                </ul>
             </li>
 
-            <li class="pb-3">
-               <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                  Màu sắc
-                  <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
-               </a>
-               <ul class="collapse show list-unstyled pl-3">
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Bạc</a></li>
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Vàng</a></li>
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Đen</a></li>
+            {{!-- <li class="pb-2">
+               <h3 class="d-flex h3 text-decoration-none" href="#">Màu sắc</h3>
+               <ul class="list-unstyled pl-3">
+                  {{#each color}}
+                  <li>
+                     <label class="attr-check-btn sildeDown-item text-decoration-none">{{this.title}}
+                        <input name="fooby[1][]" class="check-btn radio" value="{{this.title}}" type="checkbox">
+                        <span class="checkmark"></span>
+                     </label>
+                  </li>
+                  {{/each}}
                </ul>
-            </li>
+            </li> --}}
 
-
-            <li class="pb-3">
-               <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                  Chất liệu
-                  <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-               </a>
-               <ul id="collapseTwo" class="collapse list-unstyled pl-3">
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Inox</a></li>
-                  <li><a class="sildeDown-item text-decoration-none" href="#">Titan</a></li>
-               </ul>
-            </li>
+         </ul>
          </ul>
       </div>
 
-      <div class="col-lg-9">
-         <div class="row flex-row-reverse">
-            <div class="col-md-6 pb-4">
-               <input type="text" class="form-control" id="inputModalSearch" name="q"
-                  placeholder="Tìm kiếm sản phẩm...">
+      <div class="col-lg-9 js-product-area p-list-empty">
+         <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 pb-4 offset-lg-6">
+               <input type="text" class="form-control" id="myInput" name="q" placeholder="Tìm kiếm sản phẩm...">
             </div>
          </div>
 
+         {{!-- Empty product list --}}
          <div class="row">
-            <div class="col-md-4">
-               <div class="card mb-4 product-wap rounded-0">
-                  <div class="card rounded-0">
-                     <img class="card-img rounded-0 img-fluid"
-                        src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab">
-                     <div
-                        class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                        <ul class="list-unstyled">
-                           <!-- <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li> -->
-                           <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-                                    class="far fa-eye"></i></a></li>
-                           <!-- <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li> -->
+            <div class="empty-p-list">
+               <i class="empty-icon fas fa-frown"></i>
+               <span class="empty-text">Không tìm thấy sản phẩm phù hợp</span>
+            </div>
+         </div>
+
+         {{!-- End Empty product list --}}
+
+         <div class="row js-product-area-2">
+            {{#each p}}
+            <div id="myDIV" class="col-12 col-md-4 col-lg-4">
+               <a href="" class="text-decoration-none">
+                  <div class="card product-wap mb-4">
+
+                     {{!--Product image --}}
+                     <div class="card">
+                        <img class="card-img rounded-0 img-fluid" src="{{this.skus.0.img}}">
+                     </div>
+
+                     <div class="card-body">
+                        <span class="product-title text-decoration-none">{{this.name}}</span>
+                        <input class="input-hidden" hidden value="{{this.category}}" type="text">
+
+                        {{!-- Product color dot --}}
+                        <ul class="mb-1 list-unstyled">
+                           <li style="line-height: 1;">
+                              {{#each this.skus}}
+                              <span class="product-color-dot"
+                                 style="background-color: {{this.color.color_code}};"></span>
+                              <input class="input-hidden" hidden value="{{this.color.title}}" type="text">
+                              {{/each}}
+                           </li>
                         </ul>
+
+                        <span class="product-price">{{this.price}}</span>
+                        <span class="product-price">vnđ</span>
+
                      </div>
                   </div>
-                  <div class="card-body">
-                     <a href="shop-single.html" class="h3 text-decoration-none">Snake high chain</a>
-                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                        <li>Chất liệu: inox</li>
-                        <li class="pt-2">
-                           <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                        </li>
-                     </ul>
-
-                     <p class="text-center mt-2 mb-0">100.000 vnd</p>
-                  </div>
-               </div>
+               </a>
             </div>
-            <!-- End Product-1 -->
-
-            <div class="col-md-4">
-               <div class="card mb-4 product-wap rounded-0">
-                  <div class="card rounded-0">
-                     <img class="card-img rounded-0 img-fluid"
-                        src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab">
-                     <div
-                        class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                        <ul class="list-unstyled">
-                           <!-- <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li> -->
-                           <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-                                    class="far fa-eye"></i></a></li>
-                           <!-- <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li> -->
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="card-body">
-                     <a href="shop-single.html" class="h3 text-decoration-none">Snake high chain</a>
-                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                        <li>Chất liệu: inox</li>
-                        <li class="pt-2">
-                           <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                        </li>
-                     </ul>
-
-                     <p class="text-center mt-2 mb-0">100.000 vnd</p>
-                  </div>
-               </div>
-            </div>
-            <!-- End Product-1 -->
-
-            <div class="col-md-4">
-               <div class="card mb-4 product-wap rounded-0">
-                  <div class="card rounded-0">
-                     <img class="card-img rounded-0 img-fluid"
-                        src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab">
-                     <div
-                        class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                        <ul class="list-unstyled">
-                           <!-- <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li> -->
-                           <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-                                    class="far fa-eye"></i></a></li>
-                           <!-- <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li> -->
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="card-body">
-                     <a href="shop-single.html" class="h3 text-decoration-none">Snake high chain</a>
-                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                        <li>Chất liệu: inox</li>
-                        <li class="pt-2">
-                           <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                           <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                        </li>
-                     </ul>
-
-                     <p class="text-center mt-2 mb-0">100.000 vnd</p>
-                  </div>
-               </div>
-            </div>
-            <!-- End Product-1 -->
+            {{/each}}
          </div>
 
          <div div="row">
@@ -272,7 +210,6 @@
             </ul>
          </div>
       </div>
-      <!-- Pages -->
 
    </div>
 </div>
