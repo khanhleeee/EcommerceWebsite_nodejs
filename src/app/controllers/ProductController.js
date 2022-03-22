@@ -19,7 +19,6 @@ const showProductList = async (req, res, next) => {
 const filterGender = async (req, res, next) => {
 
   let p = await Product.find({gender: req.params.gender})
-
   let categories = await Category.find();
   let colors = await Color.find();
 
@@ -27,19 +26,34 @@ const filterGender = async (req, res, next) => {
 }
 
 // [GET] /id
-const showProductDetail = (req, res, next) => {
-  Product.findOne({_id: req.params.id}).populate([
-    { path: 'cat_id' },
-    { path: 'image_id' },
-    // { path: 'image_id' },
-    { path: 'p_variations.pv_id', populate: [{ path: 'vari_color' }, { path: 'vari_size' }, { path: 'SKU' }, { path: 'vari_image' },] }
-  ])
-      .then(product =>        
-        res.render('productdetail', { product: mongooseToObject(product) })
-      )
-      .catch(next);
-}
+const showProductDetail = async (req, res, next) => {
+  // let colors = await Color.find();
+  // let categories = await Category.find(); 
 
+  // Product.findById({_id: req.params.id})
+  //     .then(product =>        
+  //       res.render('TabProduct/productdetail', {layout: 'mainClient.hbs', product: mongooseToObject(product), color: multipleToObject(colors), category: multipleToObject(categories) })
+  //     )
+  //     .catch(next);
+
+  let colors = await Color.find();
+  let categories = await Category.find(); 
+
+  let product = await Product.findById({_id: req.params.id})
+  var skus = product.skus;
+  let sku1 = ''; 
+    for(const index in skus) {
+      if(`${skus[index].sku}` == req.params.sku) {
+        sku1 = `${skus[index]}`;
+      }
+  }
+  // // var myJSONString = JSON.stringify(sku1);
+  // console.log(myJSONString.replace(/\'/g,"\"").replace(/\\n/g,""))
+
+  console.log(typeof(so1))
+
+  res.render('TabProduct/productdetail', {layout: 'mainClient.hbs', product: mongooseToObject(product), color: multipleToObject(colors), category: multipleToObject(categories) })
+}
 
 module.exports = { showProductList, filterGender, showProductDetail}
 

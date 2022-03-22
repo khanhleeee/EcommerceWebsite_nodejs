@@ -6,7 +6,6 @@ const productController = require('../app/controllers/ProductController');
 router.get('/', productController.showProductList)
 router.get('/:gender', productController.filterGender)
 
-router.get('/:id', productController.showProductDetail);
-
+router.get('/detail/:id/:sku', productController.showProductDetail);
 
 module.exports = router;
