@@ -511,6 +511,22 @@
   cursor: default;
 }
 
+/* Product detail*/
+.product-detail-dot {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  align-items: center;
+  margin-bottom: 0;
+  border:none;
+}
+
+.product-detail-dot :hover {
+  border: solid 10px black;
+}
+
 
 
 

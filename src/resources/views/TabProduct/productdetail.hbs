@@ -1,5 +1,4 @@
-
-    <!-- Open Content -->
+<!-- Open Content -->
     <section class="bg-light">
         <div class="container pb-5">
             <div class="row">
@@ -9,52 +8,9 @@
                                                     <option selected value="1"></option>
                                                      {{/each}} --}}
                          {{!-- {{#each product.p_variations}} --}}
-                        <img class="card-img img-fluid" src="{{product.image_id.thumbnail_img}}"
+                        <img class="card-img img-fluid" src="{{product.skus.0.img}}"
                             alt="thumbnail" id="product-detail">
                             {{!-- {{/each}} --}}
-                    </div>
-                    <div class="row d-flex justify-content-center">
-
-                        <!--Start Carousel Wrapper-->
-                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item"
-                            data-bs-ride="carousel">
-                            <!--Start Slides-->
-                            <div class="carousel-inner product-links-wap" role="listbox">
-
-                                <!--First slide-->
-                                <div class="carousel-item active">
-                                    <div class="row" style="justify-content: center;">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid"
-                                                    src="{{product.image_id.thumbnail_img}}"
-                                                    alt="Product Image 1">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid"
-                                                    src="{{product.image_id.img_1}}"
-                                                    alt="Product Image 2">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid"
-                                                    src="{{product.image_id.img_2}}"
-                                                    alt="Product Image 3">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.First slide-->
-
-
-                            </div>
-                            <!--End Slides-->
-                        </div>
-                        <!--End Carousel Wrapper-->
-
                     </div>
 
                 </div>
@@ -64,11 +20,11 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4>{{product.p_title}}</h4>
+                            <h4>{{product.name}}</h4>
                             <!-- <p>Lắc tay bạc unisex</p> -->
 
                             <div class="card-body-price">
-                                <h4 class="price-unit">{{product.p_price}}</h4>
+                                <h4 class="price-unit">{{product.price}}</h4>
                                 <p class="price-unit">vnd</p>
                             </div>
 
@@ -85,61 +41,49 @@
                                     <div class="col-12">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">Màu sắc :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
+                                                {{!-- <input type="hidden" name="product-size" id="product-size" value="S"> --}}
                                             </li>
-                                        
+                                           {{#each product.skus}}
                                             <li class="list-inline-item">
-                                                {{!-- <select class="form-select form-select-sm"
-                                                    aria-label=".form-select-sm example"> --}}
-                                                     {{#each product.p_variations}}
-                                                    <button selected value="1">{{this.pv_id.vari_color.color_title}}</button>
-                                                     {{/each}}
-                                                {{!-- </select> --}}
-                                            </li>
-                                      
-
+                                                <a href="#">
+                                                    <button class="product-detail-dot" 
+                                                  style="background-color: {{this.color.color_code}};"></button>
+                                                </a>
+                                            </li>  
+                                            {{/each}}
                                         </ul>
                                     </div>
 
                                     <div class="col-12">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">Kích cỡ :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
+                                                {{!-- <input type="hidden" name="product-size" id="product-size" value="S"> --}}
                                             </li>
+                                           
                                             <li class="list-inline-item">
-                                                {{!-- <select class="form-select form-select-sm"
-                                                    aria-label=".form-select-sm example"> --}}
-                                                     {{#each product.p_variations}}
-                                                    <button selected value="1">{{this.pv_id.vari_size.size_title}}</button>
-                                                     {{/each}}
-                                                {{!-- </select> --}}
+                                                <p>{{sku.color.title}}</p>
                                             </li>
-
                                         </ul>
                                     </div>
-                                    <div class="" style="display: flex; margin-bottom: 15px">
-                                        {{!-- <ul class="list-inline pb-3"> --}}
-                                            <div style="margin-right: 10px;">
-                                                <p style="vertical-align: top;">Kho :</p>
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </div>
-                                            <div>
-                                                {{#each product.p_variations}}
-                                                <p> {{this.pv_id.vari_color.color_title}} size {{this.pv_id.vari_size.size_title}} còn {{this.pv_id.SKU.quantity}}</p>
-                                                {{/each}}
-                                               
-                                            </div>
 
-                                        {{!-- </ul> --}}
+                                     <div class="col-12">
+                                        <ul class="list-inline pb-3">
+                                            <li class="list-inline-item">Kho :
+                                                {{!-- <input type="hidden" name="product-size" id="product-size" value="S"> --}}
+                                            </li>
+                                            {{!-- {{#each sku.sizes}} --}}
+                                            <li class="list-inline-item">
+                                                <p>{{product}}</p>
+                                            </li>
+                                            {{!-- {{/each}} --}}
+                                        </ul>
                                     </div>
-
-
+        
                                     <div class="col-12">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
                                                 Quantity
-                                                {{!-- <input type="hidden" name="product-quanity" id="product-quanity"
-                                                    value="1"> --}}
+                                                
                                             </li>
 
                                             <li class="list-inline-item">
@@ -147,9 +91,17 @@
                                                     <form>
                                                         <div class="value-button" id="decrease" onclick="decreaseValue()"
                                                             value="Decrease Value">-</div>
-                                                            {{!-- {{#each product.p_variations}} --}}
-                                                            <input type="number" name="name" id="number" value="1" required min="1" max="{{this.pv_id.SKU.quantity}}">
-                                                            {{!-- {{/each}} --}}
+                                                           
+                                                            <input type="number" name="name" id="number" value="1" required min="1" max=
+                                                            " {{#each product.skus.0.sizes}}
+                        
+                                                  
+                                       
+                                                            {{this.qty}}
+    
+                                                      
+                                                            {{/each}}">
+                                                          
                                                         <div class="value-button" id="increase" onclick="increaseValue()"
                                                             value="Increase Value">+</div>
                                                     </form>  
