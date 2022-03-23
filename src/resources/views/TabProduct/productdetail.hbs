@@ -1,125 +1,102 @@
 <!-- Open Content -->
-    <section class="bg-light">
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                         {{!-- {{#each product.p_variations}}
-                                                    <option selected value="1"></option>
-                                                     {{/each}} --}}
-                         {{!-- {{#each product.p_variations}} --}}
-                        <img class="card-img img-fluid" src="{{product.skus.0.img}}"
-                            alt="thumbnail" id="product-detail">
-                            {{!-- {{/each}} --}}
-                    </div>
-
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-5 mt-5">
+                <div class="card mb-3">
+                    <img class="card-img img-fluid" src="{{sku.img}}" alt="thumbnail" id="product-detail">
+                    {{!-- {{/each}} --}}
                 </div>
-            
-                <!-- col end -->
-                <div class="col-lg-7 mt-5">
-                    <div class="card">
-                        <div class="card-body">
 
-                            <h4>{{product.name}}</h4>
-                            <!-- <p>Lắc tay bạc unisex</p> -->
+            </div>
 
-                            <div class="card-body-price">
-                                <h4 class="price-unit">{{product.price}}</h4>
-                                <p class="price-unit">vnd</p>
-                            </div>
+            <!-- col end -->
+            <div class="col-lg-7 mt-5">
+                <div class="card">
+                    <div class="card-body">
 
-                            <ul class="list-inline">
+                        <h4>{{product.name}}</h4>
+                        <!-- <p>Lắc tay bạc unisex</p> -->
 
-                                {{!-- <li class="list-inline-item">
-                                    <p>Lắc tay inox unisex</p>
-                                </li> --}}
-                            </ul>
+                        <div class="card-body-price">
+                            <h4 class="price-unit">{{product.price}}</h4>
+                            <p class="price-unit">vnd</p>
+                        </div>
 
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Màu sắc :
-                                                {{!-- <input type="hidden" name="product-size" id="product-size" value="S"> --}}
-                                            </li>
-                                           {{#each product.skus}}
-                                            <li class="list-inline-item">
-                                                <a href="#">
-                                                    <button class="product-detail-dot" 
-                                                  style="background-color: {{this.color.color_code}};"></button>
-                                                </a>
-                                            </li>  
-                                            {{/each}}
-                                        </ul>
-                                    </div>
+                        <ul class="list-inline">
+                        </ul>
 
-                                    <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Kích cỡ :
-                                                {{!-- <input type="hidden" name="product-size" id="product-size" value="S"> --}}
-                                            </li>
-                                           
-                                            <li class="list-inline-item">
-                                                <p>{{sku.color.title}}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <form action="" method="GET">
+                            <input type="hidden" name="product-title" value="Activewear">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="list-inline pb-3 d-flex align-items-center">
+                                        <li class="list-inline-item">Màu sắc :</li>
+                                        {{#each product.skus}}
+                                        <li class="list-inline-item m-0">
+                                            <a href="/product/detail/{{../product._id}}/{{this.sku}}/{{../size.size}}">
+                                                <span class="product-detail-dot"
+                                                    style="background-color: {{this.color.color_code}};"></span>
+                                            </a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
 
-                                     <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Kho :
-                                                {{!-- <input type="hidden" name="product-size" id="product-size" value="S"> --}}
-                                            </li>
-                                            {{!-- {{#each sku.sizes}} --}}
-                                            <li class="list-inline-item">
-                                                <p>{{product}}</p>
-                                            </li>
-                                            {{!-- {{/each}} --}}
-                                        </ul>
-                                    </div>
-        
-                                    <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Quantity
-                                                
-                                            </li>
+                                <div class="col-12">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item">Kích cỡ :</li>
+                                        {{#each sku.sizes}}
+                                        <li class="list-inline-item m-0">
+                                            <a class= "" class="text" href="/product/detail/{{../product._id}}/{{../sku.sku}}/{{this.size}}">
+                                                <span class="sku-sizes-picker">{{this.size}}</span>
+                                            </a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
 
-                                            <li class="list-inline-item">
-                                                <div class="quantity-selection">
-                                                    <form>
-                                                        <div class="value-button" id="decrease" onclick="decreaseValue()"
-                                                            value="Decrease Value">-</div>
-                                                           
-                                                            <input type="number" name="name" id="number" value="1" required min="1" max=
-                                                            " {{#each product.skus.0.sizes}}
-                        
-                                                  
-                                       
-                                                            {{this.qty}}
-    
-                                                      
-                                                            {{/each}}">
-                                                          
-                                                        <div class="value-button" id="increase" onclick="increaseValue()"
-                                                            value="Increase Value">+</div>
-                                                    </form>  
-                                                </div>
-                                            </li>                        
-                                        </ul>
-                                         <div class="col d-grid">
+                                <div class="col-12">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item text-right">
+                                            Quantity
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <div class="quantity-selection">
+                                                <form>
+                                                    <div class="value-button" id="decrease" onclick="decreaseValue()"
+                                                        value="Decrease Value">-</div>
+                                                    <input class="skuQty" type="number" name="name" id="number"
+                                                        value="1" min="1" max="{{size.qty}}">
+                                                    <div class="value-button" id="increase" onclick="increaseValue()"
+                                                        value="Increase Value">+</div>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="col d-grid">
                                         <button type="submit" class="btn btn-success" name="submit"
                                             value="addtocard">Thêm vào giỏ hàng</button>
                                     </div>
-                                    </div>
-                                </div> 
-                            </form>
+                                </div>
+                            </div>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Close Content -->
+    </div>
+</section>
+<!-- Close Content -->
+<script>
+    var skuQty = document.querySelector('.skuQty')
+    var skuSizes = document.querySelectorAll('.sku-sizes-picker').forEach(sku => {
+        sku.addEventListener('click', function () {
+            var parent = sku.getAttribute("data-parent")
+            skuQty.max = parent + '.qty'
+            console.log(skuQty.max)
+        })
+    })
+</script>
