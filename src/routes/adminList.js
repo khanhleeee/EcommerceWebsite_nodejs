@@ -5,7 +5,8 @@ const verifyToken = require('../middlewares/auth');
 
 const adminController = require('../app/controllers/AdminController');
 
-router.delete('/:id', adminController.deleteProduct);
-router.get('/', adminController.showAdmin)
+router.get('/adminCreateList', adminController.showCreateList);
+router.get('/', adminController.showProductList);
+
 
 module.exports = router;

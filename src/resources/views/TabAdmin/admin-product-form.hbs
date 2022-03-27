@@ -1,0 +1,196 @@
+<div class="content-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Tạo dòng sản phẩm</h4>
+					</div>
+					<form method="POST" action="/adminCreateList/productForm">
+						<div class="card-body">
+							<div class="form-validation">
+								{{!-- <form class="form-valide" novalidate="novalidate" method="POST"
+									action="/adminCreateList/productForm"> --}}
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-username">Tên dòng sản
+													phẩm
+													<span class="text-danger">*</span>
+												</label>
+
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="name" required
+														placeholder="CLASSIC RING">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-email">Loại<span
+														class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="category"
+														required placeholder="vòng cổ">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-password">Giới tính
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="val-password" required
+														name="gender" placeholder="unisex">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Giá
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="val-confirm-password"
+														required name="price" placeholder="2,000,000">
+												</div>
+											</div>
+
+											<div class="form-group row justify-content-end">
+												{{!-- <div class="col-2 text-right">
+													<button type="submit" class="btn btn-primary">Tiếp tục</button>
+												</div> --}}
+											</div>
+										</div>
+									</div>
+									{{!--
+								</form> --}}
+							</div>
+						</div>
+						<div class="card-header">
+							<h4 class="card-title">Tạo Sản phẩm thuộc CLASSIC RING</h4>
+						</div>
+						<div class="card-body">
+							<div class="form-validation">
+								{{!-- <form class="form-valide" action="#" method="POST"
+									action="/adminCreateList/productForm/skusForm"> --}}
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-username">SKU
+													<span class="text-danger">*</span>
+												</label>
+
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="sku"
+														placeholder="VCELH01">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-email">Hình ảnh<span
+														class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="img"
+														placeholder="assets/img1">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-password">Màu sắc
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-4">
+													<input type="text" class="form-control" id="val-password"
+														name="color_name" placeholder="Rose Gold">
+												</div>
+
+												<label class="col-lg-2 col-form-label" for="val-password">Mã màu
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-4">
+													<input type="text" class="as_colorpicker form-control"
+														placeholder="#7ab2fa" name="color_id">
+												</div>
+
+											</div>
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Size
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-4">
+													<input type="text" class="form-control" id="val-confirm-password"
+														name="sizes" placeholder="S">
+												</div>
+												<label class="col-lg-2 col-form-label" for="val-password">Số lượng
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-4">
+													<input type="text" class="as_colorpicker form-control"
+														placeholder="0,1,2,..." name="qty">
+												</div>
+											</div>
+											<div class="form-group row justify-content-end">
+												<div class="col-2 text-right">
+													<button type="button" class="btn btn-primary" data-toggle="modal"
+														data-target="#saveProduct">Lưu sản phẩm</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									{{!--
+								</form> --}}
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="saveProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Bạn có muốn tạo thêm sản phẩm không ?
+			</div>
+			<div class="modal-footer">
+				<a href="/adminList" class="btn btn-secondary">Lưu</a>
+				<button type="submit" id="saveProductBtn" class="btn btn-primary" data-dismiss="modal">Tiếp tục</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{!-- SỬA LỖI CHỖ NÀY --}}
+
+<!--form create product -->
+<form method="POST" name="saveModal"></form>
+
+<!--Script callback function to delete-->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var id;
+		var saveProduct = document.forms['saveModal'];
+		var btnSaveProduct = document.getElementById('saveProductBtn');
+
+		//when dialog confirm click
+		$('#saveProduct').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			id = button.data('id')          // Extract info from data-* attributes
+		});
+
+		btnSaveProduct.onclick = function () {
+			saveProduct.action = `/adminCreateList/:id/productForm`;
+			saveProduct.submit();
+		}
+	});
+</script>
