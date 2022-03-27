@@ -49,8 +49,7 @@ module.exports = function(passport) {
     });
 
     passport.use(new passportFB({
-            clientID: '3134981346821999',
-            clientSecret: 'dbd50a518674f37e273fb9e0a2e4febc',
+
             callbackURL: 'http://localhost:3000/loginFB/successFB',
             profileFields: ['email', 'gender', 'locale', 'displayName'],
         },
