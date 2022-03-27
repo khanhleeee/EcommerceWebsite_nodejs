@@ -1,10 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { registerValidator } = require('../../validations/auth.js');
+const { registerValidator } = require('../../validations/regex.js');
 const User = require('../models/User');
-
-const { mongooseToObject } = require('../../config/utility/mongoose')
-const { multipleToObject } = require('../../config/utility/mongoose')
 
 // [GET] /register
 const showRegister = async(req, res, next) => {
@@ -13,26 +10,28 @@ const showRegister = async(req, res, next) => {
 
 // [POST] /resgister/registerStore
 const registerStore = async(req, res, next) => {
-
-    //Còn thiếu vụ check cái field mật khẩu vs confirm mật khẩu
-    // const { error } = registerValidator(req.body);
-    // if (error) return res.status(422).send(error.details[0].message);
-
-    const { phonenumber, password, passwordConf, name, address } = req.body;
-
-    const checkNumberExist = await User.findOne({ phonenumber: req.body.phonenumber });
-    const checkPassword = await User.findOne({ password: req.body.password });
-    const checkPasswordConf = await User.findOne({ passwordConf: req.body.passwordConf });
-    if (checkNumberExist) {
+    const { email, password, passwordConf, name, address } = req.body;
+    const checkEmailExist = await User.findOne({ email: req.body.email });
+    if (checkEmailExist) {
         req.session.message = {
             type: 'danger',
-            intro: 'Số điện thoại đã tồn tại !',
+            intro: 'Email đã tồn tại !',
         }
         return res.redirect('/register');
-    } else if (checkPassword != checkPasswordConf) {
+    }
+
+    if (password.length < 6) {
         req.session.message = {
             type: 'danger',
-            intro: 'Mật khẩu không đúng',
+            intro: 'Mật khẩu ít nhất 6 kí tự',
+        }
+        return res.redirect('/register');
+    }
+
+    if (password != passwordConf) {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Mật khẩu không trùng khớp',
         }
         return res.redirect('/register');
     }
@@ -41,15 +40,13 @@ const registerStore = async(req, res, next) => {
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
     const user = new User({
-        phonenumber: req.body.phonenumber,
+        email: req.body.email,
         password: hashPassword,
-        passwordConf: hashPassword,
         name: req.body.name,
         address: req.body.address,
     });
     try {
         const newUser = await user.save();
-        // await res.send(newUser);
         await res.redirect('/login');
     } catch (err) {
         res.status(400).send(err);

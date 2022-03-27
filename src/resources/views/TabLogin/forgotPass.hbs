@@ -104,7 +104,7 @@
 <div class="login-form w3_form">
    <!--  Title-->
    <div class="login w3_login">
-      <h3 class="text-center pt-5" style="color: #59ab6e">ĐĂNG KÝ THÀNH VIÊN</h3>
+      <h3 class="text-center pt-5" style="color: #59ab6e">Lấy lại mật khẩu</h3>
       
       {{#if message}}
       <div style="text-align: center" class="alert alert-{{message.type}}">
@@ -112,13 +112,11 @@
       </div>
       {{/if}}
 
-      <form class="login-container d-grid" method="POST" action="/register/registerStore">
-         <input class="form-control" type="text" placeholder="Email" name="email" required>
-         <input class="form-control" type="password" placeholder="Mật khẩu" name="password" required>
-         <input class="form-control" type="password" placeholder="Xác nhận lại mật khẩu" name="passwordConf" required>
-         <input class="form-control" type="text" placeholder="Tên khách hàng" name="name" required>
-         <input class="form-control" type="text" placeholder="Địa chỉ" name="address" required>
-         <button type="submit" class="btn btn-success mt-3">Đăng ký</button>
+      <form class="login-container d-grid" method="POST" action="/forgotPass/recoverPass">
+         
+         <input class="form-control" type="text" placeholder="Nhập email của bạn" name="email" required>
+         
+         <button type="submit" class="btn btn-success mt-3">Gửi</button>
 
          <a href="/login" style="text-align: right; color: #59ab6e; padding-top: 10px"><i class="fas fa-angle-left"></i>Quay về</a>
 

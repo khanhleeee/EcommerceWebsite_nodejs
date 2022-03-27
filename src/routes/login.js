@@ -1,11 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
+const user = require('../app/models/User')
 
 const loginController = require('../app/controllers/LoginController');
 
+router.post('/loginStore', passport.authenticate('custom', {
+        failureRedirect: '/login',
+    }),
+    (req, res) => {
+        if (req.user.role == 'admin') {
+            res.redirect('/admin');
+        } else {
+            res.redirect('/');
+        }
+    });
 
-router.post('/loginStore', loginController.loginStore);
+// router.post('/loginStore', loginController.loginStore);
 router.get('/', loginController.showLogin);
 
 
