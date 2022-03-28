@@ -11,11 +11,13 @@ const cusRewardRouter = require('./cusReward');
 
 const adminRouter = require('./admin');
 const adminProductRouter = require('./adminProduct');
-const adminCreateListRouter = require('./adminCreateList');
+const adminPromotionRouter = require('./adminPromotion');
 
 
 function route(app) {
 
+
+    app.use('/adminPromotion', adminPromotionRouter);
     app.use('/adminProduct', adminProductRouter);
     app.use('/admin', adminRouter);
 
