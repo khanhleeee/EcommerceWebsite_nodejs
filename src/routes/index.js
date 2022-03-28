@@ -10,22 +10,19 @@ const loginFBRouter = require('./loginFB');
 const cusRewardRouter = require('./cusReward');
 
 const adminRouter = require('./admin');
-const adminListRouter = require('./adminList');
+const adminProductRouter = require('./adminProduct');
 const adminCreateListRouter = require('./adminCreateList');
 
 
 function route(app) {
 
-    app.use('/adminCreateSkus', adminCreateListRouter); //route này check lại
-    app.use('/adminCreateList', adminCreateListRouter);
-    app.use('/adminList', adminListRouter);
+    app.use('/adminProduct', adminProductRouter);
     app.use('/admin', adminRouter);
 
     app.use('/cusReward', cusRewardRouter);
 
     app.use('/loginFB', loginFBRouter);
 
-    app.use('/admin', adminRouter);
     app.use('/forgotPass', forgotPassRouter);
     app.use('/logout', logoutRouter);
     app.use('/login', loginRouter);
