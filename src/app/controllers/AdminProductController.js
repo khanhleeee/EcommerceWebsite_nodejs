@@ -139,7 +139,7 @@ const updateProduct = async(req, res, next) => {
     res.redirect('/adminProduct')
 }
 
-//[DELETE] /adminProduct/:id
+//[DELETE] /adminProduct/deleteProduct/:id
 const deleteProduct = async(req, res, next) => {
     Product.deleteOne({ _id: req.params.id })
         .then(() => res.redirect('/adminProduct'))
