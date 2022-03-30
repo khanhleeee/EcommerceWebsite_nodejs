@@ -1,0 +1,142 @@
+<div class="content-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Tạo khuyến mãi mới</h4>
+					</div>
+					<form method="POST" action="/adminPromotion/createPromotion/save">
+						<div class="card-body">
+							<div class="form-validation">
+								{{!-- <form class="form-valide" novalidate="novalidate" method="POST"
+									action="/adminCreateList/productForm"> --}}
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-email">Mã khuyến
+													mãi<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="makm" required
+														placeholder="SALE30NHAN">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-username">Tên khuyến mãi
+													<span class="text-danger">*</span>
+												</label>
+
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="tenkm" required
+														placeholder="Sale nhẫn mùa hè">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-password">Giá khuyến mãi
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="val-password" required
+														name="giakm" placeholder="30%">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Ngày
+													áp dụng
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="date" class="form-control" id="val-confirm-password"
+														required name="ngayapdung" placeholder="01-04-2022">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Ngày
+													hết hạn
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="date" class="form-control" id="val-confirm-password"
+														required name="ngayhethan" placeholder="30-04-2022">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Mô tả khuyến mãi
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="val-confirm-password"
+														required name="motakm" placeholder="Sale 30% nhẫn các loại cho mùa hè">
+												</div>
+											</div>
+
+											<div class="form-group row justify-content-end">
+												<div class="col-2 text-right">
+													<button type="submit" class="btn btn-primary">Lưu khuyến mãi</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									{{!--
+								</form> --}}
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="saveProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Bạn có muốn tạo thêm sản phẩm không ?
+			</div>
+			<div class="modal-footer">
+				<a href="/adminList" class="btn btn-secondary">Lưu</a>
+				<button type="submit" id="saveProductBtn" class="btn btn-primary" data-dismiss="modal">Tiếp tục</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{!-- SỬA LỖI CHỖ NÀY --}}
+
+<!--form create product -->
+<form method="POST" name="saveModal"></form>
+
+<!--Script callback function to delete-->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var id;
+		var saveProduct = document.forms['saveModal'];
+		var btnSaveProduct = document.getElementById('saveProductBtn');
+
+		//when dialog confirm click
+		$('#saveProduct').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			id = button.data('id')          // Extract info from data-* attributes
+		});
+
+		btnSaveProduct.onclick = function () {
+			saveProduct.action = `/adminCreateList/:id/productForm`;
+			saveProduct.submit();
+		}
+	});
+</script>
