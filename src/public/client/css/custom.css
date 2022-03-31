@@ -236,7 +236,9 @@
 }
 
 .modal-title-text {
-  font-size: 0.6rem;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -284,18 +286,20 @@
 .cart-view .item-title {
   display: block;
   color: #000;
-  font-weight: 500;
+  font-weight: 500 !important;
   text-decoration: none;
+  font-size: 15px !important;
 }
 
 .cart-view .item-properties {
   display: block;
   color: #999;
   margin: 5px 0 12px;
+  font-size: 14px !important;
 }
 
 .cart-view .item-amount {
-  display: flex;
+  /* display: flex; */
   align-items: center;
 }
 
