@@ -10,17 +10,10 @@
             </span>
         </div>
 
-        {{!-- <div class="cart-view-list clearfix cart-view-list-empty"> --}}
-            {{!-- <table class="cart-view cart-view-empty">
-                <tr class="cart-item cart-item-empty">
-                    <td>Chưa có sản phẩm trong giỏ hàng</td>
-                </tr>
-            </table> --}}
-
             <!-- Start Cart Table -->
-            <table class="cart-view">
+            <table class="cart-view" id="cart-view">
                 <tbody>
-                   
+                    <tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>
                 </tbody>
             </table>
             <!-- End Cart Table -->
@@ -32,12 +25,12 @@
                 <tbody>
                     <tr>
                         <td class="text-left">TỔNG TIỀN:</td>
-                        <td class="cart-total-price text-right">0VNĐ</td>
+                        <td class="cart-total-price text-right" id="cart-total-price">0</td>
                     </tr>
                 </tbody>
             </table>
 
-            <a class="btn btn-success btn-site-cart" href="cart.html">THANH TOÁN</a>
+            <a class="btn btn-success btn-site-cart" href="">THANH TOÁN</a>
             <!-- End Total Table -->
         </div>
     </div>
@@ -75,6 +68,7 @@
                         {{!-- Input value for cart --}}
                         <input hidden value="{{sku.color.title}}" class="product-color" type="text">
                         <input hidden value="{{size.size}}" class="product-size" type="text">
+                        <input hidden value="{{sku.sku}}" class="product-sku" type="text">
 
                         <form action="" method="GET">
                             <input type="hidden" name="product-title" value="Activewear">
@@ -143,107 +137,12 @@
 <!-- Close Content -->
 
 <script>
-    var skuQty = document.querySelector('.skuQty')
+    /*var skuQty = document.querySelector('.skuQty')
     var skuSizes = document.querySelectorAll('.sku-sizes-picker').forEach(sku => {
         sku.addEventListener('click', function () {
             var parent = sku.getAttribute("data-parent")
             skuQty.max = parent + '.qty'
-            console.log(skuQty.max)
         })
-    })
+    })*/
 </script>
 
-{{!-- Gio hang --}}
-
-<script>
-    var remove_cart = document.getElementsByClassName("remove-btn");
-    for (var i = 0; i < remove_cart.length; i++) {
-        var remove_btn = remove_cart[i]
-        remove_btn.addEventListener("click", function () {
-            var remove_btn_element = event.target
-            remove_btn_element.parentElement.parentElement.remove()
-            updateCart();
-        })
-    }
-
-    function updateCart() {
-        var cartView = document.getElementsByClassName("cart-view")[0];
-        var cartItem = cartView.querySelectorAll('.cart-item')
-        //var total = 0;
-        for (var i = 0; i < cartItem.length; i++) {
-            var cart_row = cartItem[i]
-            var price_item = cart_row.getElementsByClassName("cart-price")[0]
-            var quantity_item = cart_row.getElementsByClassName("cart-quantity-input")[0].value
-            var productPrice = price_item.innerText.replaceAll(',', '');
-            var price = parseFloat(productPrice)
-
-            var total = total + (price * quantity_item)
-        }
-        document.getElementsByClassName("cart-total-price")[0].innerText = Intl.NumberFormat().format(total) + 'VNĐ'
-    }
-
-    var product = document.querySelector('.product-container')
-    var addBtn = product.querySelector('.add-cart-btn')
-    addBtn.addEventListener('click', function () {
-        var img = product.querySelector('.product-img').src
-        var name = product.querySelector('.product-name').innerText
-        var price = product.querySelector('.product-price').innerText
-        var color = product.querySelector('.product-color').value
-        var size = product.querySelector('.product-size').value
-        var qty = product.querySelector('.product-qty').value
-
-        addItemToCart(img, name, price, color, size, qty)
-        updatecart()
-    })
-
-    function addItemToCart(img, name, price, color, size, qty) {
-        var cartItem = document.createElement('tr')
-        cartItem.classList.add('cart-item')
-        var cartView = document.getElementsByClassName('cart-view')[0]
-
-        var title = cartView.querySelectorAll('.item-title')
-        
-        //Nếu title của sản phẩm bằng với title mà bạn thêm vao giỏ hàng thì sẽ thông cho user.
-        for (var i = 0; i < title.length; i++) {
-            if (title[i].innerText == name) {
-                alert('Sản Phẩm Đã Có Trong Giỏ Hàng')
-                return
-            }
-        }
-
-        var cartItemContent = 
-        `<td class="item-img">
-            <img class="cart-item-image" src="${img}"
-                alt="Card image cap" id="product-detail">
-        </td>
-        <td>
-            <a href="" class="item-title">${name}</a>
-            <span class="item-properties">${color}, ${size}</span>
-            <div class="item-amount">
-
-                <input class="cart-quantity-input" type="number" id="number" value="${qty}" />
-
-                <span class="cart-price">${price}</span>
-            </div>
-        </td>
-        <td>
-            <i class="fas fa-times remove-btn"></i>
-        </td>`
-
-        cartItem.innerHTML = cartItemContent;
-        cartView.append(cartItem);
-
-        cartItem.getElementsByClassName('remove-btn')[0].addEventListener('click', function () {
-        var button_remove = event.target
-        button_remove.parentElement.parentElement.remove()
-        updatecart()
-    })
-        cartItem.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', function (event) {
-        var input = event.target
-        if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1;
-        }
-        updatecart()
-    })
-    }
-</script>
