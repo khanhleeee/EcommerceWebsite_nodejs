@@ -13,7 +13,7 @@ const showProductList = async(req, res, next) => {
     let colors = await Color.find();
     let categories = await Category.find();
 
-    res.render('TabProduct/product', { layout: 'mainClient.hbs', p: multipleToObject(p), color: multipleToObject(colors), category: multipleToObject(categories) });
+    res.render('TabProduct/product', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), p: multipleToObject(p), color: multipleToObject(colors), category: multipleToObject(categories) });
 }
 
 // [GET] /product/category_id
@@ -24,7 +24,7 @@ const filterGender = async(req, res, next) => {
     let categories = await Category.find();
     let colors = await Color.find();
 
-    res.render('TabProduct/product', { layout: 'mainClient.hbs', p: multipleToObject(p), category: multipleToObject(categories), color: multipleToObject(colors) })
+    res.render('TabProduct/product', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), p: multipleToObject(p), category: multipleToObject(categories), color: multipleToObject(colors) })
 }
 
 // [GET] /id
@@ -36,7 +36,7 @@ const showProductDetail = (req, res, next) => {
             { path: 'p_variations.pv_id', populate: [{ path: 'vari_color' }, { path: 'vari_size' }, { path: 'SKU' }, { path: 'vari_image' }, ] }
         ])
         .then(product =>
-            res.render('productdetail', { layout: 'mainClient.hbs', product: mongooseToObject(product) })
+            res.render('productdetail', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), product: mongooseToObject(product) })
         )
         .catch(next);
 }
