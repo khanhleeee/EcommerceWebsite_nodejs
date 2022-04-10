@@ -36,12 +36,11 @@ Table of contents
 
 
 /* Typography */
-body, ul, li, p, a, label, input, div {
+body {
   font-family: 'Roboto', sans-serif;
-  font-size: 18px !important;
-  font-weight: 300 !important;
+  font-size: 62.5%; 
 }
-.h1 {
+/* .h1 {
   font-family: 'Roboto', sans-serif;
   font-size: 48px !important;
   font-weight: 200 !important;
@@ -54,14 +53,14 @@ body, ul, li, p, a, label, input, div {
 .h3 {
   font-family: 'Roboto', sans-serif;
   font-size: 22px !important;
-}
+} */
 /* General */
 .logo { font-weight: 500 !important;}
 .text-warning {  color: #ede861 !important;}
 .text-muted { color: #bcbcbc !important;}
 .text-success { color: #59ab6e !important;}
 .text-light { color: #cfd6e1 !important;}
-.bg-dark { background-color: #212934 !important;}
+.bg-dark { background-color: #00081c !important;}
 .bg-light { background-color: #e9eef5 !important;}
 .bg-black { background-color: #1d242d !important;}
 .bg-success { background-color: #59ab6e !important;}

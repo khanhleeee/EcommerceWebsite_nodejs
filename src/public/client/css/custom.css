@@ -1,3 +1,77 @@
+/* Logo */
+.kct-logo {
+  display: block;
+  padding: 16px 10px;
+  line-height: 0;
+  letter-spacing: 10px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.kct-logo:hover {
+  color: #fff;
+}
+
+.home-logo-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Nav header */
+.nav-container {
+  width: 100%;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.nav-link {
+  color: #000;  
+  font-size: 0.7rem;
+  margin-right: 30px;
+  position: relative;
+  transition: transform linear 0.1s;
+}
+
+.nav-link:hover {
+  color: #000;
+  transform: translateY(-1.5px);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  background-color: #000;
+  width: 100%;
+  border-bottom: 1px solid black;
+  top: 100%;
+  right: 50%;
+  transform: translateX(50%);
+  display: none;
+}
+
+.nav-features {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 20px;
+}
+
+.nav-features-item {
+  margin-right: 20px;
+}
+
+.nav-features-item i {
+  font-size: 0.8rem;
+}
+
 .site-cart-open {
   position: relative;
 }
