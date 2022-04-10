@@ -3699,6 +3699,7 @@ input[type="button"].btn-block {
     border-top: 0; }
 
 .card-footer {
+  justify-content: center;
   padding: 0.75rem 1.25rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125); }
@@ -9676,7 +9677,7 @@ svg.pulse-svg {
   top: 0;
   width: 100%; }
 [data-header-position="fixed"] .content-body {
-  padding-top: 7.5rem; }
+  padding-top: 4rem; }
 [data-header-position="fixed"] .deznav {
   margin-top: 0; }
 
@@ -27490,8 +27491,9 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
     color: gold; }
 
 .user-card .dz-media {
-  height: 80px;
-  width: 80px;
+  /* height: 242px;
+  width: 242px; */
+  width: 100%;
   min-width: 80px;
   border-radius: 10px;
   overflow: hidden;

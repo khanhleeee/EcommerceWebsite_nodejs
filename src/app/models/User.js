@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let User = new Schema({
-    phonenumber: { type: String, maxLength: 255 },
+    email: { type: String, maxLength: 255 },
     password: { type: String, maxLength: 255 },
     passwordConf: { type: String, maxLength: 255 },
     avatar: { type: String, default: "https://res.cloudinary.com/nguyenle23/image/upload/v1647679022/ecommerce/avatar_kx04jf.png" },

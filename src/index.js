@@ -8,8 +8,26 @@ const route = require('./routes');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
+const http = require('http');
+const server = http.createServer(app);
+
+const socketio = require('socket.io');
+const io = socketio(server);
+//Run when client connects
+io.on('connect', socket => {
+    console.log('New user connection');
+    socket.on('on-chat', data => {
+        console.log(data)
+        io.emit('user-chat', data);
+    });
+})
+
+//Passport config
+require('./middlewares/passport-authen')(passport);
+
+// Enviroment variables
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -23,12 +41,28 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(cookieParser('secret'));
-app.use(session({ cookie: { maxAge: null } }));
+
+//Express-session
+app.use(session({
+    secret: "mysecret",
+    resave: true,
+    saveUninitialized: true,
+    // cookie: { maxAge: null }
+}));
+
+//Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Flash messages middleware
 app.use((req, res, next) => {
     res.locals.message = req.session.message;
     delete req.session.message;
+    next();
+});
+
+app.use(function(req, res, next) {
+    res.locals.isAuthenticated = req.isAuthenticated();
     next();
 })
 
@@ -36,11 +70,6 @@ app.use((req, res, next) => {
 var hbs = handlebars.create({
     extname: 'hbs'
 });
-
-app.engine('hbs', hbs.engine);
-app.set('view engine', 'hbs');
-app.set("views", path.join(__dirname,'resources', 'views'));
-
 
 hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
     if (v1 === v2) {
@@ -53,9 +82,12 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set("views", path.join(__dirname, 'resources', 'views'));
 
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set("views", path.join(__dirname, 'resources', 'views'));
+
 route(app)
 
-app.listen(port, () => {
-   console.log(`app listen at http://localhost:${port}`)
+server.listen(port, () => {
+    console.log(`app listen at http://localhost:${port}`)
 })
-

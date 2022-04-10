@@ -1,0 +1,85 @@
+<div class="content-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Tạo Sản phẩm thuộc CLASSIC RING</h4>
+					</div>
+					<div class="card-body">
+						<div class="form-validation">
+							<form class="form-valide" method="POST"
+								action="/adminProduct/createProduct/save/{{p._id}}/saveSkus">
+								<div class="row">
+									<div class="col-xl-12">
+										<div class="form-group row">
+											<label class="col-lg-2 col-form-label" for="val-username">SKU
+												<span class="text-danger">*</span>
+											</label>
+
+											<div class="col-lg-10">
+												<input type="text" class="form-control" id="" name="sku"
+													placeholder="VCELH01" required>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-lg-2 col-form-label" for="val-email">Hình ảnh<span
+													class="text-danger">*</span>
+											</label>
+											<div class="col-lg-10">
+												<input type="text" class="form-control" id="" name="img"
+													placeholder="https://..." required>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-lg-2 col-form-label" for="val-password">Màu sắc
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-4">
+												<input type="text" class="form-control" id="val-password"
+													name="color_name" placeholder="Rose Gold" required>
+											</div>
+
+											<label class="col-lg-2 col-form-label" for="val-password">Mã màu
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-4">
+												<input type="text" class="as_colorpicker form-control"
+													placeholder="#7ab2fa" name="color_id" required>
+											</div>
+
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-2 col-form-label" for="val-confirm-password">Size
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-4">
+												<input type="text" class="form-control" id="val-confirm-password"
+													name="sizes" placeholder="S" required>
+											</div>
+											<label class="col-lg-2 col-form-label" for="val-password">Số lượng
+												<span class="text-danger">*</span>
+											</label>
+											<div class="col-lg-4">
+												<input type="text" class="as_colorpicker form-control"
+													placeholder="0,1,2,..." name="qty" required>
+											</div>
+										</div>
+
+										<div class="form-group row justify-content-end">
+											<div class="col-2 text-right">
+												<button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
