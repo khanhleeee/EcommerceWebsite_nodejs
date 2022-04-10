@@ -124,20 +124,6 @@
                </ul>
             </li>
 
-            {{!-- <li class="pb-2">
-               <h3 class="d-flex h3 text-decoration-none" href="#">Màu sắc</h3>
-               <ul class="list-unstyled pl-3">
-                  {{#each color}}
-                  <li>
-                     <label class="attr-check-btn sildeDown-item text-decoration-none">{{this.title}}
-                        <input name="fooby[1][]" class="check-btn radio" value="{{this.title}}" type="checkbox">
-                        <span class="checkmark"></span>
-                     </label>
-                  </li>
-                  {{/each}}
-               </ul>
-            </li> --}}
-
          </ul>
          </ul>
       </div>
@@ -162,7 +148,7 @@
          <div class="row js-product-area-2">
             {{#each p}}
             <div id="myDIV" class="col-12 col-md-4 col-lg-4">
-               <a href="" class="text-decoration-none">
+               <a href="/product/detail/{{this._id}}/{{this.skus.0.sku}}/{{this.skus.0.sizes.0.size}}" class="text-decoration-none">
                   <div class="card product-wap mb-4">
 
                      {{!--Product image --}}

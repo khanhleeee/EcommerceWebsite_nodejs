@@ -1,173 +1,148 @@
+<!-- Start Cart modal -->
+<div class="site-cart">
+    <div class="site-cart-overlay"></div>
 
-    <!-- Open Content -->
-    <section class="bg-light">
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                         {{!-- {{#each product.p_variations}}
-                                                    <option selected value="1"></option>
-                                                     {{/each}} --}}
-                         {{!-- {{#each product.p_variations}} --}}
-                        <img class="card-img img-fluid" src="{{product.image_id.thumbnail_img}}"
-                            alt="thumbnail" id="product-detail">
-                            {{!-- {{/each}} --}}
-                    </div>
-                    <div class="row d-flex justify-content-center">
+    <div class="site-nav-container-last">
+        <div class="cart-modal-title">
+            <span class="modal-title-text">Giỏ hàng</span>
+            <span id="cart-btn-close" class="cart-close-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
 
-                        <!--Start Carousel Wrapper-->
-                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item"
-                            data-bs-ride="carousel">
-                            <!--Start Slides-->
-                            <div class="carousel-inner product-links-wap" role="listbox">
+            <!-- Start Cart Table -->
+            <table class="cart-view" id="cart-view">
+                <tbody>
+                    <tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>
+                </tbody>
+            </table>
+            <!-- End Cart Table -->
 
-                                <!--First slide-->
-                                <div class="carousel-item active">
-                                    <div class="row" style="justify-content: center;">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid"
-                                                    src="{{product.image_id.thumbnail_img}}"
-                                                    alt="Product Image 1">
+            <span class="line"></span>
+
+            <!-- Start Total Table -->
+            <table class="table-total">
+                <tbody>
+                    <tr>
+                        <td class="text-left">TỔNG TIỀN:</td>
+                        <td class="cart-total-price text-right" id="cart-total-price">0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a class="btn btn-success btn-site-cart" href="">THANH TOÁN</a>
+            <!-- End Total Table -->
+        </div>
+    </div>
+</div>
+<!-- End Cart modal -->
+
+<!-- Open Content -->
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row product-container">
+            <div class="col-lg-5 mt-5">
+                <div class="card mb-3">
+                    <img class="card-img img-fluid product-img" src="{{sku.img}}" alt="thumbnail" id="product-detail">
+                    {{!-- {{/each}} --}}
+                </div>
+
+            </div>
+
+            <!-- col end -->
+            <div class="col-lg-7 mt-5">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h3 class="content-product-h3 product-name">{{product.name}}</h3>
+                        <!-- <p>Lắc tay bạc unisex</p> -->
+
+                        <div class="card-body-price">
+                            <h4 class="price-unit product-price">{{product.price}}</h4>
+                            <p class="price-unit">vnd</p>
+                        </div>
+
+                        <ul class="list-inline">
+                        </ul>
+
+                        {{!-- Input value for cart --}}
+                        <input hidden value="{{sku.color.title}}" class="product-color" type="text">
+                        <input hidden value="{{size.size}}" class="product-size" type="text">
+                        <input hidden value="{{sku.sku}}" class="product-sku" type="text">
+
+                        <form action="" method="GET">
+                            <input type="hidden" name="product-title" value="Activewear">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="list-inline pb-3 d-flex align-items-center">
+                                        <li class="list-inline-item">Màu sắc :</li>
+                                        {{#each product.skus}}
+                                        <li class="list-inline-item m-0">
+                                            <a href="/product/detail/{{../product._id}}/{{this.sku}}/{{../size.size}}">
+                                                <span class="product-detail-dot"
+                                                    style="background-color: {{this.color.color_code}};"></span>
                                             </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid"
-                                                    src="{{product.image_id.img_1}}"
-                                                    alt="Product Image 2">
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+
+                                <div class="col-12">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item">Kích cỡ :</li>
+                                        {{#each sku.sizes}}
+                                        <li class="list-inline-item m-0">
+                                            <a class="" class="text"
+                                                href="/product/detail/{{../product._id}}/{{../sku.sku}}/{{this.size}}">
+                                                <span class="sku-sizes-picker">{{this.size}}</span>
                                             </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid"
-                                                    src="{{product.image_id.img_2}}"
-                                                    alt="Product Image 3">
-                                            </a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+
+                                <div class="col-12">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item text-right">
+                                            Quantity
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <div class="quantity-selection">
+                                                <form>
+                                                    <div class="value-button" id="decrease" onclick="decreaseValue()"
+                                                        value="Decrease Value">-</div>
+                                                    <input class="skuQty product-qty" type="number" name="name"
+                                                        id="number" value="1" min="1" max="{{size.qty}}">
+                                                    <div class="value-button" id="increase" onclick="increaseValue()"
+                                                        value="Increase Value">+</div>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="col d-grid">
+                                        <div class="btn btn-success add-cart-btn" value="addtocard">Thêm vào giỏ hàng
                                         </div>
                                     </div>
                                 </div>
-                                <!--/.First slide-->
-
-
                             </div>
-                            <!--End Slides-->
-                        </div>
-                        <!--End Carousel Wrapper-->
+                        </form>
 
-                    </div>
-
-                </div>
-            
-                <!-- col end -->
-                <div class="col-lg-7 mt-5">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <h4>{{product.p_title}}</h4>
-                            <!-- <p>Lắc tay bạc unisex</p> -->
-
-                            <div class="card-body-price">
-                                <h4 class="price-unit">{{product.p_price}}</h4>
-                                <p class="price-unit">vnd</p>
-                            </div>
-
-                            <ul class="list-inline">
-
-                                {{!-- <li class="list-inline-item">
-                                    <p>Lắc tay inox unisex</p>
-                                </li> --}}
-                            </ul>
-
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Màu sắc :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                        
-                                            <li class="list-inline-item">
-                                                {{!-- <select class="form-select form-select-sm"
-                                                    aria-label=".form-select-sm example"> --}}
-                                                     {{#each product.p_variations}}
-                                                    <button selected value="1">{{this.pv_id.vari_color.color_title}}</button>
-                                                     {{/each}}
-                                                {{!-- </select> --}}
-                                            </li>
-                                      
-
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Kích cỡ :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                            <li class="list-inline-item">
-                                                {{!-- <select class="form-select form-select-sm"
-                                                    aria-label=".form-select-sm example"> --}}
-                                                     {{#each product.p_variations}}
-                                                    <button selected value="1">{{this.pv_id.vari_size.size_title}}</button>
-                                                     {{/each}}
-                                                {{!-- </select> --}}
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="" style="display: flex; margin-bottom: 15px">
-                                        {{!-- <ul class="list-inline pb-3"> --}}
-                                            <div style="margin-right: 10px;">
-                                                <p style="vertical-align: top;">Kho :</p>
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </div>
-                                            <div>
-                                                {{#each product.p_variations}}
-                                                <p> {{this.pv_id.vari_color.color_title}} size {{this.pv_id.vari_size.size_title}} còn {{this.pv_id.SKU.quantity}}</p>
-                                                {{/each}}
-                                               
-                                            </div>
-
-                                        {{!-- </ul> --}}
-                                    </div>
-
-
-                                    <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Quantity
-                                                {{!-- <input type="hidden" name="product-quanity" id="product-quanity"
-                                                    value="1"> --}}
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <div class="quantity-selection">
-                                                    <form>
-                                                        <div class="value-button" id="decrease" onclick="decreaseValue()"
-                                                            value="Decrease Value">-</div>
-                                                            {{!-- {{#each product.p_variations}} --}}
-                                                            <input type="number" name="name" id="number" value="1" required min="1" max="{{this.pv_id.SKU.quantity}}">
-                                                            {{!-- {{/each}} --}}
-                                                        <div class="value-button" id="increase" onclick="increaseValue()"
-                                                            value="Increase Value">+</div>
-                                                    </form>  
-                                                </div>
-                                            </li>                        
-                                        </ul>
-                                         <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success" name="submit"
-                                            value="addtocard">Thêm vào giỏ hàng</button>
-                                    </div>
-                                    </div>
-                                </div> 
-                            </form>
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Close Content -->
+    </div>
+</section>
+<!-- Close Content -->
+
+<script>
+    /*var skuQty = document.querySelector('.skuQty')
+    var skuSizes = document.querySelectorAll('.sku-sizes-picker').forEach(sku => {
+        sku.addEventListener('click', function () {
+            var parent = sku.getAttribute("data-parent")
+            skuQty.max = parent + '.qty'
+        })
+    })*/
+</script>
+
