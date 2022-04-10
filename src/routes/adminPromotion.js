@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const verifyToken = require('../middlewares/auth');
+const { ensureAuthenticated } = require('../middlewares/authorize');
+
 
 const adminPromotionController = require('../app/controllers/AdminPromotionController');
 
@@ -13,7 +14,7 @@ router.put('/:id', adminPromotionController.updatePromotion);
 router.post('/createPromotion/save', adminPromotionController.createPromotion);
 router.get('/createPromotion', adminPromotionController.showCreatePromotion);
 
-router.get('/', adminPromotionController.showPromotionList);
+router.get('/', ensureAuthenticated, adminPromotionController.showPromotionList);
 
 
 module.exports = router;
