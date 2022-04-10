@@ -18,6 +18,7 @@ const io = socketio(server);
 //Run when client connects
 io.on('connect', socket => {
     socket.on('on-chat', data => {
+    socket.on('on-chat', data => {
         io.emit('user-chat', data);
     });
 })

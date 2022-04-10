@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const verifyToken = require('../middlewares/auth');
+const { ensureAuthenticated } = require('../middlewares/authorize');
+
 
 const adminProductController = require('../app/controllers/AdminProductController');
 
@@ -14,7 +15,7 @@ router.get('/:id/editProduct', adminProductController.showEditProduct);
 router.put('/:id', adminProductController.updateProduct);
 
 router.get('/createProduct', adminProductController.showCreateList);
-router.get('/', adminProductController.showProductList);
+router.get('/', ensureAuthenticated, adminProductController.showProductList);
 
 
 module.exports = router;

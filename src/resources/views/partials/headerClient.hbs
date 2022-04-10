@@ -33,7 +33,6 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-amount" id="cart-amount">0</span>
                 </span>
-
                 <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/login">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                 </a>
@@ -41,21 +40,14 @@
                 {{#if isAuthenticated}}
                 <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/logout">
                     <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
-                    <img src="{{user.avatar}}" width="20" alt="avatar_cus">
+                    {{!-- <img src="{{user.avatar}}" width="20" alt="avatar_cus"> --}}
                 </a>
-                <div>
-                    <select>
-                        <option value="">Tài khoản của bạn</option>
-                        <option value="vi">Hồ sơ</option>
-                        <option value="">
-                            <a href="/logout">Đăng xuất</a>
-                        </option>
-                    </select>
-                </div>
-                {{else}}
+                {{user.name}}
+                {{else}}           
                 {{!-- <a class="nav-icon position-relative text-decoration-none" href="/login">
                     <i class="fa fa-fw fa-sign-in-alt text-dark mr-3"></i>
                 </a> --}}
+
                 {{/if}}
             </div>
         </div>
