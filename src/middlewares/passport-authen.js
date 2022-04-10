@@ -49,8 +49,8 @@ module.exports = function(passport) {
     });
 
     passport.use(new passportFB({
-            clientID: 'process.env.clientID',
-            clientSecret: 'process.env.clientSecret',
+            clientID: '3134981346821999',
+            clientSecret: 'dbd50a518674f37e273fb9e0a2e4febc',
             callbackURL: 'http://localhost:3000/loginFB/successFB',
             profileFields: ['email', 'gender', 'locale', 'displayName'],
         },
@@ -68,12 +68,13 @@ module.exports = function(passport) {
                         password: profile._json.id,
                         role: 'customer',
                     });
-                    const user = newUser.save()
+                    console.log(newUser);
+                    newUser.save()
                         .save((err) => {
                             if (err) throw err;
                             return done(null, newUser);
                         });
-                    console.log(user);
+                    console.log(newUser);
                 }
             })
         }

@@ -17,9 +17,9 @@ const socketio = require('socket.io');
 const io = socketio(server);
 //Run when client connects
 io.on('connect', socket => {
-    console.log('New user connection');
+    // console.log('New user connection');
     socket.on('on-chat', data => {
-        console.log(data)
+        // console.log(data)
         io.emit('user-chat', data);
     });
 })
