@@ -27,6 +27,8 @@ const recoverPass = async(req, res, next) => {
     }
     const token = jwt.sign(payload, secret, { expiresIn: '15m' });
     const link = `http://localhost:3000/forgotPass/resetPass/${user.id}/${token}`;
+    const emailCus = `${user.email}`;
+
     try {
         const output = `
         <body style="background-color: #59ab6e;">
@@ -161,19 +163,19 @@ const recoverPass = async(req, res, next) => {
     <!-- end body -->
 
 </body>
-    `;
+        `;
 
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-            // host: 'mail.kctshop.com',
-            // port: 587,
-            // secure: false, // true for 465, false for other ports
+            host: 'mail.kctshop.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
             host: 'smtp.gmail.com',
             port: 465,
             secure: true, // use SSL
             auth: {
-                user: 'beebee24681010@gmail.com', // generated ethereal user
-                pass: 'Bin23082001' // generated ethereal password
+                user: 'kctshop.cs@gmail.com', // generated ethereal user
+                pass: 'bin23082001' // generated ethereal password
             },
             tls: {
                 rejectUnauthorized: false
@@ -182,8 +184,8 @@ const recoverPass = async(req, res, next) => {
 
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '"KCT Shop Service" <beebee24681010@gmail.com>', // sender address
-            to: 'beenbin2308@gmail.com', // list of receivers
+            from: '"KCT Shop Service" <kctshop.cs@gmail.com>', // sender address
+            to: emailCus, // list of receivers
             subject: 'Confirm Reset Password', // Subject line
             text: 'Hello world?', // plain text body
             html: output // html body
