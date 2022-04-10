@@ -2,10 +2,6 @@
     font-family: inherit;
 }
 
-.list-unstyled {
-    margin-top: 65px;
-}
-
 
 /* Start my-rewards */
 
@@ -281,3 +277,17 @@
 
 
 /* End order-history */
+
+
+/* Start Cart */
+.cart-quantity-input{
+    background-color: #c1c1c1;
+    color: white;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+
+
+/* End Cart */
+
