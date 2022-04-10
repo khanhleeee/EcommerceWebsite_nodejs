@@ -1,180 +1,52 @@
+
 <!-- Start Top Nav -->
-<nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
-    <div class="container text-light">
-        <div class="w-100 d-flex justify-content-between">
+<nav class="navbar bg-dark">
+    <div class="container">
+        <div class="home-logo-container">
             <div>
-                <!-- <i class="fa fa-envelope mx-2"></i>
-					<a class="navbar-sm-brand text-light text-decoration-none" href="">Login</a> -->
-                <i class="fa fa-phone mx-2"></i>
-                <a class="navbar-sm-brand text-light text-decoration-none" href="tel:0866764751">08 6676 4751</a>
+                <a class="kct-logo" href="/">KCT</a>
             </div>
         </div>
     </div>
 </nav>
 <!-- Close Top Nav -->
 
-<!-- Start Cart modal -->
-<div class="site-cart">
-    <div class="site-cart-overlay"></div>
-
-    <div class="site-nav-container-last">
-        <div class="cart-modal-title">
-            <span class="modal-title-text">Giỏ hàng</span>
-            <span id="cart-btn-close" class="cart-close-btn">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-
-        <div class="cart-view clearfix">
-            <!-- Start Cart Table -->
-            <table id="cart-view">
-                <tbody>
-                    <tr class="cart-item">
-                        <td class="item-img">
-                            <img class="img-fluid" src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab"
-                                alt="Card image cap" id="product-detail">
-                        </td>
-
-                        <td>
-                            <a href="" class="item-title">Snake High Chain</a>
-                            <span class="item-properties">Bạc, 16cm</span>
-                            <div class="item-amount">
-                                <form class="item-view-quantity">
-                                    <div class="value-button" id="decrease" onclick="decreaseValue()"
-                                        value="Decrease Value">-
-                                    </div>
-                                    <input type="number" id="number" value="1" />
-                                    <div class="value-button" id="increase" onclick="increaseValue()"
-                                        value="Increase Value">+
-                                    </div>
-                                </form>
-                                <span class="item-view-price">100.000đ</span>
-                            </div>
-                        </td>
-                        <td>
-                            <a class="remove-link" href="">
-                                <i class="fas fa-times"></i></a>
-                            </a>
-                        </td>
-                    </tr>
-
-                    <tr class="cart-item">
-                        <td class="item-img">
-                            <img class="img-fluid" src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab"
-                                alt="Card image cap" id="product-detail">
-                        </td>
-
-                        <td>
-                            <a href="" class="item-title">Snake High Chain</a>
-                            <span class="item-properties">Bạc, 16cm</span>
-                            <div class="item-amount">
-                                <!-- <span class="item-view-quantity">1</span> -->
-
-                                <form class="item-view-quantity">
-                                    <div class="value-button" id="decrease" onclick="decreaseValue()"
-                                        value="Decrease Value">-
-                                    </div>
-                                    <input type="number" id="number" value="1" />
-                                    <div class="value-button" id="increase" onclick="increaseValue()"
-                                        value="Increase Value">+
-                                    </div>
-                                </form>
-
-                                <span class="item-view-price">100.000đ</span>
-                            </div>
-                        </td>
-                        <td>
-                            <a class="remove-link" href="">
-                                <i class="fas fa-times"></i></a>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- End Cart Table -->
-
-            <span class="line"></span>
-
-            <!-- Start Total Table -->
-            <table class="table-total">
-                <tbody>
-                    <!-- <tr>
-							<td class="text-left">MÃ KHUYẾN MÃI:</td>
-							<td class="text-right">FREESHIP</td>
-						</tr> -->
-                    <tr>
-                        <td class="text-left">TỔNG TIỀN:</td>
-                        <td class="text-right">200,000đ</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <a class="btn btn-success btn-site-cart" href="cart.html">THANH TOÁN</a>
-            <!-- End Total Table -->
-        </div>
-    </div>
-</div>
-<!-- End Cart modal -->
-
 <!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-light shadow">
-    <div class="container d-flex justify-content-between align-items-center">
+<nav class="navbar navbar-expand-lg shadow">
+    <div class="container align-items-center justify-content-center">
+        <div class="nav-container">
 
-        <a class="navbar-brand text-success logo h1 align-self-center" href="/">KCT</a>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-link" href="/product">TẤT CẢ SẢN PHẨM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product/nam">TRANG SỨC NAM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product/nữ">TRANG SỨC NỮ</a>
+                </li>
+            </ul>
 
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-            data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-            id="templatemo_main_nav">
-            <div class="flex-fill">
-                <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/product">SẢN PHẨM</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/product/unisex">UNISEX</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/product/nam">NAM</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/product/nữ">NỮ</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="navbar align-self-center d-flex">
-                <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-
-                </div>
-
-                <span class="site-cart-open nav-icon position-relative text-decoration-none">
-                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+            <div class="nav-features align-self-center d-flex">
+                <span class="nav-features-item site-cart-open nav-icon position-relative text-decoration-none">
+                    <i class="fas fa-shopping-cart"></i>
                     <span class="cart-amount" id="cart-amount">0</span>
                 </span>
-
-                {{#if isAuthenticated}}
-                <a class="nav-icon position-relative text-decoration-none" href="/customer">
+                <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/login">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                 </a>
 
-                <a class="nav-icon position-relative text-decoration-none" href="/logout">
+                {{#if isAuthenticated}}
+                <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/logout">
                     <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
                     {{!-- <img src="{{user.avatar}}" width="20" alt="avatar_cus"> --}}
                 </a>
                 {{user.name}}
-
-                {{else}}
-                <a class="nav-icon position-relative text-decoration-none" href="/login">
-                    <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                </a>
-
-                <a class="nav-icon position-relative text-decoration-none" href="/login">
+                {{else}}           
+                {{!-- <a class="nav-icon position-relative text-decoration-none" href="/login">
                     <i class="fa fa-fw fa-sign-in-alt text-dark mr-3"></i>
-                </a>
+                </a> --}}
 
                 {{/if}}
             </div>
@@ -183,3 +55,6 @@
     </div>
 </nav>
 <!-- Close Header -->
+
+
+

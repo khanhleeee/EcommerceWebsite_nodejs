@@ -45,50 +45,8 @@ siteCartContainer.addEventListener('click', function (event) {
 })
 
 
-// Cart
-var product = document.querySelector('.product-container')
-var addBtn = product.querySelector('.add-cart-btn')
-let items = [];
 
-addBtn.addEventListener('click', function () {
-	
-	if(typeof(Storage) !== 'undefined') {
-		let item = {
-			sku: product.querySelector('.product-sku').value,
-			img: product.querySelector('.product-img').src,
-			name: product.querySelector('.product-name').innerText,
-			price: product.querySelector('.product-price').innerText.replaceAll(',', ''),
-			color: product.querySelector('.product-color').value,
-			size: product.querySelector('.product-size').value,
-			qty: parseInt(product.querySelector('.product-qty').value)
-		};
-		
-		if(JSON.parse(localStorage.getItem('items')) === null) {
-			items.push(item);
-			localStorage.setItem("items", JSON.stringify(items));
-			window.location.reload();
-		}
-		else {
-			const localItems = JSON.parse(localStorage.getItem('items'))
-			localItems.map(data => {
-				if(item.sku == data.sku && item.size == data.size) {
-					item.qty = item.qty + data.qty;
-				}
-				else {
-					items.push(data);
-				}
-			});
-			items.push(item)
-			localStorage.setItem("items", JSON.stringify(items));
-			window.location.reload();
-			}
-		}
-	else {
-		alert('local storage is not working')
-	}
-});
-
-// adding data to shopping cart
+//Adding data to shopping cart
 const cartAmount = document.querySelector('.cart-amount')
 let qty = 0;
 if(JSON.parse(localStorage.getItem('items')) === null) {
@@ -107,7 +65,7 @@ let cartData = ``;
 
 if(JSON.parse(localStorage.getItem('items')) === null || JSON.parse(localStorage.getItem('items')) == '' ) {
 	cartData += `<tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>`
-	document.querySelector('.cart-total-price').innerHTML = '0' + 'đ';
+	document.querySelector('.cart-total-price').innerHTML = '2' + 'đ';
 }
 else {
 	(JSON.parse(localStorage.getItem('items')).map(data => {
@@ -168,6 +126,11 @@ else {
 	}
 
 cartView.innerHTML = cartData;
+
+
+
+
+
 
 
 

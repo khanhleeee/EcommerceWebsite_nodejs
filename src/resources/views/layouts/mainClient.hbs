@@ -28,18 +28,50 @@
 <body>
    <div class="app">
       {{>headerClient}}
+      <!-- Start Cart modal -->
+      <div class="site-cart">
+         <div class="site-cart-overlay"></div>
+         <div class="site-nav-container-last">
+            <div class="cart-modal-title">
+               <span class="modal-title-text">Giỏ hàng</span>
+               <span id="cart-btn-close" class="cart-close-btn">
+                  <i class="fas fa-times"></i>
+               </span>
+            </div>
+
+            <!-- Start Cart Table -->
+            <table class="cart-view" id="cart-view">
+            </table>
+            <!-- End Cart Table -->
+            <span class="line"></span>
+            <!-- Start Total Table -->
+            <table class="table-total">
+               <tbody>
+                  <tr>
+                     <td class="text-left">TỔNG TIỀN:</td>
+                     <td class="cart-total-price text-right" id="cart-total-price"></td>
+                  </tr>
+               </tbody>
+            </table>
+
+            <a class="btn btn-success btn-site-cart" href="">THANH TOÁN</a>
+            <!-- End Total Table -->
+         </div>
+      </div>
+      <!-- End Cart modal -->
       {{{body}}}
       {{>footerClient}}
    </div>
 
    <!-- Start Script -->
+   <script src="/client/js/custom.js"></script>
+   <script src="/client/js/cart.js"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
    <script src="/socket.io/socket.io.js"></script>
    <script src="/client/js/jquery-1.11.0.min.js"></script>
    <script src="/client/js/jquery-migrate-1.2.1.min.js"></script>
    <script src="/client/js/bootstrap.bundle.min.js"></script>
    <script src="/client/js/templatemo.js"></script>
-   <script src="/client/js/custom.js"></script>
    <script src="/client/js/chatbox.js"></script>
    <script>
       const socket = io();

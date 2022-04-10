@@ -2,7 +2,7 @@ const express = require('express');
 var handlebars = require('express-handlebars');
 const app = express();
 const path = require('path');
-const port = 4000;
+const port = 3000;
 const bodyParser = require('body-parser');
 const route = require('./routes');
 const methodOverride = require('method-override');
@@ -17,9 +17,8 @@ const socketio = require('socket.io');
 const io = socketio(server);
 //Run when client connects
 io.on('connect', socket => {
-    // console.log('New user connection');
     socket.on('on-chat', data => {
-        // console.log(data)
+    socket.on('on-chat', data => {
         io.emit('user-chat', data);
     });
 })
