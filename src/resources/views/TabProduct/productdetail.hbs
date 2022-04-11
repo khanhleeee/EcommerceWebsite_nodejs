@@ -15,11 +15,11 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h3 class="content-product-h3 product-name">{{product.name}}</h3>
+                        <h3 class="product-name">{{product.name}}</h3>
                         <!-- <p>Lắc tay bạc unisex</p> -->
 
                         <div class="card-body-price">
-                            <h4 class="price-unit product-price">{{product.price}}</h4>
+                            <h4 class="product-price">{{product.price}}</h4>
                             <p class="price-unit">vnd</p>
                         </div>
 
@@ -71,12 +71,8 @@
                                         <li class="list-inline-item">
                                             <div class="quantity-selection">
                                                 <form>
-                                                    <div class="value-button" id="decrease" onclick="decreaseValue()"
-                                                        value="Decrease Value">-</div>
                                                     <input class="skuQty product-qty" type="number" name="name"
                                                         id="number" value="1" min="1" max="{{size.qty}}">
-                                                    <div class="value-button" id="increase" onclick="increaseValue()"
-                                                        value="Increase Value">+</div>
                                                 </form>
                                             </div>
                                         </li>
@@ -96,4 +92,3 @@
     </div>
 </section>
 <!-- Close Content -->
-

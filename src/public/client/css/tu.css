@@ -274,20 +274,4 @@
     display: flex;
     margin-top: 30px;
 }
-
-
 /* End order-history */
-
-
-/* Start Cart */
-.cart-quantity-input{
-    background-color: #c1c1c1;
-    color: white;
-    border: solid 2px black;
-    border-radius: 5px;
-}
-
-
-
-/* End Cart */
-

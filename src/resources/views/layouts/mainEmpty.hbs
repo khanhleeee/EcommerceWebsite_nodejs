@@ -32,39 +32,7 @@
 
 <body>
    <div class="app">
-      {{>headerClient}}
-      <!-- Start Cart modal -->
-      <div class="site-cart">
-         <div class="site-cart-overlay"></div>
-         <div class="site-nav-container-last">
-            <div class="cart-modal-title">
-               <span class="modal-title-text">Giỏ hàng</span>
-               <span id="cart-btn-close" class="cart-close-btn">
-                  <i class="fas fa-times"></i>
-               </span>
-            </div>
-
-            <!-- Start Cart Table -->
-            <table class="cart-view" id="cart-view">
-            </table>
-            <!-- End Cart Table -->
-            <span class="line"></span>
-            <!-- Start Total Table -->
-            <table class="table-total">
-               <tbody>
-                  <tr>
-                     <td class="text-left">TỔNG TIỀN:</td>
-                     <td class="cart-total-price text-right" id="cart-total-price"></td>
-                  </tr>
-               </tbody>
-            </table>
-            <a class="btn btn-success btn-site-cart" href="/payment">THANH TOÁN</a>
-            <!-- End Total Table -->
-         </div>
-      </div>
-      <!-- End Cart modal -->
       {{{body}}}
-      {{>footerClient}}
    </div>
 
    <!-- Start Script -->

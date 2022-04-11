@@ -37,23 +37,24 @@ Table of contents
 
 /* Typography */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 62.5%; 
 }
-/* .h1 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 48px !important;
-  font-weight: 200 !important;
+.h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 48px;
+  font-weight: 200;
 }
 .h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 30px !important;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 30px;
   font-weight: 300;
 }
 .h3 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 22px !important;
-} */
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px;
+}
+
 /* General */
 .logo { font-weight: 500 !important;}
 .text-warning {  color: #ede861 !important;}
@@ -61,12 +62,15 @@ body {
 .text-success { color: #59ab6e !important;}
 .text-light { color: #cfd6e1 !important;}
 .bg-dark { background-color: #00081c !important;}
-.bg-light { background-color: #e9eef5 !important;}
+.bg-light { background-color: #f5f5f5 !important;}
 .bg-black { background-color: #1d242d !important;}
 .bg-success { background-color: #59ab6e !important;}
 .btn-success {
-  background-color: #59ab6e !important;
-  border-color: #56ae6c !important;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 2px;
+  font-weight: 300;
+  transition: opacity linear 0.1s;
 }
 .pagination .page-link:hover {color: #000;}
 .pagination .page-link:hover, .pagination .page-link.active {
@@ -141,7 +145,6 @@ body {
 .form-control { border: 1px solid #e8e8e8;}
 /* Footer */
 #tempaltemo_footer a { color: #dcdde1;}
-#tempaltemo_footer a:hover { color: #68bb7d;}
 #tempaltemo_footer ul.footer-link-list li { padding-top: 10px;}
 #tempaltemo_footer ul.footer-icons li {
   width: 2.6em;

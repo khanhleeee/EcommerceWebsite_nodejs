@@ -59,13 +59,13 @@ else {
 }
 cartAmount.innerHTML = qty;
 
-// adding cartview data
+// adding cartview data	
 var cartView = document.getElementsByClassName('cart-view')[0]
 let cartData = ``;
 
 if(JSON.parse(localStorage.getItem('items')) === null || JSON.parse(localStorage.getItem('items')) == '' ) {
 	cartData += `<tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>`
-	document.querySelector('.cart-total-price').innerHTML = '2' + 'đ';
+	document.querySelector('.cart-total-price').innerHTML = '0đ';
 }
 else {
 	(JSON.parse(localStorage.getItem('items')).map(data => {
@@ -85,7 +85,7 @@ else {
 		<span class="item-properties">` + data.color + `, ` + data.size +`</span>
 		<div class="item-amount">
 			<input hidden value="` + data.sku + `" class="cart-sku" type="text">
-			<input class="cart-quantity-input" type="number" id="number" value="` + data.qty +`" />
+			<span class="cart-quantity-input">` + data.qty +`</span>
 
 			<span class="cart-price">` + productTotalFormat +`</span>
 		</div>
