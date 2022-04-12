@@ -38,3 +38,4 @@ const updateProfile = async(req, res, next) => {
 }
 
 module.exports = { showAdmin, showAdminProfile, updateProfile }
+

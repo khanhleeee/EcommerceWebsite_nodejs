@@ -2,9 +2,9 @@
 <div class="container py-5">
    <div class="row">
       <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
-         <h2>Thông tin giao hàng</h2>
+         <h2 class="payment-title mt-lg-0 mt-sm-3">Thông tin giao hàng</h2>
 
-         <form class="mt-4">
+         <form class="mt-4 mb-4">
             <div>
                <input type="email" class="form-control mb-3" id="input-name" placeholder="Họ và tên">
             </div>
@@ -21,16 +21,53 @@
                <label for="exampleFormControlTextarea1">Ghi chú</label>
                <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
+         </form>
 
-
+         <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức vận chuyển</h2>
+         <form class="mt-4 mb-4">
             <div class="">
-               <input checked type="radio" name="payment" class="form-check-input" id="">
-               <label class="form-check-label mb-2" for="exampleCheck1">Thanh toán khi nhận hàng</label>
+               <label class="attr-check-btn sildeDown-item text-decoration-none">
+                  <span class="attr-text">Thanh toán khi nhận hàng</span>
+                  <input checked name="fooby[1][]" class="check-btn radio" value="payOffline" type="radio">
+                  <span class="checkmark"></span>
+               </label>
             </div>
 
             <div class="">
-               <input type="radio" name="payment" class="form-check-input" id="">
-               <label class="form-check-label mb-2" for="exampleCheck1">Thanh toán qua ví điện tử</label>
+               <label class="attr-check-btn sildeDown-item text-decoration-none">
+                  <span class="attr-text">Thanh toán qua MoMo</span>
+                  <input name="fooby[1][]" class="check-btn radio" value="payOnline" type="radio">
+                  <span class="checkmark"></span>
+               </label>
+            </div>
+
+            <div class="bill-payment mt-3">
+               <a class="bill-backtoshop" href="/product">
+                  <i class="fas fa-angle-left"></i>
+                  Tiếp tục mua sắm
+               </a>
+
+               <button type="submit" class="btn btn-success btn-sm">Đặt hàng</button>
+            </div>
+         </form>
+
+
+         <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức thanh toán</h2>
+         <form class="mt-4 mb-4">
+            <div class="">
+               <label class="attr-check-btn sildeDown-item text-decoration-none">
+                  <span class="attr-text">Thanh toán khi nhận hàng</span>
+                  <input checked name="fooby[1][]" class="check-btn radio" value="payOffline" type="radio">
+                  <span class="checkmark"></span>
+               </label>
+            </div>
+
+            <div class="">
+               <label class="attr-check-btn sildeDown-item text-decoration-none">
+                  <span class="attr-text">Thanh toán qua MoMo</span>
+                  <input name="fooby[1][]" class="check-btn radio" value="payOnline" type="radio">
+                  <span class="checkmark"></span>
+               </label>
             </div>
 
             <div class="bill-payment mt-3">
@@ -46,17 +83,17 @@
 
       <!-- Bill Details -->
       <div class="col-sm-12 col-lg-5 order-lg-2 order-1">
-         <table class="cart-view" id="cart-view">
-
-         </table>
-
+         <table class="cart-view" id="cart-view"></table>
          <span class="line"></span>
-
          <table class="table-total">
             <tbody>
                <tr>
-                  <td class="text-left">TẠM TÍNH:</td>
-                  <td class="cart-total-price text-right" id="cart-total-price"></td>
+                  <td class="text-left col-8">
+                     <input class="promotion-input" type="text" name="promotion" placeholder="Mã giảm giá">
+                  </td>
+                  <td class="text-right col-4">
+                     <button class="btn btn-success">Áp dụng</button>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -66,6 +103,10 @@
          <!-- Start Total Table -->
          <table class="table-total">
             <tbody>
+               <tr>
+                  <td class="text-left">TẠM TÍNH:</td>
+                  <td class="cart-total-price text-right" id="cart-total-price"></td>
+               </tr>
                <tr>
                   <td class="text-left">PHÍ VẬN CHUYỂN:</td>
                   <td class="text-right">FREESHIP</td>
@@ -96,15 +137,15 @@
 
          cartData += `
 		<tr class="cart-item" id="cart-item">
-		<td class="item-img">
+		<td class="item-img col-4">
 		
 		<img class="cart-item-image" src="` + data.img + `" alt="Card image cap" id="product-detail">
 	</td>
-	<td>
+	<td class="col-8">
 		<a href="" class="item-title">` + data.name + `</a>
 		<input hidden value="` + data.size + `" class="cart-size" type="text">
 		<span class="item-properties">` + data.color + `, ` + data.size + `</span>
-		<div class="item-amount">
+		<div class="item-amount justify-content-center">
 			<input hidden value="` + data.sku + `" class="cart-sku" type="text">
 			<span class="cart-quantity-input">` + data.qty + `</span>
 
