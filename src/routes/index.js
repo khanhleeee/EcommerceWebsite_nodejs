@@ -8,7 +8,7 @@ const forgotPassRouter = require('./forgotPass');
 
 const loginFBRouter = require('./loginFB');
 
-const cusRewardRouter = require('./cusReward');
+const customerRouter = require('./customer');
 
 const adminRouter = require('./admin');
 const adminProductRouter = require('./adminProduct');
@@ -20,7 +20,7 @@ function route(app) {
     app.use('/adminProduct', adminProductRouter);
     app.use('/admin', adminRouter);
 
-    app.use('/cusReward', cusRewardRouter);
+    app.use('/customer', customerRouter);
 
     app.use('/loginFB', loginFBRouter);
 
