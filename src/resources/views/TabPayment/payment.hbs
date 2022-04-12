@@ -1,0 +1,132 @@
+<!-- Opent content -->
+<div class="container py-5">
+   <div class="row">
+      <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
+         <h2>Thông tin giao hàng</h2>
+
+         <form class="mt-4">
+            <div>
+               <input type="email" class="form-control mb-3" id="input-name" placeholder="Họ và tên">
+            </div>
+
+            <div class="">
+               <input type="number" class="form-control mb-3" id="" placeholder="Số điện thoại">
+            </div>
+
+            <div class="">
+               <input type="text" class="form-control mb-3" id="" placeholder="Địa chỉ giao hàng">
+            </div>
+
+            <div class="">
+               <label for="exampleFormControlTextarea1">Ghi chú</label>
+               <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+
+
+            <div class="">
+               <input checked type="radio" name="payment" class="form-check-input" id="">
+               <label class="form-check-label mb-2" for="exampleCheck1">Thanh toán khi nhận hàng</label>
+            </div>
+
+            <div class="">
+               <input type="radio" name="payment" class="form-check-input" id="">
+               <label class="form-check-label mb-2" for="exampleCheck1">Thanh toán qua ví điện tử</label>
+            </div>
+
+            <div class="bill-payment mt-3">
+               <a class="bill-backtoshop" href="/product">
+                  <i class="fas fa-angle-left"></i>
+                  Tiếp tục mua sắm
+               </a>
+
+               <button type="submit" class="btn btn-success btn-sm">Đặt hàng</button>
+            </div>
+         </form>
+      </div>
+
+      <!-- Bill Details -->
+      <div class="col-sm-12 col-lg-5 order-lg-2 order-1">
+         <table class="cart-view" id="cart-view">
+
+         </table>
+
+         <span class="line"></span>
+
+         <table class="table-total">
+            <tbody>
+               <tr>
+                  <td class="text-left">TẠM TÍNH:</td>
+                  <td class="cart-total-price text-right" id="cart-total-price"></td>
+               </tr>
+            </tbody>
+         </table>
+
+         <span class="line"></span>
+
+         <!-- Start Total Table -->
+         <table class="table-total">
+            <tbody>
+               <tr>
+                  <td class="text-left">PHÍ VẬN CHUYỂN:</td>
+                  <td class="text-right">FREESHIP</td>
+               </tr>
+               <tr>
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right">200,000đ</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+<script>
+   var cartView = document.getElementsByClassName('cart-view')[0]
+   let cartData = ``;
+
+   if (JSON.parse(localStorage.getItem('items')) === null || JSON.parse(localStorage.getItem('items')) == '') {
+      cartData += `<tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>`
+      document.querySelector('.cart-total-price').innerHTML = '2' + 'đ';
+   }
+   else {
+      (JSON.parse(localStorage.getItem('items')).map(data => {
+         var productTotal = parseFloat(data.qty) * parseFloat(data.price)
+         productTotalFormat = Intl.NumberFormat().format(productTotal);
+         Total();
+
+         cartData += `
+		<tr class="cart-item" id="cart-item">
+		<td class="item-img">
+		
+		<img class="cart-item-image" src="` + data.img + `" alt="Card image cap" id="product-detail">
+	</td>
+	<td>
+		<a href="" class="item-title">` + data.name + `</a>
+		<input hidden value="` + data.size + `" class="cart-size" type="text">
+		<span class="item-properties">` + data.color + `, ` + data.size + `</span>
+		<div class="item-amount">
+			<input hidden value="` + data.sku + `" class="cart-sku" type="text">
+			<span class="cart-quantity-input">` + data.qty + `</span>
+
+			<span class="cart-price">` + productTotalFormat + `</span>
+		</div>
+	</td>
+	</tr>`
+
+      }));
+   }
+
+   // Total
+   function Total() {
+      var total = 0;
+      (JSON.parse(localStorage.getItem('items')).map(data => {
+         var productTotal = parseFloat(data.qty) * parseFloat(data.price)
+         total += productTotal;
+         document.getElementsByClassName('cart-total-price')[0].innerHTML = Intl.NumberFormat().format(total) + 'đ';
+      }))
+   }
+
+   cartView.innerHTML = cartData;
+</script>
+
+<!-- End content -->

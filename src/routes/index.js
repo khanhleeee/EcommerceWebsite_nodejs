@@ -1,5 +1,6 @@
 const homeRouter = require('./home');
 const productRouter = require('./product');
+const paymentRouter = require('./payment');
 const registerRouter = require('./register');
 const loginRouter = require('./login');
 const logoutRouter = require('./logout');
@@ -15,7 +16,6 @@ const adminPromotionRouter = require('./adminPromotion');
 
 
 function route(app) {
-
     app.use('/adminPromotion', adminPromotionRouter);
     app.use('/adminProduct', adminProductRouter);
     app.use('/admin', adminRouter);
@@ -28,6 +28,7 @@ function route(app) {
     app.use('/logout', logoutRouter);
     app.use('/login', loginRouter);
     app.use('/register', registerRouter);
+    app.use('/payment', paymentRouter);
     app.use('/product', productRouter);
     app.use('/', homeRouter);
 }

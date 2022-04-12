@@ -4,16 +4,17 @@
 
       {{!-- Category --}}
       <div class="col-lg-3">
-         <h1 class="h2 pb-4">Danh mục sản phẩm</h1>
+         <h1 class="cate-title py-2">Danh mục</h1>
          <ul class="list-unstyled">
             <li class="pb-2">
-               <h3 class="h3" href="#">Loại</h3>
+               <h3 class="subcate-title" href="#">Loại</h3>
                <ul class="list-unstyled pl-3">
                   {{#each category}}
                   <li>
                      {{!-- <a class="sildeDown-item text-decoration-none"
                         href="/product/query/{{this._id}}">{{this.cat_title}}</a> --}}
-                     <label class="attr-check-btn sildeDown-item text-decoration-none">{{this.title}}
+                     <label class="attr-check-btn sildeDown-item text-decoration-none">
+                        <span class="attr-text">{{this.title}}</span>
                         <input name="fooby[1][]" class="check-btn radio" value="{{this.title}}" type="checkbox">
                         <span class="checkmark"></span>
                      </label>
@@ -77,21 +78,6 @@
                </a>
             </div>
             {{/each}}
-         </div>
-
-         <div div="row">
-            <ul class="pagination pagination-lg justify-content-end">
-               <li class="page-item disabled">
-                  <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#"
-                     tabindex="-1">1</a>
-               </li>
-               <li class="page-item">
-                  <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-               </li>
-               <li class="page-item">
-                  <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
-               </li>
-            </ul>
          </div>
       </div>
 
