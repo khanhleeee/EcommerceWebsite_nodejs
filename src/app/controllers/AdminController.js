@@ -11,4 +11,4 @@ const showAdmin = async(req, res, next) => {
     })
 }
 
-module.exports = { showAdmin, }
+module.exports = { showAdmin}
