@@ -10,7 +10,7 @@
          </div>
          {{/if}}
 
-         <form class="mt-4 mb-4" method="post" action="/=">
+         <form class="mt-4 mb-4" method="post" action="/payment/{{payment._id}}/order/payOrder">
             <div>
                <input type="text" class="form-control mb-3" id="" name="name" value="{{payment.name}}" readonly>
             </div>
@@ -54,7 +54,7 @@
                   Tiếp tục mua sắm
                </a>
 
-               <a class="btn btn-success btn-sm" href="/order">Xác nhận đặt hàng</a>
+               <button type="submit" class="btn btn-success btn-sm">Xác nhận đặt hàng</button>
             </div>
          </form>
 

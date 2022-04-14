@@ -7,7 +7,6 @@ const Order = require('../models/Order');
 
 // [GET] /order
 const showOrder = async(req, res, next) => {
-
     res.render('TabOrder/order', { layout: 'mainEmpty.hbs' });
 }
 

@@ -7,12 +7,10 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 
 // [GET] /product
 const showProductList = async(req, res, next) => {
-
     // Find product and product variation
     let p = await Product.find();
     let colors = await Color.find();
     let categories = await Category.find();
-
     res.render('TabProduct/product', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), p: multipleToObject(p), color: multipleToObject(colors), category: multipleToObject(categories) });
 }
 
@@ -29,13 +27,11 @@ const showProductDetail = async(req, res, next) => {
     let colors = await Color.find();
     let categories = await Category.find();
     let product = await Product.findById({ _id: req.params.id })
-
-    // Find skus[i] has sku = req.params.sku
+        // Find skus[i] has sku = req.params.sku
     var skus = product.skus;
     let querySku = '';
     for (const item of skus) {
         if (`${item.sku}` == req.params.sku) {
-
             querySku = `${JSON.stringify(item)}`;
         }
     }

@@ -1,16 +1,15 @@
 <!-- Opent content -->
 <div class="container py-5">
-   <div class="row">
-      <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
-         <h2 class="payment-title mt-lg-0 mt-sm-3">Thông tin giao hàng</h2>
+   <form class="mt-4 mb-4" method="post" action="/payment">
+      <div class="row">
+         <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
+            <h2 class="payment-title mt-lg-0 mt-sm-3">Thông tin giao hàng</h2>
+            {{#if message}}
+            <div style="text-align: center" class="alert alert-{{message.type}}">
+               <strong>{{message.intro}}</strong> {{message.message}}
+            </div>
+            {{/if}}
 
-         {{#if message}}
-         <div style="text-align: center" class="alert alert-{{message.type}}">
-            <strong>{{message.intro}}</strong> {{message.message}}
-         </div>
-         {{/if}}
-
-         <form class="mt-4 mb-4" method="post" action="/payment">
             <div>
                <input type="text" class="form-control mb-3" id="" name="name" placeholder="Họ và tên" required>
             </div>
@@ -30,72 +29,41 @@
                <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="note" rows="3"></textarea>
             </div>
 
-         
-            
             <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức vận chuyển</h2>
             <div class="">
                <label class="attr-check-btn sildeDown-item text-decoration-none">
                   <span class="attr-text">Thanh toán khi nhận hàng</span>
-                  <input name="paymentType" class="check-btn radio" value="payCOD" type="radio" >
+                  <input name="paymentType" class="check-btn radio" value="payCOD" type="radio">
                   <span class="checkmark"></span>
                </label>
             </div>
             <div class="">
                <label class="attr-check-btn sildeDown-item text-decoration-none">
                   <span class="attr-text">Thanh toán qua MoMo</span>
-                  <input name="paymentType" class="check-btn radio" value="payOnline" type="radio" >
+                  <input name="paymentType" class="check-btn radio" value="payOnline" type="radio">
                   <span class="checkmark"></span>
                </label>
             </div>
-            
+
 
             <div class="bill-payment mt-3">
                <a class="bill-backtoshop" href="/product">
                   <i class="fas fa-angle-left"></i>
                   Tiếp tục mua sắm
                </a>
-
                <button type="submit" class="btn btn-success btn-sm">Xác nhận thông tin</button>
             </div>
-         </form>
-
-         {{!--
-         <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức thanh toán</h2>
-         <form class="mt-4 mb-4">
-            <div class="">
-               <label class="attr-check-btn sildeDown-item text-decoration-none">
-                  <span class="attr-text">Thanh toán khi nhận hàng</span>
-                  <input checked name="fooby[1][]" class="check-btn radio" value="payOffline" type="radio">
-                  <span class="checkmark"></span>
-               </label>
-            </div>
-
-            <div class="">
-               <label class="attr-check-btn sildeDown-item text-decoration-none">
-                  <span class="attr-text">Thanh toán qua MoMo</span>
-                  <input name="fooby[1][]" class="check-btn radio" value="payOnline" type="radio">
-                  <span class="checkmark"></span>
-               </label>
-            </div>
-
-            <div class="bill-payment mt-3">
-               <a class="bill-backtoshop" href="/product">
-                  <i class="fas fa-angle-left"></i>
-                  Tiếp tục mua sắm
-               </a>
-
-               <button type="submit" class="btn btn-success btn-sm">Đặt hàng</button>
-            </div>
-         </form> --}}
-      </div>
-
-      <!-- Bill Details -->
-      <div class="col-sm-12 col-lg-5 order-lg-2 order-1">
-         <table class="cart-view" id="cart-view"></table>
-         <span class="line"></span>
-         <table class="table-total">
-            <tbody>
-               <form method="post" action="/payment/promotion"></form>
+            {{!--
+   </form> --}}
+</div>
+<!-- Bill Details -->
+<div class="col-sm-12 col-lg-5 order-lg-2 order-1">
+   {{!-- <form method="POST" action="/payment/cardOrder"> --}}
+      <table class="cart-view" id="cart-view"></table>
+      <span class="line"></span>
+      <table class="table-total">
+         <tbody>
+            {{!-- <form method="post" action="/payment/promotion"> --}}
                <tr>
                   <td class="text-left col-8">
                      <input class="promotion-input" type="text" name="promotion" placeholder="Mã giảm giá">
@@ -104,31 +72,31 @@
                      <button class="btn btn-success">Áp dụng</button>
                   </td>
                </tr>
-               </form>
-            </tbody>
-         </table>
-
-         <span class="line"></span>
-
-         <!-- Start Total Table -->
-         <table class="table-total">
-            <tbody>
-               <tr>
-                  <td class="text-left">TẠM TÍNH:</td>
-                  <td class="cart-total-price text-right" id="cart-total-price"></td>
-               </tr>
-               <tr>
-                  <td class="text-left">PHÍ VẬN CHUYỂN:</td>
-                  <td class="text-right">FREESHIP</td>
-               </tr>
-               <tr>
-                  <td class="text-left">TỔNG TIỀN:</td>
-                  <td class="text-right">200,000đ</td>
-               </tr>
-            </tbody>
-         </table>
-      </div>
-   </div>
+               {{!--
+            </form> --}}
+         </tbody>
+      </table>
+      <span class="line"></span>
+      <!-- Start Total Table -->
+      <table class="table-total">
+         <tbody>
+            <tr>
+               <td class="text-left">TẠM TÍNH:</td>
+               <td class="cart-total-price text-right" id="cart-total-price"></td>
+            </tr>
+            <tr>
+               <td class="text-left">PHÍ VẬN CHUYỂN:</td>
+               <td class="text-right">FREESHIP</td>
+            </tr>
+            <tr>
+               <td class="text-left">TỔNG TIỀN:</td>
+               <td class="text-right">200,000đ</td>
+            </tr>
+         </tbody>
+      </table>
+      {{!-- <button type="submit" class="btn btn-success btn-sm">Xác nhận thông tin</button> --}}
+</div>
+</form>
 </div>
 
 <script>
@@ -153,13 +121,14 @@
 	</td>
 	<td class="col-8">
 		<a href="" class="item-title">` + data.name + `</a>
-		<input hidden value="` + data.size + `" class="cart-size" type="text">
 		<span class="item-properties">` + data.color + `, ` + data.size + `</span>
 		<div class="item-amount justify-content-center">
-			<input hidden value="` + data.sku + `" class="cart-sku" type="text">
+			<input hidden value="` + data.sku + `" class="cart-sku"  name="sku" type="text">
 			<span class="cart-quantity-input">` + data.qty + `</span>
+         <input hidden value="` + data.qty + `" class="cart-qty" name="qty" type="text">
 
 			<span class="cart-price">` + productTotalFormat + `</span>
+         <input hidden value="` + productTotalFormat + `" class="cart-totalprice" name="price" type="text">
 		</div>
 	</td>
 	</tr>`

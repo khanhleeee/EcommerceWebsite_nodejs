@@ -8,7 +8,9 @@ let Order = new Schema({
     orderAmount: { type: Number, default: 0 },
     orderTracker: { type: String, maxLength: 255 },
     items: [{
-        productId: { type: Schema.Types.ObjectId, ref: 'Products' },
+        sku: [{ type: String }],
+        qty: [{ type: String }],
+        price: [{ type: String }],
     }],
 }, {
     timestamps: true,
