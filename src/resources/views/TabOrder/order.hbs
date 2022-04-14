@@ -2,7 +2,7 @@
 <div class="container py-5">
    <div class="row">
       <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
-         <h2 class="payment-title mt-lg-0 mt-sm-3">Thông tin giao hàng</h2>
+         <h2 class="payment-title mt-lg-0 mt-sm-3">Kiểm tra thông tin đặt hàng</h2>
 
          {{#if message}}
          <div style="text-align: center" class="alert alert-{{message.type}}">
@@ -10,52 +10,51 @@
          </div>
          {{/if}}
 
-         <form class="mt-4 mb-4" method="post" action="/payment">
+         <form class="mt-4 mb-4" method="post" action="/=">
             <div>
-               <input type="text" class="form-control mb-3" id="" name="name" placeholder="Họ và tên" required>
+               <input type="text" class="form-control mb-3" id="" name="name" value="{{payment.name}}" readonly>
             </div>
 
             <div class="">
-               <input type="text" class="form-control mb-3" id="" name="phonenumber" placeholder="Số điện thoại"
-                  required>
+               <input type="text" class="form-control mb-3" id="" name="phonenumber" value="{{payment.phonenumber}}"
+                  readonly required>
             </div>
 
             <div class="">
-               <input type="text" class="form-control mb-3" id="" name="address" placeholder="Địa chỉ giao hàng"
+               <input type="text" class="form-control mb-3" id="" name="address" value="{{payment.address}}" readonly
                   required>
             </div>
 
             <div class="">
                <label for="exampleFormControlTextarea1">Ghi chú</label>
-               <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="note" rows="3"></textarea>
+               <input class="form-control mb-3" name="note" value="{{payment.note}}" rows="3">
             </div>
 
-         
-            
             <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức vận chuyển</h2>
+            {{#ifCond paymentType payCOD}}
             <div class="">
                <label class="attr-check-btn sildeDown-item text-decoration-none">
                   <span class="attr-text">Thanh toán khi nhận hàng</span>
-                  <input name="paymentType" class="check-btn radio" value="payCOD" type="radio" >
+                  <input name="paymentType" class="check-btn radio" value="payCOD" type="radio" checked>
                   <span class="checkmark"></span>
                </label>
             </div>
+            {{else}}
             <div class="">
                <label class="attr-check-btn sildeDown-item text-decoration-none">
-                  <span class="attr-text">Thanh toán qua MoMo</span>
+                  <span class="attr-text">Thanh toán qua Momo</span>
                   <input name="paymentType" class="check-btn radio" value="payOnline" type="radio" >
                   <span class="checkmark"></span>
                </label>
             </div>
-            
-
+            {{/ifCond}}
             <div class="bill-payment mt-3">
                <a class="bill-backtoshop" href="/product">
                   <i class="fas fa-angle-left"></i>
                   Tiếp tục mua sắm
                </a>
 
-               <button type="submit" class="btn btn-success btn-sm">Xác nhận thông tin</button>
+               <a class="btn btn-success btn-sm" href="/order">Xác nhận đặt hàng</a>
             </div>
          </form>
 
@@ -92,10 +91,9 @@
       <!-- Bill Details -->
       <div class="col-sm-12 col-lg-5 order-lg-2 order-1">
          <table class="cart-view" id="cart-view"></table>
-         <span class="line"></span>
+         {{!-- <span class="line"></span>
          <table class="table-total">
             <tbody>
-               <form method="post" action="/payment/promotion"></form>
                <tr>
                   <td class="text-left col-8">
                      <input class="promotion-input" type="text" name="promotion" placeholder="Mã giảm giá">
@@ -104,9 +102,8 @@
                      <button class="btn btn-success">Áp dụng</button>
                   </td>
                </tr>
-               </form>
             </tbody>
-         </table>
+         </table> --}}
 
          <span class="line"></span>
 
