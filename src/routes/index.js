@@ -9,19 +9,19 @@ const forgotPassRouter = require('./forgotPass');
 const customerRouter = require('./customer');
 
 const paymentRouter = require('./payment');
-const orderRouter = require('./order');
 
 const adminRouter = require('./admin');
 const adminProductRouter = require('./adminProduct');
 const adminPromotionRouter = require('./adminPromotion');
+const adminOrderRouter = require('./adminOrder');
 
 
 function route(app) {
+    app.use('/adminOrder', adminOrderRouter);
     app.use('/adminPromotion', adminPromotionRouter);
     app.use('/adminProduct', adminProductRouter);
     app.use('/admin', adminRouter);
 
-    // app.use('/order', orderRouter);
     app.use('/payment', paymentRouter);
 
     app.use('/customer', customerRouter);

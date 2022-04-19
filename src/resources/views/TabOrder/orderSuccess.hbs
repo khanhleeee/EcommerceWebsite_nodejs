@@ -1,50 +1,33 @@
 <!-- Opent content -->
 <div class="container py-5">
+   <div class="alert alert-success" role="alert">
+      <h1 style="text-align:center">THANH TOÁN THÀNH CÔNG</h1>
+   </div>
+   
    <div class="row">
       <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
          <h2 class="payment-title mt-lg-0 mt-sm-3">Kiểm tra thông tin đặt hàng</h2>
-
-         <form class="mt-4 mb-4" method="post" action="/payment/{{order._id}}/order/{{order._id}}/payOrder">
+         <form class="mt-4 mb-4" method="post" action="/payment/{{order._id}}/order/payOrder">
             <div>
                <label for="nameCus" style="font-weight:bold; font-size: 12px">Tên khách hàng: </label>
-               <input type="text" class="form-control mb-3" id="" name="name" value="{{order.name}}" readonly>
+               <input type="text" class="form-control mb-3" id="nameCus" name="name" value="{{order.name}}" readonly>
             </div>
 
             <div class="">
                <label for="phoneCus" style="font-weight:bold; font-size: 12px">Số điện thoại: </label>
-               <input type="text" class="form-control mb-3" id="" name="phonenumber" value="{{order.phonenumber}}"
+               <input type="text" class="form-control mb-3" id="phoneCus" name="phonenumber" value="{{order.phonenumber}}"
                   readonly required>
             </div>
 
             <div class="">
                <label for="addressCus" style="font-weight:bold; font-size: 12px">Địa chỉ: </label>
-               <input type="text" class="form-control mb-3" id="" name="address" value="{{order.address}}" readonly
+               <input type="text" class="form-control mb-3" id="addressCus" name="address" value="{{order.address}}" readonly
                   required>
             </div>
 
             <div class="">
                <label for="emailCus" style="font-weight:bold; font-size: 12px">Ghi chú: </label>
-               <input class="form-control mb-3" name="note" value="{{order.note}}" rows="3">
-            </div>
-
-            <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức vận chuyển</h2>
-            <div class="">
-               <label class="attr-check-btn sildeDown-item text-decoration-none">
-                  {{#ifCond order.orderType "COD"}}
-                  <span class="attr-text">Thanh toán khi nhận hàng</span>
-                  <input class="check-btn radio" type="radio"  checked>
-                  {{else}}
-                  <span class="attr-text">Thanh toán qua Momo</span>
-                  <input class="check-btn radio" type="radio" checked>
-                  {{/ifCond}}
-                  <span class="checkmark"></span>
-            </div>
-            <div class="bill-payment mt-3">
-               <a class="bill-backtoshop" href="/product">
-                  <i class="fas fa-angle-left"></i>
-                  Tiếp tục mua sắm
-               </a>
-               <button type="submit" class="btn btn-success btn-sm">Xác nhận thanh toán {{order.orderType}}</button>
+               <input class="form-control mb-3" id="emailCus" name="note" value="{{order.note}}" readonly rows="3">
             </div>
          </form>
       </div>
@@ -52,18 +35,13 @@
       <!-- Bill Details -->
       <div class="col-sm-12 col-lg-5 order-lg-2 order-1">
          <h2 class="payment-title mt-lg-0 mt-sm-3" style="padding-bottom: 26px">Thông tin đơn hàng: </h2>
-
-         {{#if message}}
-         <div style="text-align: center" class="alert alert-{{message.type}}">
-            <strong>{{message.intro}}</strong> {{message.message}}
-         </div>
-         {{/if}}
-         
          <table class="cart-view" id="cart-view"></table>
+
          <span class="line"></span>
+
          <!-- Start Total Table -->
          <table class="table-total">
-            <tbody>
+            <tbody style="font-weight: bold;">
                <tr>
                   <td class="text-left">TẠM TÍNH:</td>
                   <td class="cart-total-price text-right" id="cart-total-price"></td>
@@ -73,11 +51,16 @@
                   <td class="text-right js-shipping-fee">30,000đ</td>
                </tr>
                <tr>
-                  <td class="text-left">TỔNG TIỀN:</td>
-                  <td class="text-right js-order-total">0đ</td>
+                  <td class="text-left bg-success">TỔNG TIỀN:</td>
+                  <td class="text-right js-order-total bg-success">0đ</td>
                </tr>
             </tbody>
          </table>
+         <!-- End Total Table -->
+         <a class="bill-backtoshop" href="/product">
+            <i class="fas fa-angle-left"></i>
+            Tiếp tục mua sắm
+         </a>
       </div>
    </div>
 </div>
@@ -149,3 +132,4 @@
 </script>
 
 <!-- End content -->
+
