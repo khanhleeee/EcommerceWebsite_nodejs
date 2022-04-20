@@ -8,7 +8,7 @@ let Order = new Schema({
     phonenumber: { type: String, maxLength: 255 },
     address: { type: String, maxLength: 255 },
     note: { type: String, maxLength: 255 },
-    orderStatus: { type: String, maxLength: 255, default: 'Chờ xác nhận' },
+    orderStatus: { type: String, maxLength: 255, default: 'info' },
     orderType: { type: String, maxLength: 255 },
     makm: { type: String, maxLength: 255 },
     orderDate: { type: String, maxLength: 255, default: new Date().toLocaleString() },
