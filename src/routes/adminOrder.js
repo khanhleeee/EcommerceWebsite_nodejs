@@ -11,6 +11,7 @@ router.get('/deleteOrder/:id', adminOrderController.deleteOrder);
 router.get('/:id/editOrder', adminOrderController.showEditOrder);
 router.put('/:id', adminOrderController.updateOrder);
 
+router.get('/:orderStatus', adminOrderController.filterStatus);
 router.get('/', ensureAuthenticated, adminOrderController.showOrder);
 
 
