@@ -7,15 +7,24 @@ const Order = require('../models/Order');
 
 //[GET] /adminOrder
 const showOrder = async(req, res, next) => {
+    const user = await User.findOne({ role: 'admin' });
     const order = await Order.find();
-    res.render('TabAdOrder/admin-order-list', { layout: 'mainAdmin.hbs', order: multipleToObject(order) });
+    res.render('TabAdOrder/admin-order-list', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: multipleToObject(order) });
+}
+
+//[GET] /adminOrder/:status
+const filterStatus = async(req, res, next) => {
+    const user = await User.findOne({ role: 'admin' });
+    const order = await Order.find({ orderStatus: req.params.orderStatus });
+    res.render('TabAdOrder/admin-order-list', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: multipleToObject(order) });
 }
 
 //[GET] /adminOrder/:id/editOrder
 const showEditOrder = async(req, res, next) => {
+    const user = await User.findOne({ role: 'admin' });
     const order = await Order.findById(req.params.id);
     const item = await Order.find();
-    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', order: mongooseToObject(order), item: multipleToObject(item) });
+    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order), item: multipleToObject(item) });
 }
 
 //[PUT] /adminOrder/:id
@@ -28,7 +37,6 @@ const updateOrder = async(req, res, next) => {
     res.redirect('/adminOrder')
 }
 
-
 //[DELETE] /adminOrder/deleteOrder/:id
 const deleteOrder = async(req, res, next) => {
     Order.deleteOne({ _id: req.params.id })
@@ -36,4 +44,4 @@ const deleteOrder = async(req, res, next) => {
         .catch(next);
 }
 
-module.exports = { showOrder, showEditOrder, updateOrder, deleteOrder }
+module.exports = { showOrder, filterStatus, showEditOrder, updateOrder, deleteOrder }
