@@ -1,8 +1,8 @@
-const Product = require('../models/Product');
-const User = require('../models/User');
-
 const { mongooseToObject } = require('../../config/utility/mongoose')
 const { multipleToObject } = require('../../config/utility/mongoose');
+
+const Product = require('../models/Product');
+const User = require('../models/User');
 
 //[GET] /adminProduct
 const showProductList = async(req, res, next) => {
