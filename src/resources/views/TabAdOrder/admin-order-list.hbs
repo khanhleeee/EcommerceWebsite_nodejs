@@ -5,7 +5,7 @@
 				<div class="card">
 					<div class="card-body py-2 d-flex justify-content-between align-items-center">
 						<div>
-							<h4 class="m-0">Danh sách khuyến mãi</h4>
+							<h4 class="m-0">Danh sách đơn hàng</h4>
 							<!-- <span>Lorem ipsum sit amet</span> -->
 						</div>
 						{{!-- <a href="/adminPromotion/createPromotion" class="btn btn-info light">+ Thêm khuyến mãi mới</a> --}}
@@ -58,7 +58,7 @@
 						<tr>
 							<th scope="col">Id</th>
 							<th scope="col">Tình trạng đơn hàng</th>
-							<th scope="col">Ngày tạo</th>
+							<th scope="col">Ngày -- Giờ  đơn hàng</th>
 							<th scope="col">Khách hàng</th>
 							<th scope="col">Số điện thoại</th>
 							<th scope="col">Tổng tiền</th>
@@ -70,7 +70,10 @@
 						{{#each order}}
 						<tr>
 							<td>{{this._id}}</td>
-							<td>{{this.orderStatus}}</td>
+							<td>
+								{{#ifTest "info"}}
+								{{/ifTest}}
+							</td>
 							<td>{{this.orderDate}}</td>
 							<td>{{this.name}}</td>
 							<td>{{this.phonenumber}}</td>
