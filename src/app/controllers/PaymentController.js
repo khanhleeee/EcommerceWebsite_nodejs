@@ -63,10 +63,10 @@ var secretkey = "U0rXFOEyO6u1DFqpOxN7ua6G806NOqao";
 var requestId = partnerCode + new Date().getTime();
 var orderId = requestId;
 var orderInfo = "pay with MoMo";
-var redirectUrl = "https://momo.vn/return";
+var redirectUrl = "http://localhost:3000/product";
 var ipnUrl = "https://callback.url/notify";
 // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
-var amount = "50000";
+var amount = "100000";
 var requestType = "captureWallet"
 var extraData = ""; //pass empty value if your merchant does not have stores
 
@@ -112,18 +112,21 @@ const options = {
     }
 }
 //Send the request and get the response
-const req2 = https.request(options, res => {
-    console.log(`Status: ${res.statusCode}`);
-    console.log(`Headers: ${JSON.stringify(res.headers)}`);
-    res.setEncoding('utf8');
-    res.on('data', (body) => {
-        console.log('Body: ');
-        console.log(body);
+const req2 = https.request(options, res2 => {
+    console.log(`Status: ${res2.statusCode}`);
+    console.log(`Headers: ${JSON.stringify(res2.headers)}`);
+    res2.setEncoding('utf8');
+    var test1 = [];
+    res2.on('data', (body) => {
+        // console.log('Body: ');
+        // console.log(body);
         console.log('payUrl: ');
-        console.log(JSON.parse(body).payUrl);
+        console.log(JSON.stringify(JSON.parse(body).payUrl));
+        test1.push(JSON.parse(body).payUrl)
     });
-    res.on('end', () => {
+    res2.on('end', () => {
         console.log('No more data in response.');
+        res.redirect(test1)
     });
 })
 
@@ -134,6 +137,7 @@ req2.on('error', (e) => {
 console.log("Sending....")
 req2.write(requestBody);
 req2.end();
+// console.log('TEST1--: ' + test1);
 }
 
 module.exports = { showPayment, payCOD, showOrder, payOrder }
