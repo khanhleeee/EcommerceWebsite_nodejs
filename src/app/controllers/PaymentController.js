@@ -188,6 +188,7 @@ const payOrder = async(req, res, next) => {
 const paySuccess = async(req, res, next) => {
     const order = await Order.findById(req.params.id);
     res.render('TabOrder/orderSuccess', { layout: 'mainEmpty.hbs', order: mongooseToObject(order) });
+
 }
 
 module.exports = { showPayment, getPayment, showOrder, payOrder, paySuccess }
