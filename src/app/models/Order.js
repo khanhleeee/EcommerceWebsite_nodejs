@@ -10,7 +10,10 @@ let Order = new Schema({
     note: { type: String, maxLength: 255 },
     orderStatus: { type: String, maxLength: 255, default: 'info' },
     orderType: { type: String, maxLength: 255 },
-    makm: { type: String, maxLength: 255 },
+    orderTotal: { type: String },
+    orderTotalPromo: { type: String },
+    orderPromoName: { type: String },
+    convertToGiaKm: { type: String },
     orderDate: { type: String, maxLength: 255, default: new Date().toLocaleString() },
     items: [{
         sku: { type: String },

@@ -65,7 +65,6 @@
       <strong>{{message1.intro}}</strong> {{message1.message}}
    </div>
    {{/if}}
-   {{!-- <form method="POST" action="/payment/cardOrder"> --}}
       <table class="cart-view" id="cart-view"></table>
       <span class="line"></span>
       <table class="table-total">
@@ -86,22 +85,28 @@
       <span class="line"></span>
       <!-- Start Total Table -->
       <table class="table-total">
-         <tbody style="font-weight: bold";>
+         <tbody style="font-weight: bold">
             <tr>
                <td class="text-left">TẠM TÍNH:</td>
-               <td class="cart-total-price text-right" id="cart-total-price"></td>
+               <td class="cart-total-price text-right js-order-total" id="cart-total-price"></td>
+               <input hidden type="text" name="orderTotal" class="js-order-total-input">
             </tr>
             <tr>
                <td class="text-left">PHÍ VẬN CHUYỂN:</td>
                <td class="text-right js-shipping-fee">30,000đ</td>
             </tr>
             <tr>
+               <td class="text-left">MÃ KHUYẾN MÃI: {{orderPromoName}}</td>
+               <input hidden type="text" name="orderPromoName" value="{{orderPromoName}}">
+               <td class="text-right ">-{{convertToGiaKm}}đ</td>
+               <input hidden type="text" name="convertToGiaKm" value="{{convertToGiaKm}}">
+            </tr>
+            <tr>
                <td class="text-left">TỔNG TIỀN:</td>
-               <td class="text-right js-order-total">0đ</td>
-               <input hidden type="text" name="orderTotal" class="js-order-total-input">
+               <td class="text-right">{{orderTotalPromo}}đ</td>
+               <input hidden type="text" name="orderTotalPromo" value="{{orderTotalPromo}}">
             </tr>
          </tbody>
-         
       </table>
 </div>
 </form>

@@ -77,15 +77,15 @@
 							<td>{{this.orderDate}}</td>
 							<td>{{this.name}}</td>
 							<td>{{this.phonenumber}}</td>
-							<td>{{this.price}}</td>
+							<td>{{this.orderTotal}}</td>
 							<td>
-								<a href="/adminOrder/{{this._id}}/editOrder" class="btn btn-primary btn-xs">Chỉnh sửa đơn hàng</a>
+								<a href="/adminOrder/{{this._id}}/editOrder" class="btn btn-primary btn-xs">Chi tiết đơn hàng</a>
 							</td>
-							<td>
+							{{!-- <td>
 								<a href="/adminOrder/deleteOrder/{{this._id}}"
 									class="btn btn-danger btn-xs">Xoá
 								</a>
-							</td>
+							</td> --}}
 						</tr>
 						{{/each}}
 					</tbody>

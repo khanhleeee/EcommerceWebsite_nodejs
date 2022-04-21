@@ -9,6 +9,8 @@ router.get('/:id/order/orderSuccess', paymentController.paySuccess);
 router.post('/:id/order/:id/payOrder', paymentController.payOrder);
 router.get('/:id/order', paymentController.showOrder);
 
+router.post('/promotion', paymentController.promotion);
+
 router.post('/', paymentController.getPayment);
 router.get('/', paymentController.showPayment);
 
