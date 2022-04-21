@@ -11,21 +11,24 @@
             {{/if}}
 
             <div>
+               <label for="nameCus" style="font-weight:bold; font-size: 12px">Tên khách hàng: </label>
                <input type="text" class="form-control mb-3" id="" name="name" placeholder="Họ và tên" required>
             </div>
 
             <div class="">
+               <label for="phoneCus" style="font-weight:bold; font-size: 12px">Số điện thoại: </label>
                <input type="text" class="form-control mb-3" id="" name="phonenumber" placeholder="Số điện thoại"
                   required>
             </div>
 
             <div class="">
+               <label for="addressCus" style="font-weight:bold; font-size: 12px">Địa chỉ: </label>
                <input type="text" class="form-control mb-3" id="" name="address" placeholder="Địa chỉ giao hàng"
                   required>
             </div>
 
             <div class="">
-               <label for="exampleFormControlTextarea1">Ghi chú</label>
+               <label for="emailCus" style="font-weight:bold; font-size: 12px">Ghi chú: </label>
                <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="note" rows="3"></textarea>
             </div>
 
@@ -33,14 +36,14 @@
             <div class="">
                <label class="attr-check-btn sildeDown-item text-decoration-none">
                   <span class="attr-text">Thanh toán khi nhận hàng</span>
-                  <input name="paymentType" class="check-btn radio" value="payCOD" type="radio">
+                  <input name="orderType" class="check-btn radio" value="COD" type="radio">
                   <span class="checkmark"></span>
                </label>
             </div>
             <div class="">
                <label class="attr-check-btn sildeDown-item text-decoration-none">
                   <span class="attr-text">Thanh toán qua MoMo</span>
-                  <input name="paymentType" class="check-btn radio" value="payOnline" type="radio">
+                  <input name="orderType" class="check-btn radio" value="Momo" type="radio">
                   <span class="checkmark"></span>
                </label>
             </div>
@@ -58,22 +61,22 @@
 </div>
 <!-- Bill Details -->
 <div class="col-sm-12 col-lg-5 order-lg-2 order-1">
+   <h2 class="payment-title mt-lg-0 mt-sm-3" style="padding-bottom: 20px">Thông tin đơn hàng: </h2>
    {{!-- <form method="POST" action="/payment/cardOrder"> --}}
       <table class="cart-view" id="cart-view"></table>
       <span class="line"></span>
       <table class="table-total">
          <tbody>
-            {{!-- <form method="post" action="/payment/promotion"> --}}
+            <form method="post" action="/payment/promotion">
                <tr>
                   <td class="text-left col-8">
-                     <input class="promotion-input" type="text" name="promotion" placeholder="Mã giảm giá">
+                     <input class="promotion-input" type="text" name="makm" placeholder="Nhập mã giảm giá">
                   </td>
                   <td class="text-right col-4">
-                     <button class="btn btn-success">Áp dụng</button>
+                     {{!-- <button class="btn btn-success">Áp dụng</button> --}}
                   </td>
                </tr>
-               {{!--
-            </form> --}}
+            </form>
          </tbody>
       </table>
       <span class="line"></span>

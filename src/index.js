@@ -76,6 +76,31 @@ hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
     return options.inverse(this);
 });
 
+hbs.handlebars.registerHelper('ifTest', function(v1, options) {
+    switch (v1) {
+        // case "Chờ xác nhận":
+        //     return '<span class="badge badge">' + this.orderStatus + '</span>';
+        //     break
+        // case "Đang giao":
+        //     return '<span class="badge badge-success">' + this.orderStatus + '</span>';
+        //     break
+        // case "Đã huỷ":
+        //     return '<span class="badge badge-danger">' + this.orderStatus + '</span>';
+        //     break
+        case "info":
+            return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
+            break
+        case "success":
+            return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
+            break
+        case "danger":
+            return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
+            break
+    }
+});
+
+
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set("views", path.join(__dirname, 'resources', 'views'));
