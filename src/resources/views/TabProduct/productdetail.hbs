@@ -40,7 +40,7 @@
                                         {{#each product.skus}}
                                         <li class="list-inline-item m-0">
                                             <a href="/product/detail/{{../product._id}}/{{this.sku}}/{{../size.size}}">
-                                                <span class="product-detail-dot"
+                                                <span class="product-detail-dot" data-sku="{{this.sku}}"
                                                     style="background-color: {{this.color.color_code}};"></span>
                                             </a>
                                         </li>
@@ -55,7 +55,8 @@
                                         <li class="list-inline-item m-0">
                                             <a class="" class="text"
                                                 href="/product/detail/{{../product._id}}/{{../sku.sku}}/{{this.size}}">
-                                                <span class="sku-sizes-picker">{{this.size}}</span>
+                                                <span class="sku-sizes-picker"
+                                                    data-size="{{this.size}}">{{this.size}}</span>
                                             </a>
                                         </li>
                                         {{/each}}
@@ -92,3 +93,30 @@
     </div>
 </section>
 <!-- Close Content -->
+<script>
+    const pathName = window.location.pathname;
+    const colorDots = document.querySelectorAll('.product-detail-dot');
+    const sizeDots = document.querySelectorAll('.sku-sizes-picker');
+    for (var i = 0; i < colorDots.length; i++) {
+        var sku = colorDots[i].getAttribute('data-sku')
+        if (pathName.includes(sku, 40)) {
+            colorDots[i].classList.add('active')
+        }
+        else {  
+            colorDots[i].classList.remove('active')
+        }
+    }
+
+    for(var i = 0; i < sizeDots.length; i++) {
+        var size = sizeDots[i].getAttribute('data-size');
+        if(pathName.indexOf(size, 40) != -1) {
+            sizeDots[i].classList.add('active')
+            console.log(sizeDots[i] + 'true')
+        }
+        else {
+            sizeDots[i].classList.remove('active')
+            console.log(sizeDots[i] + 'false')
+        }
+    }
+    //console.log(pathName)
+</script>

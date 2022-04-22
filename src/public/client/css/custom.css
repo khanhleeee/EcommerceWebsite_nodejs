@@ -677,29 +677,47 @@ input[type=number].form-control::-webkit-outer-spin-button {
 /* Product detail*/
 
 .product-detail-dot {
-    width: 25px;
-    height: 25px;
-    display: block;
-    align-items: center;
-    border-radius: 50%;
-    margin-right: 6px;
-    border: none;
+  width: 25px;
+  height: 25px;
+  display: block;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 9px;
+  border:none;
+  position: relative;
 }
 
-.product-detail-dot :hover {
-    border: solid 10px black;
+.product-detail-dot:hover.product-detail-dot::after {
+  display: block;
+}
+
+.product-detail-dot.active.product-detail-dot::after {
+  display: block;
+}
+
+.product-detail-dot::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  left: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 1px solid rgb(86, 86, 86);
+  display: none;
 }
 
 .sku-sizes-picker {
-    color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 48px;
-    min-height: 48px;
-    margin: 0;
-    border: 1px solid #ccc;
-    cursor: pointer;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 48px;
+  min-height: 30px;
+  padding: 6px;
+  margin: 0;
+  border:1px solid #ccc;
+  cursor: pointer;
 }
 
 .sku-sizes-picker.active {
@@ -722,10 +740,12 @@ input[type=number].form-control::-webkit-outer-spin-button {
 }
 
 .promotion-input {
-    font-size: 0.6rem;
-    font-weight: 500;
-    width: 100%;
-    border: none;
-    outline: none;
-    /* border-bottom: 1px solid #ccc; */
+  height: 100%;
+  font-size: 0.6rem;
+  font-weight: 500;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  /* border-bottom: 1px solid #ccc; */
 }

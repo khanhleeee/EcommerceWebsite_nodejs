@@ -1,0 +1,20 @@
+.table-custom {
+   min-width: 1400px;
+}
+
+.table-custom th {
+   border-right: 1px solid #fff;
+}
+
+.table-custom td {
+   border-bottom: 1px solid #fff;
+}
+
+.td-btn {
+   width: 60px;
+   text-align: center;
+}
+
+.td-details {
+   width: 170px;
+}

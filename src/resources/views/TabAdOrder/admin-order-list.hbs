@@ -8,90 +8,51 @@
 							<h4 class="m-0">Danh sách đơn hàng</h4>
 							<!-- <span>Lorem ipsum sit amet</span> -->
 						</div>
-						{{!-- <a href="/adminPromotion/createPromotion" class="btn btn-info light">+ Thêm khuyến mãi mới</a> --}}
+						{{!-- <a href="/adminPromotion/createPromotion" class="btn btn-info light">+ Thêm khuyến mãi mới</a>
+						--}}
 					</div>
 				</div>
 			</div>
 
-			<!-- Promotion -->
 
-			<div class="col-xl-4 col-xxl-4 col-md-6 col-sm-6">
-				{{!-- <div class="card user-card">
-					<div class="card-body pb-0">
-						<div class="d-flex mb-3 align-items-center">
-							<div class="dz-media">
-								<img src="{{this.skus.0.img}}" alt="image_product">
-							</div>
-						</div>
-						<h5 class="title"><a href="">{{this.name}}</a></h5>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">
-								<span class="mb-0 title">Loại:</span>
-								<span class="text-black ml-2">{{this.category}}</span>
-							</li>
-							<li class="list-group-item">
-								<span class="mb-0 title">SKU:</span>
-								{{#each this.skus}}
-								<span class="text-black ml-2">{{this.sku}}</span>
-								<span class="text-black ml-2">||</span>
-								{{/each}}
-							</li>
-							<li class="list-group-item">
-								<span class="mb-0 title">Giá:</span>
-								<span class="text-black desc-text ml-2">{{this.price}}</span>
-							</li>
-						</ul>
-					</div>
-					<div class="card-footer d-flex">
-						<a href="javascript:void(0);" class="btn btn-success btn-xs">Chỉnh sửa sản phẩm</a>
-
-						<a type="submit" class="btn btn-primary btn-xs ml-1">Xóa</a>
-
-
-					</div>
-				</div> --}}
-			</div>
-
-			<div class="col-12">
-				<table class="table">
-					<thead class="thead-primary">
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Tình trạng đơn hàng</th>
-							<th scope="col">Ngày -- Giờ  đơn hàng</th>
-							<th scope="col">Khách hàng</th>
-							<th scope="col">Số điện thoại</th>
-							<th scope="col">Tổng tiền</th>
-							<th scope="col"></th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
-					<tbody>
-						{{#each order}}
-						<tr>
-							<td>{{this._id}}</td>
-							<td>
-								{{#ifTest "info"}}
-								{{/ifTest}}
-							</td>
-							<td>{{this.orderDate}}</td>
-							<td>{{this.name}}</td>
-							<td>{{this.phonenumber}}</td>
-							<td>{{this.orderTotal}}</td>
-							<td>
-								<a href="/adminOrder/{{this._id}}/editOrder" class="btn btn-primary btn-xs">Chi tiết đơn hàng</a>
-							</td>
-							{{!-- <td>
-								<a href="/adminOrder/deleteOrder/{{this._id}}"
-									class="btn btn-danger btn-xs">Xoá
-								</a>
-							</td> --}}
-						</tr>
-						{{/each}}
-					</tbody>
-				</table>
-			</div>
 			<!-- End Promotion -->
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-custom">
+						<thead class="thead-primary">
+							<tr class="">
+								<th scope="col">Mã đơn hàng</th>
+								<th scope="col">Tình trạng</th>
+								<th scope="col">Khách hàng</th>
+								<th scope="col">Ngày đặt</th>
+								<th scope="col">Số điện thoại</th>
+								<th scope="col">Tổng tiền</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each order}}
+							<a href="/adminOrder/{{this._id}}/editOrder" class="order-link" style="display: block;">
+								<tr>
+									<td>{{this._id}}</td>
+									<td class="td-btn">
+										{{#ifTest "info"}}
+										{{/ifTest}}
+									</td>
+									<td>{{this.name}}</td>
+									<td>{{this.orderDate}}</td>
+									<td>{{this.phonenumber}}</td>
+									<td>{{this.price}}</td>
+									<td class="text-center td-details">
+										<a href="/adminOrder/{{this._id}}/editOrder" class="btn btn-primary btn-sm">Chi tiết</a>
+									</td>
+								</tr>
+							</a>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

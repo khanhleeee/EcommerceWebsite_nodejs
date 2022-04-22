@@ -23,6 +23,7 @@ const filterStatus = async(req, res, next) => {
 const showEditOrder = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
     const order = await Order.findById(req.params.id);
+
     res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order) });
 }
 
