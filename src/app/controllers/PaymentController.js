@@ -148,6 +148,10 @@ const payOrder = async(req, res, next) => {
     if (orderid.orderType === 'Momo') {
         let idurl = orderid.id;
         let nameurl = orderid.name;
+        var priceOrder = orderid.orderTotalPromo;
+        priceOrder = priceOrder.replaceAll(',', '')
+        priceOrder = priceOrder.replaceAll('.', '')
+        var priceOrderInt = parseInt(priceOrder);
         //https://developers.momo.vn/#/docs/en/aiov2/?id=payment-method
         //parameters
         var partnerCode = "MOMOUW4Y20220414";
@@ -159,7 +163,7 @@ const payOrder = async(req, res, next) => {
         var redirectUrl = `http://localhost:3000/payment/${idurl}/order/orderSuccess`;
         var ipnUrl = "https://callback.url/notify";
         // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
-        var amount = `1000`;
+        var amount = priceOrderInt;
         var requestType = "captureWallet"
         var extraData = ""; //pass empty value if your merchant does not have stores
 

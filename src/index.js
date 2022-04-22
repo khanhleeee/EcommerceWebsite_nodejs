@@ -83,15 +83,39 @@ hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
 });
 
 hbs.handlebars.registerHelper('ifTest', function(v1, options) {
+    //     if (v1 == 'info') {
+    //         return options.fn(this);
+    //         return '<span class="badge badge-' + this.orderStatus + '">' + "Chờ xác nhận" + '</span>';
+    //     } else if (v1 == 'success') {
+    //         return '<span class="badge badge-' + this.orderStatus + '">' + "Đã xác nhận" + '</span>';
+    //     } else if (v1 == 'secondary') {
+    //         return options.fn(this);
+    //     } else if (v1 == 'warning') {
+    //         return options.fn(this);
+    //     } else if (v1 == 'dark') {
+    //         return options.fn(this);
+    //     } else {
+    //         return options.fn(this);
+    //     }
+    // });
     switch (v1) {
         case "info":
-            return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
+            return '<span class="badge badge-' + this.orderStatus + '">' + "Chờ xác nhận" + '</span>';
             break
         case "success":
-            return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
+            return '<span class="badge badge-' + this.orderStatus + '">' + "Đã xác nhận" + '</span>';
+            break
+        case "secondary":
+            return '<span class="badge badge-' + this.orderStatus + '">' + "Chờ lấy hàng" + '</span>';
+            break
+        case "warning":
+            return '<span class="badge badge-' + this.orderStatus + '">' + "Đang giao" + '</span>';
+            break
+        case "dark":
+            return '<span class="badge badge-' + this.orderStatus + '">' + "Đã giao" + '</span>';
             break
         case "danger":
-            return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
+            return '<span class="badge badge-' + this.orderStatus + '">' + "Đã huỷ" + '</span>';
             break
     }
 });

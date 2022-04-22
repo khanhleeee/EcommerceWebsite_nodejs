@@ -621,7 +621,19 @@
                 <ul aria-expanded="false">
                     <li><a href="/adminOrder">Tất cả đơn hàng</a></li>
                     <li><a href="/adminOrder/info">Đơn hàng chưa xác nhận</a></li>
-                    <li><a href="/adminOrder/success">Đơn hàng đang giao</a></li>
+                    <li><a href="/adminOrder/success">Đơn hàng đã xác nhận</a></li>
+                    {{!-- <li><a href="/adminOrder/success">Đơn hàng đang giao</a></li> --}}
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <span class="nav-text">Giao hàng</span>
+                    </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/adminOrder/secondary">Đơn hàng chờ lấy hàng</a></li>
+                            <li>
+                                <a href="/adminOrder/warning">Đơn hàng đang giao</a>
+                            </li>
+                            <li><a href="/adminOrder/dark">Đơn hàng đã giao</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/adminOrder/danger">Đơn hàng đã huỷ</a></li>
                 </ul>
             </li>

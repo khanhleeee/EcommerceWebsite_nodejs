@@ -34,15 +34,25 @@
 							{{#each order}}
 							<a href="/adminOrder/{{this._id}}/editOrder" class="order-link" style="display: block;">
 								<tr>
-									<td>{{this._id}}</td>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this._id}}</a>
+									</td>
 									<td class="td-btn">
 										{{#ifTest "info"}}
 										{{/ifTest}}
 									</td>
-									<td>{{this.name}}</td>
-									<td>{{this.orderDate}}</td>
-									<td>{{this.phonenumber}}</td>
-									<td>{{this.price}}</td>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.name}}</a>
+									</td>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.orderDate}}</a>
+									</td>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.phonenumber}}</a>
+									</td>
+									<td> 
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.orderTotalPromo}} vnđ</a>
+									</td>
 									<td class="text-center td-details">
 										<a href="/adminOrder/{{this._id}}/editOrder" class="btn btn-primary btn-sm">Chi tiết</a>
 									</td>
