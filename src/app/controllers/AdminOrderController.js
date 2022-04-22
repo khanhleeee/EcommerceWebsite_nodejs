@@ -23,7 +23,24 @@ const filterStatus = async(req, res, next) => {
 const showEditOrder = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
     const order = await Order.findById(req.params.id);
-    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order)});
+
+    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order) });
+}
+
+//[PUT] /adminOrder/:id/editOrder/confirmOrder
+const confirmOrder = async(req, res, next) => {
+    await Order.updateOne({ _id: req.params.id }, {
+        orderStatus: "success",
+    });
+    res.redirect('/adminOrder');
+}
+
+//[PUT] /adminOrder/:id/editOrder/confirmOrder
+const cancelOrder = async(req, res, next) => {
+    await Order.updateOne({ _id: req.params.id }, {
+        orderStatus: "danger",
+    });
+    res.redirect('/adminOrder');
 }
 
 //[PUT] /adminOrder/:id
@@ -43,4 +60,4 @@ const deleteOrder = async(req, res, next) => {
         .catch(next);
 }
 
-module.exports = { showOrder, filterStatus, showEditOrder, updateOrder, deleteOrder }
+module.exports = { showOrder, filterStatus, showEditOrder, confirmOrder, cancelOrder, updateOrder, deleteOrder }

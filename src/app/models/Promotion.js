@@ -10,6 +10,7 @@ let Promotion = new Schema({
     ngayapdung: { type: String, maxLength: 255 },
     ngayhethan: { type: String, maxLength: 255 },
     motakm: { type: String, maxLength: 255 },
+    promoRange: { type: String },
 }, {
     timestamps: true,
 });

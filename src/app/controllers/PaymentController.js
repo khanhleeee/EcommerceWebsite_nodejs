@@ -8,34 +8,55 @@ const Promotion = require('../models/Promotion');
 
 // [GET] /payment
 const showPayment = async(req, res, next) => {
+
     res.render('TabPayment/payment', { layout: 'mainEmpty.hbs' });
 }
 
 // [POST] /payment
 const getPayment = async(req, res, next) => {
-    // const { userId } = req.user;
-    const { name, phonenumber, address, note, price, color, sku, size, qty, makm } = req.body;
 
-    const findPromo = await Promotion.findOne({ makm: req.body.makm });
-    if (findPromo) {
-        req.session.message = {
-            type: 'success',
-            intro: 'Đã áp dụng mã giảm giá',
-        }
-    } else if (findPromo == null) {
-        req.session.message = {
-            type: 'info',
-            intro: 'Không có mã giảm giá',
-        }
-    } else {
-        req.session.message = {
-            type: 'danger',
-            intro: 'Mã giảm giá không hợp lệ',
-        }
-    }
-
+    // BEEN'S OLD PAYMENT METHOD
+    // const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
+    // console.log(findPromo.makm)
+    // const orderPromo = req.body.orderPromo;
+    // console.log(orderPromo)
+    // let orderTotal = req.body.orderTotal;
+    // orderTotal = orderTotal.replaceAll(',', '')
+    // orderTotal = orderTotal.replaceAll('.', '')
+    // if (orderPromo == findPromo.makm) {
+    //     const promoRange = findPromo.promoRange;
+    //     if (orderTotal > promoRange) {
+    //         req.session.message = {
+    //             type: 'success',
+    //             intro: 'Đã áp dụng mã giảm giá',
+    //         }
+    //         var convertGiakm = findPromo.giakm
+    //         convertGiakm = convertGiakm.replaceAll(',', '')
+    //         convertGiakm = convertGiakm.replaceAll('.', '')
+    //         var totalOrder = orderTotal - convertGiakm;
+    //         var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
+    //         var orderPromoAfter = findPromo.tenkm;
+    //     } else {
+    //         req.session.message = {
+    //             type: 'danger',
+    //             intro: 'Không đủ điều kiện áp dụng mã giảm giá',
+    //         }
+    //         var orderPromoAfter = "";
+    //         var orderTotalPromo = Intl.NumberFormat().format(orderTotal);
+    //     }
+    // } else if (!orderPromo) {
+    //     req.session.message = {
+    //         type: 'info',
+    //         intro: 'Không có mã giảm giá',
+    //     }
+    // } else {
+    //     req.session.message = {
+    //         type: 'danger',
+    //         intro: 'Mã giảm giá không hợp lệ',
+    //     }
+    // }
     var regexNumber = new RegExp(/(84|0[3|5|7|8|9])+([0-9]{8})\b/);
-    if (regexNumber.test(phonenumber) == false) {
+    if (regexNumber.test(req.body.phonenumber) == false) {
         req.session.message = {
             type: 'danger',
             intro: 'Vui lòng điền chính xác số điện thoại',
@@ -49,13 +70,16 @@ const getPayment = async(req, res, next) => {
         address: req.body.address,
         note: req.body.note,
         orderType: req.body.orderType,
-        promotion: req.body.promotion,
+        orderTotalPromo: req.body.orderTotalPromo,
+        orderPromoName: req.body.orderPromoName,
+        convertToGiaKm: req.body.convertToGiaKm,
         items: []
     });
     for (var i in req.body.sku) {
         order.items.push({ sku: req.body.sku[i], qty: req.body.qty[i], price: req.body.price[i] })
     }
     try {
+        console.log(order.convertToGiaKm);
         await order.save();
         res.redirect('/payment/' + order.id + '/order');
     } catch (err) {
@@ -63,13 +87,58 @@ const getPayment = async(req, res, next) => {
     }
 }
 
+// [POST] /payment/promotion
+const promotion = async(req, res, next) => {
+    const orderPromo = req.body.promo;
+    const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
+    var orderTotal = req.body.orderTotal;
+    orderTotal = orderTotal.replaceAll(',', '')
+    orderTotal = orderTotal.replaceAll('.', '')
+    if (orderPromo == findPromo.makm) {
+        const promoRange = findPromo.promoRange;
+        if (orderTotal > promoRange) {
+            req.session.message1 = {
+                type: 'success',
+                intro: 'Đã áp dụng mã giảm giá',
+            }
+            var convertGiakm = findPromo.giakm
+            convertGiakm = convertGiakm.replaceAll(',', '')
+            convertGiakm = convertGiakm.replaceAll('.', '')
+            var totalOrder = orderTotal - convertGiakm;
+            var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
+            var convertToGiaKm = Intl.NumberFormat().format(convertGiakm);
+            var orderPromoName = findPromo.tenkm;
+            return res.render('TabPayment/paymentPromo', { layout: 'mainEmpty.hbs', orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
+        } else {
+            req.session.message1 = {
+                type: 'danger',
+                intro: 'Không đủ điều kiện áp dụng mã giảm giá',
+            }
+            var orderPromoAfter = "";
+            var orderTotalPromo = Intl.NumberFormat().format(orderTotal);
+            return res.redirect('/payment');
+        }
+    } else if (!orderPromo) {
+        req.session.message1 = {
+            type: 'info',
+            intro: 'Không có mã giảm giá',
+        }
+        return res.redirect('/payment');
+    } else {
+        req.session.message1 = {
+            type: 'danger',
+            intro: 'Mã giảm giá không hợp lệ',
+        }
+        return res.redirect('/payment');
+    }
+}
+
 // [GET] /payment/:id/order
 const showOrder = async(req, res, next) => {
     const order = await Order.findById(req.params.id);
-    // // console.log(payment);
-    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order) });
+    const promo = await Promotion.findOne({ tenkm: order.orderPromo })
+    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order), promo: mongooseToObject(promo) });
 }
-
 
 // [POST] /payment/:id/order/:id/payOrder
 const payOrder = async(req, res, next) => {
@@ -191,4 +260,4 @@ const paySuccess = async(req, res, next) => {
 
 }
 
-module.exports = { showPayment, getPayment, showOrder, payOrder, paySuccess }
+module.exports = { showPayment, getPayment, showOrder, payOrder, paySuccess, promotion }

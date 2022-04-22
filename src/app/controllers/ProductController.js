@@ -7,6 +7,7 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 
 // [GET] /product
 const showProductList = async(req, res, next) => {
+
     // Find product and product variation
     let p = await Product.find();
     let colors = await Color.find();

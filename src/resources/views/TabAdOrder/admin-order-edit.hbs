@@ -5,8 +5,18 @@
         <div class="card">
           <form method="POST" action="/adminOrder/{{order._id}}?_method=PUT">
             <div class="card-header">
-              <h4 class="card-title">Đơn hàng - {{order._id}}</h4>
-              <a href="" class="btn btn-info btn-sm">Xác nhận</a>
+
+              <h4 class="card-title">Chỉnh sửa đơn hàng - {{order._id}}</h4>
+
+              <div>
+                <button type="button" class="btn btn-danger">
+                  <a href="/adminOrder/{{order._id}}/editOrder/cancelOrder?_method=PUT" class="btn btn-danger btn-xs">Hủy đơn hàng</a>
+                </button>
+                <button type="button" class="btn btn-info">
+                  <a href="/adminOrder/{{order._id}}/editOrder/confirmOrder?_method=PUT" class="btn btn-info btn-xs">Xác nhận</a>
+                </button>
+              </div>
+
             </div>
             <div class="card-body">
               <div class="form-validation">
@@ -52,32 +62,110 @@
                         <input type="text" class="form-control" id="cusNumber" name="phonenumber" readonly
                           value="{{order.orderType}}" />
                       </div>
+
+                      <label class="col-lg-2 col-form-label" for="cusPromo">Mã
+                        khuyến mãi:
+                        <span class="text-danger">*</span>
+                      </label>
+                      {{#ifCond order.orderPromo ""}}
+                        <div class="col-lg-4">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="cusPromo"
+                            readonly
+                            value="Không có mã giảm"
+                          />
+                        </div>
+                      {{else}}
+                        <div class="col-lg-4">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="cusPromo"
+                            readonly
+                            value="{{order.orderPromo}}"
+                          />
+                        </div>
+                      {{/ifCond}}
                     </div>
 
-                    <h4 class="card-title">Chi tiết đơn hàng</h4>
                     <div class="form-group row">
+                      <label
+                        class="col-lg-2 col-form-label"
+                        for="cusNumber"
+                      >Tổng tiền hàng:<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-lg-4">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="cusNumber"
+                          name="phonenumber"
+                          readonly
+                          value="{{order.orderTotal}}đ"
+                        />
+                      </div>
 
-                      <table class="table">
-                        <thead class="thead-light">
-                          <tr>
-                            <th class="text-center" scope="col">STT</th>
-                            <th class="text-center" scope="col">Sku</th>
-                            <th class="text-center" scope="col">Số lượng</th>
-                            <th class="text-center" scope="col">Đơn giá</th>
-                          </tr>
-                        </thead>
-                        {{#each order.items}}
-                        <tbody>
+                      <label class="col-lg-2 col-form-label" for="cusPromo">Tổng thanh toán:
+                        <span class="text-danger">*</span>
+                      </label>
+                      {{#ifCond order.orderPromo ""}}
+                        <div class="col-lg-4">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="cusPromo"
+                            readonly
+                            value="{{order.orderTotal}}đ"
+                          />
+                        </div>
+                      {{else}}
+                        <div class="col-lg-4">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="cusPromo"
+                            readonly
+                            value="{{order.orderTotalPromo}}đ"
+                          />
+                        </div>
+                      {{/ifCond}}
+                    </div>
 
-                          <tr>
-                            <td class="text-center">{{@index}}</td>
-                            <td class="text-center">{{this.sku}}</td>
-                            <td class="text-center">{{this.qty}}</td>
-                            <td class="text-center">{{this.price}}đ</td>
-                          </tr>
-                          {{/each}}
-                        </tbody>
-                      </table>
+                    <h4 class="card-title">Giỏ hàng</h4>
+                      <div class="form-group row">
+                        <table class="table">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col">STT</th>
+                              <th scope="col">Sku</th>
+                              <th scope="col">Số lượng</th>
+                              <th scope="col">Đơn giá</th>
+                            </tr>
+                          </thead>
+                    	    {{#each order.items}}
+                          <tbody>
+                            <tr>
+                              <td>{{@index}}</td>
+                              <td>{{this.sku}}</td>
+                              <td>{{this.qty}}</td>
+                              <td>{{this.price}}</td>
+                            </tr>
+                   		    {{/each}}
+							              <tr>
+                              <td></td>
+                              <td></td>
+                              <td>in tổng số lượng</td>
+                              <td>in tổng tiền</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    <div class="form-group row justify-content-end">
+                      <div class="col-2 text-right">
+                        <button type="submit" class="btn btn-primary">Lưu đơn hàng</button>
+                      </div>
                     </div>
 
                   </div>

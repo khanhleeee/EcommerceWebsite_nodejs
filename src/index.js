@@ -59,6 +59,12 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use((req, res, next) => {
+    res.locals.message1 = req.session.message1;
+    delete req.session.message1;
+    next();
+});
+
 app.use(function(req, res, next) {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
@@ -78,15 +84,6 @@ hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
 
 hbs.handlebars.registerHelper('ifTest', function(v1, options) {
     switch (v1) {
-        // case "Chờ xác nhận":
-        //     return '<span class="badge badge">' + this.orderStatus + '</span>';
-        //     break
-        // case "Đang giao":
-        //     return '<span class="badge badge-success">' + this.orderStatus + '</span>';
-        //     break
-        // case "Đã huỷ":
-        //     return '<span class="badge badge-danger">' + this.orderStatus + '</span>';
-        //     break
         case "info":
             return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
             break
@@ -97,6 +94,13 @@ hbs.handlebars.registerHelper('ifTest', function(v1, options) {
             return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
             break
     }
+});
+
+hbs.handlebars.registerHelper('ifPromo', function(v1, v2, options) {
+    if (v1 === v2) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
 });
 
 
