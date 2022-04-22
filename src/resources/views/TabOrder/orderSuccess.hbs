@@ -57,7 +57,7 @@
             </tbody>
          </table>
          <!-- End Total Table -->
-         <a class="bill-backtoshop" href="/product">
+         <a class="bill-backtoshop" href="/product" onclick="clearAll()">
             <i class="fas fa-angle-left"></i>
             Tiếp tục mua sắm
          </a>
@@ -131,6 +131,7 @@
    orderTotal.innerHTML = Intl.NumberFormat().format(total) + 'đ'
 </script>
 
+{{!-- Get order total --}}
 <script>
    var orderTotal = document.querySelector('.js-order-total')
    var itemsTotal = document.querySelector('#cart-total-price').innerText
@@ -147,5 +148,12 @@
    orderTotal.innerHTML = Intl.NumberFormat().format(total) + 'đ'
 </script>
 
+{{!-- Delete localStorage --}}
+<script>
+   function clearAll() {
+      localStorage.clear();
+      location.reload();
+   }
+</script>
 <!-- End content -->
 

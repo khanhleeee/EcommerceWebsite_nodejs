@@ -79,7 +79,7 @@ const getPayment = async(req, res, next) => {
         order.items.push({ sku: req.body.sku[i], qty: req.body.qty[i], price: req.body.price[i] })
     }
     try {
-        console.log(order.convertToGiaKm);
+        // console.log(order.convertToGiaKm);
         await order.save();
         res.redirect('/payment/' + order.id + '/order');
     } catch (err) {

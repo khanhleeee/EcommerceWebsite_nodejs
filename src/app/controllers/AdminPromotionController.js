@@ -27,7 +27,8 @@ const createPromotion = async(req, res, next) => {
         giakm,
         ngayapdung,
         ngayhethan,
-        motakm
+        motakm,
+        promoRange,
     });
     await newPromotion.save();
     res.redirect('/adminPromotion');
@@ -49,6 +50,7 @@ const updatePromotion = async(req, res, next) => {
         ngayapdung: req.body.ngayapdung,
         ngayhethan: req.body.ngayhethan,
         motakm: req.body.motakm,
+        promoRange: req.body.promoRange,
     });
     res.redirect('/adminPromotion')
 }
