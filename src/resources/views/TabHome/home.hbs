@@ -1,6 +1,5 @@
-
 <!-- Start Banner Hero -->
-<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+{{!-- <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
 	<ol class="carousel-indicators">
 		<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
 		<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
@@ -10,12 +9,14 @@
 		<div class="carousel-item active">
 			<div class="container">
 				<div class="row p-5">
-					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-						<img class="img-fluid" src="https://cf.shopee.vn/file/152f4d874d2c5201855e68222226c5e1" alt="">
+					<div class="mx-auto col-12">
+						<img class=""
+							src="https://www.danielwellington.com/ecom2-image-bucket/mv3xw5mnbbp0/4LP7A0DktDnQv6MlsDLBNV/2f8cb75eeadee343ba60e50919244264/collection_elan_hero_2800x850.jpg?ecom2=true&format=jpg&width=1920&quality=80&bg-color=FFFFFF"
+							alt="">
 					</div>
 					<div class="col-lg-6 mb-0 d-flex align-items-center">
 						<div class="text-align-left align-self-center">
-							<h1 class="h1 text-success"><b>KCT</b></h1>
+							<h1 class="h1 text-success"><b>Glamorous</b></h1>
 							<h3 class="h2">Chuyên các trang sức phụ kiện unisex</h3>
 							<p>
 								Các sản phẩm phụ kiện vừa tạo điểm nhấn, vừa thể hiện cá tính riêng
@@ -25,10 +26,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="carousel-item">
+		<div class="carousel-item"
+			style="background-image: url(https://cf.shopee.vn/file/e61d95662d2b2bc721dac221d6ace897);">
 			<div class="container">
 				<div class="row p-5">
-					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+					<div class="mx-auto col-12 order-lg-last">
 						<img class="img-fluid" src="https://cf.shopee.vn/file/e61d95662d2b2bc721dac221d6ace897" alt="">
 					</div>
 					<div class="col-lg-6 mb-0 d-flex align-items-center">
@@ -74,14 +76,18 @@
 		data-bs-slide="next">
 		<i class="fas fa-chevron-right"></i>
 	</a>
-</div>
+</div> --}}
 <!-- End Banner Hero -->
-
+<div class="banner-list">
+	<div class="banner"
+		style="background-image: url(https://www.danielwellington.com/ecom2-image-bucket/mv3xw5mnbbp0/4LP7A0DktDnQv6MlsDLBNV/2f8cb75eeadee343ba60e50919244264/collection_elan_hero_2800x850.jpg?ecom2=true&format=jpg&width=1920&quality=80&bg-color=FFFFFF);">
+	</div>
+</div>
 
 <!-- Start Hot Product -->
 <section class="container py-5">
 
-	<div class="row text-center pt-3">
+	<div class="row text-center mt-5">
 		<div class="col-lg-6 m-auto">
 			<h1 class="h1">Sản phẩm bán chạy</h1>
 			<a class="seemore-btn" href="">
@@ -91,112 +97,107 @@
 		</div>
 	</div>
 
-	<div class="row mt-3">
-		<div class="col-md-4">
-			<div class="card mb-4 product-wap rounded-0">
-				<div class="card rounded-0">
-					<img class="card-img rounded-0 img-fluid"
-						src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab">
-					<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-						<ul class="list-unstyled">
-							<!-- <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li> -->
-							<li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-										class="far fa-eye"></i></a></li>
-							<!-- <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li> -->
+	<div class="row js-product-area-2">
+		<div id="myDIV" class="col-12 col-md-4 col-lg-4">
+			<a href=""
+				class="text-decoration-none">
+				<div class="card product-wap mb-4">
+					{{!--Product image --}}
+					<div class="card">
+						<img class="card-img rounded-0 img-fluid" src="https://www.danielwellington.com/product-images/dw00100439_quadro_20-u9e_rkE3.png?ecom2=true&format=jpg&canvas=1:1&width=400&quality=80&bg-color=FFFFFF">
+					</div>
+
+					<div class="card-body">
+						<span class="product-title text-decoration-none">SWITCH ROSE GOLD</span>
+						<input class="input-hidden" hidden value="" type="text">
+
+						{{!-- Product color dot --}}
+						<ul class="mb-1 list-unstyled">
+							<li style="line-height: 1;">
+								<span class="product-color-dot" style="background-color:#e5ae87;"></span>
+								<span class="product-color-dot" style="background-color:#c1c1c1;"></span>
+								<input class="input-hidden" hidden value="" type="text">
+							</li>
 						</ul>
+
+						<span class="product-price">6,360,000</span>
+						<span class="product-price">vnđ</span>
+
 					</div>
 				</div>
-				<div class="card-body">
-					<a href="shop-single.html" class="h3 text-decoration-none">Snake high chain</a>
-					<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-						<li>Chất liệu: inox</li>
-						<li class="pt-2">
-							<span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-						</li>
-					</ul>
-
-					<p class="text-center mt-2 mb-0">100.000 vnd</p>
-				</div>
-			</div>
+			</a>
 		</div>
-		<!-- End Product-1 -->
 
-		<div class="col-md-4">
-			<div class="card mb-4 product-wap rounded-0">
-				<div class="card rounded-0">
-					<img class="card-img rounded-0 img-fluid"
-						src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab">
-					<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-						<ul class="list-unstyled">
-							<!-- <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li> -->
-							<li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-										class="far fa-eye"></i></a></li>
-							<!-- <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li> -->
+		<div id="myDIV" class="col-12 col-md-4 col-lg-4">
+			<a href=""
+				class="text-decoration-none">
+				<div class="card product-wap mb-4">
+					{{!--Product image --}}
+					<div class="card">
+						<img class="card-img rounded-0 img-fluid" src="https://www.danielwellington.com/product-images/DW00100518_Quadro_St-1NgKpKxf.png?ecom2=true&format=jpg&canvas=1:1&width=400&quality=80&bg-color=FFFFFF	">
+					</div>
+
+					<div class="card-body">
+						<span class="product-title text-decoration-none">QUADRO STUDIO</span>
+						<input class="input-hidden" hidden value="" type="text">
+
+						{{!-- Product color dot --}}
+						<ul class="mb-1 list-unstyled">
+							<li style="line-height: 1;">
+								<span class="product-color-dot" style="background-color:#e5ae87;"></span>
+								<span class="product-color-dot" style="background-color:#c1c1c1;"></span>
+								<input class="input-hidden" hidden value="" type="text">
+							</li>
 						</ul>
+
+						<span class="product-price">6,360,000</span>
+						<span class="product-price">vnđ</span>
+
 					</div>
 				</div>
-				<div class="card-body">
-					<a href="shop-single.html" class="h3 text-decoration-none">Snake high chain</a>
-					<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-						<li>Chất liệu: inox</li>
-						<li class="pt-2">
-							<span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-						</li>
-					</ul>
-
-					<p class="text-center mt-2 mb-0">100.000 vnd</p>
-				</div>
-			</div>
+			</a>
 		</div>
-		<!-- End Product-1 -->
 
-		<div class="col-md-4">
-			<div class="card mb-4 product-wap rounded-0">
-				<div class="card rounded-0">
-					<img class="card-img rounded-0 img-fluid"
-						src="https://cf.shopee.vn/file/427e5f84a66a40c2c1cdbcbca09a42ab">
-					<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-						<ul class="list-unstyled">
-							<!-- <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li> -->
-							<li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-										class="far fa-eye"></i></a></li>
-							<!-- <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li> -->
+		<div id="myDIV" class="col-12 col-md-4 col-lg-4">
+			<a href=""
+				class="text-decoration-none">
+				<div class="card product-wap mb-4">
+					{{!--Product image --}}
+					<div class="card">
+						<img class="card-img rounded-0 img-fluid" src="https://www.danielwellington.com/product-images/dw00100434_quadro_20-ittOxrHc.png?ecom2=true&format=jpg&canvas=1:1&width=400&quality=80&bg-color=FFFFFF">
+					</div>
+
+					<div class="card-body">
+						<span class="product-title text-decoration-none">QUADRO ROSE</span>
+						<input class="input-hidden" hidden value="" type="text">
+
+						{{!-- Product color dot --}}
+						<ul class="mb-1 list-unstyled">
+							<li style="line-height: 1;">
+								<span class="product-color-dot" style="background-color:#e5ae87;"></span>
+								<span class="product-color-dot" style="background-color:#c1c1c1;"></span>
+								<input class="input-hidden" hidden value="" type="text">
+							</li>
 						</ul>
+
+						<span class="product-price">6,360,000</span>
+						<span class="product-price">vnđ</span>
+
 					</div>
 				</div>
-				<div class="card-body">
-					<a href="shop-single.html" class="h3 text-decoration-none">Snake high chain</a>
-					<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-						<li>Chất liệu: inox</li>
-						<li class="pt-2">
-							<span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-							<span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-						</li>
-					</ul>
-
-					<p class="text-center mt-2 mb-0">100.000 vnd</p>
-				</div>
-			</div>
+			</a>
 		</div>
-		<!-- End Product-1 -->
+
+		
+
+
 	</div>
 
 </section>
 <!-- End Hot Product-->
 
 <!-- Start Categories -->
-<section class="container py-5">
+{{!-- <section class="container py-5">
 	<div class="row text-center pt-3">
 		<div class="col-lg-6 m-auto">
 			<h1 class="h1">Sản phẩm theo loại</h1>
@@ -233,5 +234,5 @@
 
 		</div>
 	</div>
-</section>
+</section> --}}
 <!-- End Categories -->
