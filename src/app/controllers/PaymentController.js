@@ -93,6 +93,7 @@ const promotion = async(req, res, next) => {
     const orderPromo = req.body.promo;
     const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
     var orderTotal = req.body.orderTotal;
+    console.log(orderTotal)
     orderTotal = orderTotal.replaceAll(',', '')
     orderTotal = orderTotal.replaceAll('.', '')
     if (orderPromo == findPromo.makm) {
@@ -137,8 +138,9 @@ const promotion = async(req, res, next) => {
 // [GET] /payment/:id/order
 const showOrder = async(req, res, next) => {
     const order = await Order.findById(req.params.id);
-    const promo = await Promotion.findOne({ tenkm: order.orderPromo })
-    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order), promo: mongooseToObject(promo) });
+    // const promo = await Promotion.findOne({ tenkm: order.orderPromo })
+    // res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order), promo: mongooseToObject(promo)});
+    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order)});
 }
 
 // [POST] /payment/:id/order/:id/payOrder

@@ -19,69 +19,58 @@
 {{!-- Sidebar --}}
 <div class="container py-5">
     <div class="row">
-        <div class="col-lg-3">
-            <ul class="list-unstyled templatemo-accordion">
-
-                <li class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h4 text-decoration-none" href="/customer">
-                        Hạng thành viên
-                    </a>
+        <div class="col-3">
+            <ul class="customer-function-list mt-5">
+                <li class="">
+                    <a class="function-link active" href="/customer/{{userInfo._id}}/customerInfo">
+                        <span class="function-icon"><i class="fas fa-info-circle"></i></span>
+                        <span>Thông tin cá nhân</span> </a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+                <li class="">
+                    <a class="function-link" href="#">
+                        <span class="function-icon"><i class="fas fa-file-invoice"></i></span>
+                        <span>Đơn hàng của tôi</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
                 </li>
 
-                <li class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h4 text-decoration-none" style="color: #59ab6e;"
-                        href="#">
-                        Xem lịch sử đơn hàng
-                    </a>
+                <li class="">
+                    <a class="function-link" href="/customer">
+                        <span class="function-icon"><i class="fas fa-crown"></i></span>
+                        <span>Hạng thành viên</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
                 </li>
 
-
-                <li class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h4 text-decoration-none"
-                        href="/customer/{{userInfo._id}}/customerInfo">
-                        Chỉnh sửa thông tin cá nhân
-                    </a>
+                <li class="">
+                    <a class="function-link" href="#">
+                        <span class="function-icon"><i class="fas fa-lock"></i></span>
+                        <span>Đổi mật khẩu</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
                 </li>
 
-
-                <li class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h4 text-decoration-none" href="#">
-                        Thay đổi mật khẩu
-                    </a>
-                </li>
             </ul>
         </div>
+
         <div class="col-lg-9">
             <div class="row">
-                <div class="col-lg-1 ">
-
-                </div>
-                <div class="col-lg-11">
-                    <div class="delivery-info_header">
-                        <h2>THÔNG TIN TÀI KHOẢN</h2>
-                    </div>
-
-                    <form action="/customer/{{userInfo._id}}?_method=PUT" method="POST">
-                        <label for="tel">Hình đại diện</label><br>
-                        <input type="text" name="avatar" class="form-control" value="{{userInfo.avatar}}"><br>
-                        <label for="tel">Email</label><br>
-                        <input type="email" name="email" class="form-control" value="{{userInfo.email}}"><br>
-                        <label for="name">Họ tên:</label><br>
-                        <input type="text" id="name" name="name" class="form-control" value="{{userInfo.name}}"><br>
-                        <label for="address">Địa chỉ:</label><br>
-                        <input type="text" id="address" name="address" class="form-control"
-                            value="{{userInfo.address}}"><br>
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <button type="submit" class="btn btn-success">Lưu thay đổi</button>
-                            </div>
+                <h5 class="sub-title">Thông tin cá nhân</h5>
+                <form action="/customer/{{userInfo._id}}?_method=PUT" method="POST">
+                    <label for="tel">Hình đại diện</label><br>
+                    <input type="file" name="avatar" class="form-control" value="{{userInfo.avatar}}"><br>
+                    <label for="tel">Email</label><br>
+                    <input type="email" name="email" class="form-control" value="{{userInfo.email}}"><br>
+                    <label for="name">Họ tên:</label><br>
+                    <input type="text" id="name" name="name" class="form-control" value="{{userInfo.name}}"><br>
+                    <label for="address">Địa chỉ:</label><br>
+                    <input type="text" id="address" name="address" class="form-control"
+                        value="{{userInfo.address}}"><br>
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <button type="submit" class="btn btn-success">Lưu thay đổi</button>
                         </div>
-                    </form>
-
-                </div>
+                    </div>
+                </form>
             </div>
-
         </div>
-
     </div>
 </div>

@@ -1,27 +1,31 @@
-<!-- Modal -->
-<div class="login-form w3_form">
-   <!--  Title-->
-   <div class="login w3_login">
-      <h3 class="text-center pt-5" style="color: #59ab6e">ĐĂNG KÝ THÀNH VIÊN</h3>
-      
-      {{#if message}}
-      <div style="text-align: center" class="alert alert-{{message.type}}">
-         <strong>{{message.intro}}</strong> {{message.message}}
+<div class="container py-5">
+   <div class="row justify-content-center text-center">
+      <h3 class="text-center">ĐĂNG KÝ THÀNH VIÊN</h3>
+      <div class="col-12 col-lg-6">
+
+         {{#if message}}
+         <div style="text-align: center" class="alert alert-{{message.type}}">
+            <strong>{{message.intro}}</strong> {{message.message}}
+         </div>
+         {{/if}}
+
+         <form class="form mt-4" method="POST" action="/register/registerStore">
+            <div class="form-group">
+               <input class="form-control mb-3" type="email" placeholder="Email" name="email" required />
+               <input class="form-control mb-3" type="password" placeholder="Mật khẩu" name="password" required />
+               <input class="form-control mb-3" type="password" placeholder="Xác nhận lại mật khẩu" name="password"
+                  required />
+               <input class="form-control mb-3" type="text" placeholder="Tên khách hàng" name="name" required />
+               <input class="form-control mb-3" type="text" placeholder="Địa chỉ giao hàng" name="name" required />
+            </div>
+
+            <button type="submit" class="col-12 btn btn-success mt-3">Đăng nhập</button>
+
+         </form>
+         <p class="mt-5">Bạn đã có tài khoản?<a class="signup-link" href="/login">Quay về đăng nhập</a></p>
+
       </div>
-      {{/if}}
-
-      <form class="login-container d-grid" method="POST" action="/register/registerStore">
-         <input class="form-control" type="text" placeholder="Email" name="email" required>
-         <input class="form-control" type="password" placeholder="Mật khẩu" name="password" required>
-         <input class="form-control" type="password" placeholder="Xác nhận lại mật khẩu" name="passwordConf" required>
-         <input class="form-control" type="text" placeholder="Tên khách hàng" name="name" required>
-         <input class="form-control" type="text" placeholder="Địa chỉ" name="address" required>
-         <button type="submit" class="btn btn-success mt-3">Đăng ký</button>
-
-         <a href="/login" style="text-align: right; color: #59ab6e; padding-top: 10px"><i class="fas fa-angle-left"></i>Quay về</a>
-
-      </form>
    </div>
-
 </div>
+
 <!--End Brands-->

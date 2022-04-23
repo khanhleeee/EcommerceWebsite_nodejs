@@ -32,7 +32,7 @@
                <label class="attr-check-btn sildeDown-item text-decoration-none">
                   {{#ifCond order.orderType "COD"}}
                   <span class="attr-text">Thanh toán khi nhận hàng</span>
-                  <input class="check-btn radio" type="radio"  checked>
+                  <input class="check-btn radio" type="radio" checked>
                   {{else}}
                   <span class="attr-text">Thanh toán qua Momo</span>
                   <input class="check-btn radio" type="radio" checked>
@@ -58,7 +58,7 @@
             <strong>{{message.intro}}</strong> {{message.message}}
          </div>
          {{/if}}
-         
+
          <table class="cart-view" id="cart-view"></table>
          <span class="line"></span>
          <!-- Start Total Table -->
@@ -87,12 +87,19 @@
                   <td class="text-right js-shipping-fee">30,000đ</td>
                </tr>
                <tr>
+                  {{#if order.orderTotalPromo}}
                   <td class="text-left">MÃ KHUYẾN MÃI: {{order.orderPromoName}}</td>
                   <td class="text-right ">-{{order.convertToGiaKm}}đ</td>
+                  {{/if}}
                </tr>
                <tr>
+                  {{#if order.orderTotalPromo}}
                   <td class="text-left">TỔNG TIỀN:</td>
                   <td class="text-right">{{order.orderTotalPromo}}đ</td>
+                  {{else}}
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right js-order-total">0đ</td>
+                  {{/if}}
                </tr>
                {{/ifCond}}
             </tbody>
@@ -160,7 +167,7 @@
    itemsTotal = itemsTotal.replaceAll('đ', '')
    shippingTotal = shippingTotal.replaceAll(',', '')
    shippingTotal = shippingTotal.replaceAll('đ', '')
-   
+
    var total = 0;
    total = parseFloat(itemsTotal) + parseFloat(shippingTotal);
    console.log(total)

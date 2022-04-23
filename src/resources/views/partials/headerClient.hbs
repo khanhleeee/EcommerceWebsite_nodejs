@@ -1,4 +1,3 @@
-
 <!-- Start Top Nav -->
 <nav class="navbar bg-dark">
     <div class="container">
@@ -29,24 +28,27 @@
             </ul>
 
             <div class="nav-features align-self-center d-flex">
-                <span class="nav-features-item site-cart-open nav-icon position-relative text-decoration-none">
+                <span class="nav-features-item site-cart-open position-relative text-decoration-none">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-amount" id="cart-amount">0</span>
                 </span>
-                
+
                 {{#if isAuthenticated}}
-                <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/customer">
-                    <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                </a>
-                <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/logout">
-                    <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
-                    {{!-- <img src="{{user.avatar}}" width="20" alt="avatar_cus"> --}}
-                </a>
-                {{user.name}}
-                {{else}}           
-                {{!-- <a class="nav-icon position-relative text-decoration-none" href="/login">
-                    <i class="fa fa-fw fa-sign-in-alt text-dark mr-3"></i>
-                </a> --}}
+                <div class="customer-avatar-area">
+                    <div class="customer-avatar" style="background-image: url({{user.avatar}});"></div>
+                    <div class="customer-dropdown">
+                        <div class="customer-welcome">
+                            <span>Xin chào, {{user.name}}</span>
+                        </div>
+                        <a href="/customer" class="customer-link">
+                            <span>Tài khoản</span>
+                        </a>
+                        <a href="/logout" class="customer-link">
+                            <span>Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+                {{else}}
                 <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/login">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                 </a>
@@ -57,6 +59,3 @@
     </div>
 </nav>
 <!-- Close Header -->
-
-
-
