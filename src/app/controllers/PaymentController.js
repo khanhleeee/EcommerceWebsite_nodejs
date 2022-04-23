@@ -70,6 +70,7 @@ const getPayment = async(req, res, next) => {
         address: req.body.address,
         note: req.body.note,
         orderType: req.body.orderType,
+        orderTotal: req.body.orderTotal,
         orderTotalPromo: req.body.orderTotalPromo,
         orderPromoName: req.body.orderPromoName,
         convertToGiaKm: req.body.convertToGiaKm,

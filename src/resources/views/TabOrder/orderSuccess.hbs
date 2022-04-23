@@ -42,6 +42,20 @@
          <!-- Start Total Table -->
          <table class="table-total">
             <tbody style="font-weight: bold;">
+               {{#ifCond order.orderPromoName "empty"}}
+               <tr>
+                  {{!-- <td class="text-left">TẠM TÍNH:</td> --}}
+                  <td class="cart-total-price text-right" hidden id="cart-total-price"></td>
+               </tr>
+               <tr>
+                  {{!-- <td class="text-left">PHÍ VẬN CHUYỂN:</td>
+                  <td class="text-right js-shipping-fee">30,000đ</td> --}}
+               </tr>
+               <tr>
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right js-order-total">{{order.orderTotal}}đ</td>
+               </tr>
+               {{else}}
                <tr>
                   {{!-- <td class="text-left">TẠM TÍNH:</td> --}}
                   <td class="cart-total-price text-right" hidden id="cart-total-price"></td>
@@ -54,6 +68,7 @@
                   <td class="text-left">TỔNG TIỀN:</td>
                   <td class="text-right js-order-total">{{order.orderTotalPromo}}đ</td>
                </tr>
+               {{/ifCond}}
             </tbody>
          </table>
          <!-- End Total Table -->

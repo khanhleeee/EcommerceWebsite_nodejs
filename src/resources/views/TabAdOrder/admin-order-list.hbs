@@ -50,9 +50,15 @@
 									<td>
 										<a href="/adminOrder/{{this._id}}/editOrder">{{this.phonenumber}}</a>
 									</td>
+									{{#ifCond this.orderPromoName "empty"}}
+									<td> 
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.orderTotal}} vnđ</a>
+									</td>
+									{{else}}
 									<td> 
 										<a href="/adminOrder/{{this._id}}/editOrder">{{this.orderTotalPromo}} vnđ</a>
 									</td>
+									{{/ifCond}}
 									<td class="text-center td-details">
 										<a href="/adminOrder/{{this._id}}/editOrder" class="btn btn-primary btn-sm">Chi tiết</a>
 									</td>
