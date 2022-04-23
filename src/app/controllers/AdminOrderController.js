@@ -35,7 +35,7 @@ const confirmOrder = async(req, res, next) => {
     res.redirect('/adminOrder');
 }
 
-//[PUT] /adminOrder/:id/editOrder/confirmOrder
+//[PUT] /adminOrder/:id/editOrder/cancelOrder
 const cancelOrder = async(req, res, next) => {
     await Order.updateOne({ _id: req.params.id }, {
         orderStatus: "danger",

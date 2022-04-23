@@ -50,7 +50,7 @@
 												</label>
 												<div class="col-lg-10">
 													<input type="text" class="form-control" id="val-confirm-password"
-														required name="price" value="{{product.price}}">
+														required name="price" value="{{product.price}} vnđ">
 												</div>
 											</div>
 
@@ -68,11 +68,9 @@
 						<div class="card-header">
 							<h4 class="card-title">Chỉnh sửa skus</h4>
 						</div>
-						{{!-- Nếu được sửa phần này để nó tự lặp --}}
+						{{#each product.skus}}
 						<div class="card-body">
 							<div class="form-validation">
-								{{!-- <form class="form-valide" action="#" method="POST"
-									action="/adminCreateList/productForm/skusForm"> --}}
 									<div class="row">
 										<div class="col-xl-12">
 											<div class="form-group row">
@@ -82,7 +80,7 @@
 
 												<div class="col-lg-10">
 													<input type="text" class="form-control" id="" name="sku"
-														value="{{product.skus.0.sku}}">
+														value="{{this.sku}}">
 												</div>
 											</div>
 
@@ -91,9 +89,9 @@
 														class="text-danger">*</span>
 												</label>
 												<div class="col-lg-10">
-													<img src="{{product.skus.0.img}}" alt="hinh_sanpham">
+													<img src="{{this.img}}" alt="hinh_sanpham">
 													<input type="text" class="form-control" id="" name="img"
-														value="{{product.skus.0.img}}">
+														value="{{this.img}}">
 												</div>
 											</div>
 
@@ -103,7 +101,7 @@
 												</label>
 												<div class="col-lg-4">
 													<input type="text" class="form-control" id="val-password"
-														name="color_name" value="{{product.skus.0.color.title}}">
+														name="color_name" value="{{this.color.title}}">
 												</div>
 
 												<label class="col-lg-2 col-form-label" for="val-password">Mã màu
@@ -111,40 +109,38 @@
 												</label>
 												<div class="col-lg-4">
 													<input type="text" class="as_colorpicker form-control"
-														value="{{product.skus.0.color.color_code}}" name="color_id">
+														value="{{this.color.color_code}}" name="color_id">
 												</div>
 
 											</div>
+											{{#each this.sizes}}
 											<div class="form-group row">
 												<label class="col-lg-2 col-form-label" for="val-confirm-password">Size
 													<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-4">
 													<input type="text" class="form-control" id="val-confirm-password"
-														name="sizes" value="{{product.skus.0.sizes.0.size}}">
+														name="sizes" value="{{this.size}}">
 												</div>
 												<label class="col-lg-2 col-form-label" for="val-password">Số lượng
 													<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-4">
 													<input type="text" class="as_colorpicker form-control"
-														value="{{product.skus.0.sizes.0.qty}}" name="qty">
+														value="{{this.qty}}" name="qty">
 												</div>
 											</div>
+											{{/each}}
 											<div class="form-group row justify-content-end">
 												<div class="col-2 text-right">
-													{{!-- <button type="button" class="btn btn-primary"
-														data-toggle="modal" data-target="#saveProduct">Lưu sản
-														phẩm</button> --}}
-													<button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+													<button type="submit" class="btn btn-primary">Chỉnh sửa</button>
 												</div>
 											</div>
 										</div>
 									</div>
-									{{!--
-								</form> --}}
 							</div>
 						</div>
+						{{/each}}
 					</form>
 				</div>
 			</div>
