@@ -149,7 +149,7 @@ const showOrder = async(req, res, next) => {
     const order = await Order.findById(req.params.id);
     // const promo = await Promotion.findOne({ tenkm: order.orderPromo })
     // res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order), promo: mongooseToObject(promo)});
-    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order)});
+    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order) });
 }
 
 // [POST] /payment/:id/order/:id/payOrder
@@ -168,7 +168,12 @@ const payOrder = async(req, res, next) => {
     if (orderid.orderType === 'Momo') {
         let idurl = orderid.id;
         let nameurl = orderid.name;
-        var priceOrder = orderid.orderTotalPromo;
+        if (orderid.orderPromoName == "empty") {
+            var totalPriceOrder = orderid.orderTotal;
+        } else {
+            var totalPriceOrder = orderid.orderTotalPromo;
+        }
+        var priceOrder = totalPriceOrder;
         priceOrder = priceOrder.replaceAll(',', '')
         priceOrder = priceOrder.replaceAll('.', '')
         var priceOrderInt = parseInt(priceOrder);
