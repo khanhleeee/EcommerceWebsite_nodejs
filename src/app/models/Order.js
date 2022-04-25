@@ -17,8 +17,9 @@ let Order = new Schema({
     orderDate: { type: String, maxLength: 255, default: new Date().toLocaleString() },
     items: [{
         sku: { type: String },
+        size: { type: String },
         sku_id: { type: String },
-        qty: { type: String },
+        qty: { type: Number },
         price: { type: String },
     }],
 }, {

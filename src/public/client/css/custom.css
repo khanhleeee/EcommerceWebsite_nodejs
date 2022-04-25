@@ -808,7 +808,7 @@ input[type=number].form-control::-webkit-outer-spin-button {
     background-color: rgb(255, 255, 255);
     box-shadow: 2px 2px 4px #ccc;
     top: calc(100% + 12px);
-    left: -102px;
+    left: -41px;
     border-radius: 3px;
     width: 159px;
     display: none;
@@ -911,6 +911,12 @@ input[type=number].form-control::-webkit-outer-spin-button {
 .reward-point {
     font-size: 1rem;
     font-weight: 600;
+}
+
+.promotion-input {
+    border: none;
+    outline: none;
+    height: 100%;
 }
 
 .promo-list {

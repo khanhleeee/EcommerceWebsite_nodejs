@@ -60,12 +60,17 @@ else {
 cartAmount.innerHTML = qty;
 
 // adding cartview data	
+var tableTotal = document.querySelector('.table-total');
+var paymentBtn = document.querySelector('.payment-btn');
 var cartView = document.getElementsByClassName('cart-view')[0]
 let cartData = ``;
 
 if(JSON.parse(localStorage.getItem('items')) === null || JSON.parse(localStorage.getItem('items')) == '' ) {
-	cartData += `<tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>`
-	document.querySelector('.cart-total-price').innerHTML = '0đ';
+	cartData += `
+	<tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>`;
+	tableTotal.innerHTML = ``;
+	paymentBtn.innerHTML = ``;	
+	// document.querySelector('.site-nav-container-last').innerHTML = cartData + `<a class="btn btn-success btn-site-cart" href="/payment">THANH TOÁN</a>`;
 }
 else {
 	(JSON.parse(localStorage.getItem('items')).map(data => {
@@ -74,27 +79,26 @@ else {
 		Total();
 
 		cartData += `
-		<tr class="cart-item" id="cart-item">
-		<td class="item-img">
-		
-		<img class="cart-item-image" src="` + data.img +`" alt="Card image cap" id="product-detail">
-	</td>
-	<td>
-		<a href="" class="item-title">` + data.name +`</a>
-		<input hidden value="` + data.size + `" class="cart-size" type="text">
-		<span class="item-properties">` + data.color + `, ` + data.size +`</span>
-		<div class="item-amount">
-			<input hidden value="` + data.sku + `" class="cart-sku" type="text">
-			<span class="cart-quantity-input">` + data.qty +`</span>
+			<tr class="cart-item" id="cart-item">
+				<td class="item-img">
+				
+				<img class="cart-item-image" src="` + data.img +`" alt="Card image cap" id="product-detail">
+				</td>
+				<td>
+					<a href="" class="item-title">` + data.name +`</a>
+					<input hidden value="` + data.size + `" class="cart-size" type="text">
+					<span class="item-properties">` + data.color + `, ` + data.size +`</span>
+					<div class="item-amount">
+						<input hidden value="` + data.sku + `" class="cart-sku" type="text">
+						<span class="cart-quantity-input">` + data.qty +`</span>
 
-			<span class="cart-price">` + productTotalFormat +`</span>
-		</div>
-	</td>
-	<td>
-		<i class="fas fa-times remove-btn" onclick= Delete(this)></i>
-	</td>
-	</tr>`
-
+						<span class="cart-price">` + productTotalFormat +`</span>
+					</div>
+				</td>
+				<td>
+					<i class="fas fa-times remove-btn" onclick= Delete(this)></i>
+				</td>
+			</tr>`
 	}));
 
 	// Delete item
@@ -114,7 +118,6 @@ else {
 		Total();
 	}
 }	
-
 	// Total
 	function Total() {
 		var total = 0;
