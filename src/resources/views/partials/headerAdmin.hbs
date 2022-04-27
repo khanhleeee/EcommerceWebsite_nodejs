@@ -456,6 +456,7 @@
                                 <small style="text-align: center; text-transform: capitalize">{{user.role}}</small>
                             </div>
                         </a>
+                        {{#ifCond user.role "admin"}}
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="/admin/{{user._id}}/adminProfile" class="dropdown-item ai-icon">
                                 <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
@@ -466,6 +467,19 @@
                                 </svg>
                                 <span class="ml-2">Profile </span>
                             </a>
+                        {{else}}
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="/staff/{{user._id}}/staffProfile" class="dropdown-item ai-icon">
+                                <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
+                                    height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span class="ml-2">Profile </span>
+                            </a>
+                        {{/ifCond}}
+                    
                             {{!-- <a href="email-inbox.html" class="dropdown-item ai-icon">
                                 <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18"
                                     height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -509,10 +523,18 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <div class="main-profile">
-            <a href="" class="brand-logo">
+            {{#ifCond user.role "admin"}}
+            <a href="/admin" class="brand-logo">
                 <h5>GLAMOROUS</h5>
                 {{!-- <h5 class="name"><span class="font-w400">Chuyên trang sức phụ kiện unisex</h5> --}}
             </a>
+            {{/ifCond}}
+            {{#ifCond user.role "staff"}}
+            <a href="/staff" class="brand-logo">
+                <h5>GLAMOROUS</h5>
+                {{!-- <h5 class="name"><span class="font-w400">Chuyên trang sức phụ kiện unisex</h5> --}}
+            </a>
+            {{/ifCond}}
         </div>
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Chức năng</li>
@@ -559,6 +581,18 @@
                     <li><a href="/adminPromotion">Danh sách khuyến mãi</a></li>
                 </ul>
             </li>
+
+            {{#ifCond user.role "admin"}} 
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-028-user-1" aria-hidden="true"></i>
+                    <span class="nav-text">Nhân viên</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="/adminStaff/createStaff">Tạo nhân viên mới</a></li>
+                    <li><a href="/adminStaff">Danh sách nhân viên</a></li>
+                </ul>
+            </li>
+            {{/ifCond}}
         </ul>
     </div>
 </div>

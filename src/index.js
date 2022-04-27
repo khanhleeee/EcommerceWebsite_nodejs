@@ -100,7 +100,7 @@ hbs.handlebars.registerHelper('ifTest', function(v1, options) {
     // });
     switch (v1) {
         case "info":
-            return '<span class="badge badge-' + this.orderStatus + '">' + "Chờ xác nhận" + '</span>';
+            return '<span class="badge badge-' + this.orderStatus + '">' + this.orderStatus + '</span>';
             break
         case "success":
             return '<span class="badge badge-' + this.orderStatus + '">' + "Đã xác nhận" + '</span>';
