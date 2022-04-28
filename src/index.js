@@ -43,9 +43,9 @@ app.use(cookieParser('secret'));
 //Express-session
 app.use(session({
     secret: "mysecret",
-    resave: true,
+    resave: false,
     saveUninitialized: true,
-    // cookie: { maxAge: null }
+    name: 'Customer',
 }));
 
 //Passport middleware
@@ -126,10 +126,6 @@ hbs.handlebars.registerHelper('ifPromo', function(v1, v2, options) {
     }
     return options.inverse(this);
 });
-
-app.engine('hbs', hbs.engine);
-app.set('view engine', 'hbs');
-app.set("views", path.join(__dirname, 'resources', 'views'));
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');

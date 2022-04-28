@@ -29,7 +29,7 @@
             </div>
 
             <div class="">
-               <label for="emailCus" style="font-weight:bold; font-size: 12px">Ghi chú: </label>
+               <label for="emailCus" style="font-weight:bold; font-size: 12px">Thêm ghi chú: </label>
                <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="note" placeholder="Ghi chú" rows="3"></textarea>
             </div>
             {{else}}
@@ -94,48 +94,50 @@
       <strong>{{message1.intro}}</strong> {{message1.message}}
    </div>
    {{/if}}
+   {{!-- <form method="POST" action="/payment/cardOrder"> --}}
       <table class="cart-view" id="cart-view"></table>
       <span class="line"></span>
       <table class="table-total">
          <tbody>
-               <tr>
-            {{!-- <form id="promoForm" method="post" action="/payment/promotion"> --}}
+            <tr>
+               {{!-- <form id="promoForm" method="post" action="/payment/promotion"> --}}
                   <td class="text-left col-8">
-                     {{!-- <input  class="promotion-input" type="text" name="orderPromo" placeholder="Nhập mã giảm giá" autocomplete="off"> --}}
-                     <input  class="promotion-input" type="text" name="promo"  placeholder="Nhập mã giảm giá" autocomplete="off">
+                     {{!-- <input class="promotion-input" type="text" name="orderPromo" placeholder="Nhập mã giảm giá"
+                        autocomplete="off"> --}}
+                     <input class="promotion-input" type="text" name="promo" placeholder="Nhập mã giảm giá"
+                        autocomplete="off">
                   </td>
                   <td class="text-right col-4">
+                     {{#if isAuthenticated}}
+                     <button class="btn btn-success" id="js-promo-btn-customer">Áp dụng</button>
+                     {{else}}
                      <button class="btn btn-success" id="js-promo-btn">Áp dụng</button>
+                     {{/if}}
                   </td>
-            {{!-- </form> --}}
-               </tr>
+                  {{!--
+               </form> --}}
+            </tr>
          </tbody>
       </table>
       <span class="line"></span>
       <!-- Start Total Table -->
       <table class="table-total">
-         <tbody style="font-weight: bold">
+         <tbody style="font-weight: bold" ;>
             <tr>
                <td class="text-left">TẠM TÍNH:</td>
-               <td class="cart-total-price text-right js-order-total" id="cart-total-price"></td>
-               <input hidden type="text" name="orderTotal" class="js-order-total-input">
+               <td class="cart-total-price text-right" id="cart-total-price"></td>
             </tr>
             <tr>
                <td class="text-left">PHÍ VẬN CHUYỂN:</td>
                <td class="text-right js-shipping-fee">30,000đ</td>
             </tr>
             <tr>
-               <td class="text-left">MÃ KHUYẾN MÃI: {{orderPromoName}}</td>
-               <input hidden type="text" name="orderPromoName" value="{{orderPromoName}}">
-               <td class="text-right ">-{{convertToGiaKm}}đ</td>
-               <input hidden type="text" name="convertToGiaKm" value="{{convertToGiaKm}}">
-            </tr>
-            <tr>
                <td class="text-left">TỔNG TIỀN:</td>
-               <td class="text-right">{{orderTotalPromo}}đ</td>
-               <input hidden type="text" name="orderTotalPromo" value="{{orderTotalPromo}}">
+               <td class="text-right js-order-total">0đ</td>
+               <input hidden type="text" name="orderTotal" class="js-order-total-input">
             </tr>
          </tbody>
+
       </table>
 </div>
 </form>
@@ -165,6 +167,8 @@
 	<td class="col-8">
 		<a href="" class="item-title">` + data.name + `</a>
 		<span class="item-properties">` + data.color + `, ` + data.size + `</span>
+      <input hidden value="` + data.size + `" class="cart-qty" name="size" type="text">
+
 		<div class="item-amount justify-content-center">
 			<input hidden value="` + data.sku + `" class="cart-sku"  name="sku" type="text">
 			<span class="cart-quantity-input">` + data.qty + `</span>
@@ -177,7 +181,7 @@
 	</tr>`
 
       }));
-   }  
+   }
 
    // Total
    function Total() {
@@ -212,9 +216,18 @@
 
 <script>
    var promoBtn = document.getElementById('js-promo-btn');
-   promoBtn.addEventListener('click', function() {
+   promoBtn.addEventListener('click', function () {
       const form = document.getElementById('main-form');
       form.action = "/payment/promotion";
+      form.submit();
+   })
+</script>
+
+<script>
+   var promoBtn = document.getElementById('js-promo-btn-customer');
+   promoBtn.addEventListener('click', function () {
+      const form = document.getElementById('main-form');
+      form.action = "/payment/paymentCus/{{userInfo._id}}/promotion";
       form.submit();
    })
 </script>

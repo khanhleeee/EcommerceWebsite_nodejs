@@ -7,7 +7,8 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 
 // [GET] /login
 const showLogin = async(req, res, next) => {
-    res.render('TabLogin/login', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), });
+    // const userInfo = await User.findById(req.user._id)
+    res.render('TabLogin/login', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), userInfo: req.user });
 }
 
 module.exports = { showLogin }

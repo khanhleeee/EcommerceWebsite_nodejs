@@ -5,12 +5,18 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 const Product = require('../models/Product');
 const Order = require('../models/Order');
 const Promotion = require('../models/Promotion');
+const User = require('../models/User');
+
 const { object } = require('joi');
 
 // [GET] /payment
 const showPayment = async(req, res, next) => {
-
     res.render('TabPayment/payment', { layout: 'mainEmpty.hbs' });
+}
+
+// [GET] /payment/paymentCus
+const showCusPayment = async(req, res, next) => {
+    res.render('TabPayment/payment', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), });
 }
 
 // [POST] /payment
@@ -76,11 +82,11 @@ const getPayment = async(req, res, next) => {
         orderPromoName: req.body.orderPromoName,
         convertToGiaKm: req.body.convertToGiaKm,
         items: []
-
     });
 
     if (typeof(req.body.sku) === 'object') {
         for (var i in req.body.sku) {
+            console.log(order)
             order.items.push({ sku: req.body.sku[i], size: req.body.size[i], qty: parseInt(req.body.qty[i]), price: req.body.price[i] })
         }
     } else {
@@ -119,7 +125,7 @@ const promotion = async(req, res, next) => {
             var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
             var convertToGiaKm = Intl.NumberFormat().format(convertGiakm);
             var orderPromoName = findPromo.tenkm;
-            return res.render('TabPayment/paymentPromo', { layout: 'mainEmpty.hbs', orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
+            return res.render('TabPayment/paymentPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
         } else {
             req.session.message1 = {
                 type: 'danger',
@@ -144,12 +150,60 @@ const promotion = async(req, res, next) => {
     }
 }
 
+// [POST] /payment/paymentCus/:id/promotion
+const promotion2 = async(req, res, next) => {
+    const orderPromo = req.body.promo;
+    const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
+    var orderTotal = req.body.orderTotal;
+    orderTotal = orderTotal.replaceAll(',', '')
+    orderTotal = orderTotal.replaceAll('.', '')
+    if (orderPromo == findPromo.makm) {
+        const promoRange = findPromo.promoRange;
+        if (orderTotal > promoRange) {
+            req.session.message1 = {
+                type: 'success',
+                intro: 'Đã áp dụng mã giảm giá',
+            }
+            var convertGiakm = findPromo.giakm
+            convertGiakm = convertGiakm.replaceAll(',', '')
+            convertGiakm = convertGiakm.replaceAll('.', '')
+            var totalOrder = orderTotal - convertGiakm;
+            var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
+            var convertToGiaKm = Intl.NumberFormat().format(convertGiakm);
+            var orderPromoName = findPromo.tenkm;
+            return res.render('TabPayment/paymentPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
+        } else {
+            req.session.message1 = {
+                type: 'danger',
+                intro: 'Không đủ điều kiện áp dụng mã giảm giá',
+            }
+            var orderPromoAfter = "";
+            var orderTotalPromo = Intl.NumberFormat().format(orderTotal);
+            return res.redirect('/payment');
+        }
+    } else if (!orderPromo) {
+        req.session.message1 = {
+            type: 'info',
+            intro: 'Không có mã giảm giá',
+        }
+        return res.render('TabPayment/paymentErr', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user) });
+        // return res.redirect('/payment');
+    } else {
+        req.session.message1 = {
+            type: 'danger',
+            intro: 'Mã giảm giá không hợp lệ',
+        }
+        return res.render('TabPayment/paymentNoPro', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user) });
+        // return res.redirect('/payment');
+    }
+}
+
 // [GET] /payment/:id/order
 const showOrder = async(req, res, next) => {
     const order = await Order.findById(req.params.id);
     // const promo = await Promotion.findOne({ tenkm: order.orderPromo })
     // res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order), promo: mongooseToObject(promo)});
-    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order) });
+    res.render('TabOrder/order', { layout: 'mainEmpty.hbs', order: mongooseToObject(order), userInfo: mongooseToObject(req.user) });
 }
 
 // [POST] /payment/:id/order/:id/payOrder
@@ -287,8 +341,8 @@ const payOrder = async(req, res, next) => {
 //[GET] /payment/:id/order/orderSuccess
 const paySuccess = async(req, res, next) => {
     const order = await Order.findById(req.params.id);
-    res.render('TabOrder/orderSuccess', { layout: 'mainEmpty.hbs', order: mongooseToObject(order) });
+    res.render('TabOrder/orderSuccess', { layout: 'mainEmpty.hbs', order: mongooseToObject(order), userInfo: mongooseToObject(req.user) });
 
 }
 
-module.exports = { showPayment, getPayment, showOrder, payOrder, paySuccess, promotion }
+module.exports = { showPayment, showCusPayment, getPayment, showOrder, payOrder, paySuccess, promotion, promotion2 }

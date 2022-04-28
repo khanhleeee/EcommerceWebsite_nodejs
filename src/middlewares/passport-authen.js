@@ -24,6 +24,12 @@ module.exports = function(passport) {
                             // if (user.role == 'admin') return res.redirect('/admin')
                             //     // return res.send(`User ${user.name} has logged in`);
                             // return res.render('TabCustomer/cusPage', { layout: 'mainClient.hbs' });
+
+                            var session = req.session; //initialize session variable
+                            session.logined = true;
+                            session.email = user.email;
+                            // console.log(session.email)
+
                             return done(null, user);
                         } else {
                             req.session.message = {

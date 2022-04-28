@@ -4,12 +4,40 @@
       <div class="row">
          <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
             <h2 class="payment-title mt-lg-0 mt-sm-3">Thông tin giao hàng</h2>
+
+            {{#if isAuthenticated}}
             {{#if message}}
             <div style="text-align: center" class="alert alert-{{message.type}}">
                <strong>{{message.intro}}</strong> {{message.message}}
             </div>
             {{/if}}
+            <div>
+               <label for="nameCus" style="font-weight:bold; font-size: 12px">Tên khách hàng: </label>
+               <input type="text" class="form-control mb-3" id="" name="name" value="{{userInfo.name}}" required>
+            </div>
 
+            <div class="">
+               <label for="phoneCus" style="font-weight:bold; font-size: 12px">Số điện thoại: </label>
+               <input type="text" class="form-control mb-3" id="" name="phonenumber" value="{{userInfo.phonenumber}}"
+                  required>
+            </div>
+
+            <div class="">
+               <label for="addressCus" style="font-weight:bold; font-size: 12px">Địa chỉ: </label>
+               <input type="text" class="form-control mb-3" id="" name="address" value="{{userInfo.address}}"
+                  required>
+            </div>
+
+            <div class="">
+               <label for="emailCus" style="font-weight:bold; font-size: 12px">Thêm ghi chú: </label>
+               <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="note" placeholder="Ghi chú" rows="3"></textarea>
+            </div>
+            {{else}}
+            {{#if message}}
+            <div style="text-align: center" class="alert alert-{{message.type}}">
+               <strong>{{message.intro}}</strong> {{message.message}}
+            </div>
+            {{/if}}
             <div>
                <label for="nameCus" style="font-weight:bold; font-size: 12px">Tên khách hàng: </label>
                <input type="text" class="form-control mb-3" id="" name="name" placeholder="Họ và tên" required>
@@ -31,6 +59,7 @@
                <label for="emailCus" style="font-weight:bold; font-size: 12px">Ghi chú: </label>
                <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="note" rows="3"></textarea>
             </div>
+            {{/if}}
 
             <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức vận chuyển</h2>
             <div class="">
@@ -79,7 +108,11 @@
                         autocomplete="off">
                   </td>
                   <td class="text-right col-4">
+                     {{!-- {{#if isAuthenticated}} --}}
+                     <button class="btn btn-success" id="js-promo-btn-customer">Áp dụng</button>
+                     {{!-- {{else}}
                      <button class="btn btn-success" id="js-promo-btn">Áp dụng</button>
+                     {{/if}} --}}
                   </td>
                   {{!--
                </form> --}}
@@ -182,10 +215,19 @@
 </script>
 
 <script>
-   var promoBtn = document.getElementById('js-promo-btn');
+   /*var promoBtn = document.getElementById('js-promo-btn');
    promoBtn.addEventListener('click', function () {
       const form = document.getElementById('main-form');
       form.action = "/payment/promotion";
+      form.submit();
+   })
+</script>
+
+<script>
+   var promoBtn = document.getElementById('js-promo-btn-customer');
+   promoBtn.addEventListener('click', function () {
+      const form = document.getElementById('main-form');
+      form.action = "/payment/paymentCus/{{userInfo._id}}/promotion";
       form.submit();
    })
 </script>

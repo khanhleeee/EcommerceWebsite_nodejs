@@ -65,9 +65,16 @@
                </tbody>
             </table>
             <!-- End Total Table -->
+            {{#if isAuthenticated}}
+            <div class="payment-btn">
+               <a class="btn btn-success btn-site-cart" href="/payment/paymentCus">THANH TOÁN</a>
+            </div>
+            {{else}}
             <div class="payment-btn">
                <a class="btn btn-success btn-site-cart" href="/payment">THANH TOÁN</a>
             </div>
+            {{/if}}
+
          </div>
       </div>
       <!-- End Cart modal -->

@@ -23,7 +23,6 @@ const updateCustomer = async(req, res, next) => {
         address: req.body.address,
         phonenumber: req.body.phonenumber,
     });
-
     res.redirect('/customer/' + req.user._id + '/customerInfo');
 }
 

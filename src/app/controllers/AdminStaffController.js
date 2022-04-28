@@ -64,7 +64,7 @@ const updateStaff = async(req, res, next) => {
     res.redirect('/adminPromotion')
 }
 
-//[DELETE] /adminPromotion/deletePromotion/:id
+//[DELETE] /adminStaff/deleteStaff/:id
 const deleteStaff = async(req, res, next) => {
     User.deleteOne({ _id: req.params.id })
         .then(() => res.redirect('/adminStaff'))
