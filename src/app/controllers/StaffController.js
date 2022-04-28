@@ -13,7 +13,7 @@ const showStaff = async(req, res, next) => {
 //[GET] /staff/:id/staffProfile
 const showStaffProfile = async(req, res, next) => {
     const user = await User.findById(req.user._id);
-    res.render('TabAdmin/admin-profile', { layout: 'mainAdmin.hbs', user: mongooseToObject(user) });
+    res.render('TabAdStaff/staff-profile', { layout: 'mainAdmin.hbs', user: mongooseToObject(user) });
 }
 
 //[PUT] /staff/:id

@@ -51,7 +51,7 @@ const recoverPass = async(req, res, next) => {
       font-size: 50px;
       line-height: 0.65;
       font-family: 'Lobster', cursive; margin-bottom: -10px">
-                                KCT
+                                GLAMOROUS
                             </h3>
                             <p style="font-size: 14px;
       text-algin: center;
@@ -132,7 +132,7 @@ const recoverPass = async(req, res, next) => {
                     <tr>
                         <td align="left" bgcolor="#ffffff"
                             style="padding: 20px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                            <p style="margin: 0;">Best regard,<br> KCT Customer Service</p>
+                            <p style="margin: 0;">Best regard,<br> Glamourous Customer Service</p>
                         </td>
                     </tr>
                     <!-- end copy -->
@@ -167,14 +167,14 @@ const recoverPass = async(req, res, next) => {
 
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-            host: 'mail.kctshop.com',
+            host: 'mail.glamorous.com',
             port: 587,
             secure: false, // true for 465, false for other ports
             host: 'smtp.gmail.com',
             port: 465,
             secure: true, // use SSL
             auth: {
-                user: 'kctshop.cs@gmail.com', // generated ethereal user
+                user: 'glamorous.cs01@gmail.com', // generated ethereal user
                 pass: 'bin23082001' // generated ethereal password
             },
             tls: {
@@ -184,7 +184,7 @@ const recoverPass = async(req, res, next) => {
 
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '"KCT Shop Service" <kctshop.cs@gmail.com>', // sender address
+            from: '"Glamorous Customer Service" <glamorous.cs01@gmail.com>', // sender address
             to: emailCus, // list of receivers
             subject: 'Confirm Reset Password', // Subject line
             text: 'Hello world?', // plain text body
