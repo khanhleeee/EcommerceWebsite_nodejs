@@ -31,8 +31,14 @@ body {
 }
 
 .card-header {
+<<<<<<< HEAD
     padding: 1rem 1.25rem 3rem 1.25rem;
     margin-bottom: 0;
+=======
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #fff;
+>>>>>>> e5a295882cabce0b31f5eefea13a0fa1a24bba9f
     border-bottom: 1px solid rgba(0, 0, 0, 0.1)
 }
 
@@ -43,18 +49,30 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+<<<<<<< HEAD
     margin-bottom: 56px;
     margin-top: 46px;
+=======
+    margin-bottom: 60px;
+    margin-top: 50px
+>>>>>>> e5a295882cabce0b31f5eefea13a0fa1a24bba9f
 }
 
 .track .step {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+<<<<<<< HEAD
     margin-top: -18px;
     text-align: center;
     position: relative;
     min-width: 50%;
+=======
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
+>>>>>>> e5a295882cabce0b31f5eefea13a0fa1a24bba9f
 }
 
 .track .step.active:before {
@@ -62,7 +80,10 @@ body {
 }
 
 .track .step::before {
+<<<<<<< HEAD
     background-color: #ddd;
+=======
+>>>>>>> e5a295882cabce0b31f5eefea13a0fa1a24bba9f
     height: 7px;
     position: absolute;
     content: "";
@@ -92,6 +113,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+
 
 .track .step.active .text {
     font-weight: 400;
