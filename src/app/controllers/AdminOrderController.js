@@ -24,7 +24,11 @@ const showEditOrder = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
     const order = await Order.findById(req.params.id);
 
-    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order) });
+    for (var i in order.items) {
+        // console.log(order.items[i].sku);
+        var product = await Product.findOne({ "skus.sku": order.items[i].sku });
+    }
+    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order), product: mongooseToObject(product) });
 }
 
 //[PUT] /adminOrder/:id/editOrder/confirmOrder
@@ -33,13 +37,9 @@ const confirmOrder = async(req, res, next) => {
         orderStatus: "success"
     });
 
-    const order = await Order.findOne({_id: req.params.id});
+    const order = await Order.findOne({ _id: req.params.id });
     for (var i in order.items) {
-        Product.updateOne(
-            {"skus.sku": order.items[i].sku},
-            { $inc: {'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty)}},
-            {arrayFilters: [{'size.size': order.items[i].size}]}
-        ).then(console.log('updated'))
+        Product.updateOne({ "skus.sku": order.items[i].sku }, { $inc: { 'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty) } }, { arrayFilters: [{ 'size.size': order.items[i].size }] }).then(console.log('updated'))
     }
     res.redirect('/adminOrder');
 }

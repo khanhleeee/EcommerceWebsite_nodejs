@@ -7,7 +7,6 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 
 // [GET] /login
 const showLogin = async(req, res, next) => {
-    const user = await User.findById(req.params.id);
     res.render('TabLogin/login', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), });
 }
 
