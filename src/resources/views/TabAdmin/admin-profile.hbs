@@ -512,7 +512,11 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Chỉnh sửa hồ sơ</h4>
+                                                {{#ifCond user.role "admin"}}
                                                 <form action="/admin/{{user._id}}?_method=PUT" method="POST">
+                                                    {{else}}
+                                                <form action="/staff/{{user._id}}?_method=PUT" method="POST">
+                                                {{/ifCond}}
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Tên</label>
@@ -520,11 +524,29 @@
                                                                 value="{{user.name}}" name="name">
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <label>Email</label>
-                                                            <input type="email" class="form-control"
-                                                                value="{{user.email}}" name="email">
+                                                            <label>Số điện thoại</label>
+                                                            <input type="text" class="form-control"
+                                                                value="{{user.phonenumber}}" name="phonenumber">
                                                         </div>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="text" class="form-control" value="{{user.email}}" name="email">
+                                                    </div>
+                                                    {{#ifCond user.role "staff"}}
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Email</label>
+                                                            <input type="text" class="form-control"
+                                                                value="{{user.email}}" name="email">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Mật khẩu</label>
+                                                            <input type="text" class="form-control"
+                                                                value="{{user.password}}" name="password" readonly>
+                                                        </div>
+                                                    </div>
+                                                    {{/ifCond}}
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Hình đại diện</label>
@@ -573,7 +595,7 @@
                                                                 me out</label>
                                                         </div>
                                                     </div> --}}
-                                                    <button class="btn btn-primary" type="submit">Lưu</button>
+                                                    <button class="btn btn-primary" type="submit">Chỉnh sửa</button>
                                                 </form>
                                             </div>
                                         </div>

@@ -47,7 +47,7 @@ const showProductDetail = async(req, res, next) => {
         }
     }
     const size = JSON.parse(querySize)
-    res.render('TabProduct/productdetail', { layout: 'mainClient.hbs', sku, size, product: mongooseToObject(product), color: multipleToObject(colors), category: multipleToObject(categories) })
+    res.render('TabProduct/productdetail', { layout: 'mainClient.hbs', sku, size, product: mongooseToObject(product), color: multipleToObject(colors), category: multipleToObject(categories), user: mongooseToObject(req.user) })
 }
 
 module.exports = { showProductList, filterGender, showProductDetail }

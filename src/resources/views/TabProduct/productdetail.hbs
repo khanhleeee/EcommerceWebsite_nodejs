@@ -7,7 +7,6 @@
                     <img class="card-img img-fluid product-img" src="{{sku.img}}" alt="thumbnail" id="product-detail">
                     {{!-- {{/each}} --}}
                 </div>
-
             </div>
 
             <!-- col end -->
@@ -73,7 +72,7 @@
                                             <div class="quantity-selection">
                                                 <form>
                                                     <input class="skuQty product-qty" type="number" name="name"
-                                                        id="number" value="1" min="1" max="{{size.qty}}">
+                                                        id="number" value="1" min="1" max="{{size.qty}}" data-maxqty="{{size.qty}}" >
                                                 </form>
                                             </div>
                                         </li>
@@ -85,11 +84,11 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 <!-- Close Content -->
@@ -118,5 +117,5 @@
             console.log(sizeDots[i] + 'false')
         }
     }
-    //console.log(pathName)
+
 </script>

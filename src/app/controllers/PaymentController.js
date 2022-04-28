@@ -76,19 +76,17 @@ const getPayment = async(req, res, next) => {
         orderPromoName: req.body.orderPromoName,
         convertToGiaKm: req.body.convertToGiaKm,
         items: []
-        
+
     });
 
-    if(typeof(req.body.sku) === 'object') {
+    if (typeof(req.body.sku) === 'object') {
         for (var i in req.body.sku) {
-            order.items.push({ sku: req.body.sku[i], size: req.body.size[i],  qty: parseInt(req.body.qty[i]), price: req.body.price[i]})
-            
+            order.items.push({ sku: req.body.sku[i], size: req.body.size[i], qty: parseInt(req.body.qty[i]), price: req.body.price[i] })
         }
+    } else {
+        order.items.push({ sku: req.body.sku, size: req.body.size, qty: parseInt(req.body.qty), price: req.body.price })
     }
-    else {
-        order.items.push({ sku: req.body.sku, size: req.body.size,  qty: parseInt(req.body.qty), price: req.body.price})
-    }
-    
+
     try {
         await order.save();
         res.redirect('/payment/' + order.id + '/order');
@@ -100,11 +98,13 @@ const getPayment = async(req, res, next) => {
 // [POST] /payment/promotion
 const promotion = async(req, res, next) => {
     const orderPromo = req.body.promo;
+    console.log(orderPromo)
     const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
     var orderTotal = req.body.orderTotal;
-    // console.log(orderTotal)
-    orderTotal = orderTotal.replaceAll(',', '')
-    orderTotal = orderTotal.replaceAll('.', '')
+
+    orderTotal = orderTotal.replace(/,/g, '');
+    orderTotal = orderTotal.replace(/./g, '');
+
     if (orderPromo == findPromo.makm) {
         const promoRange = findPromo.promoRange;
         if (orderTotal > promoRange) {

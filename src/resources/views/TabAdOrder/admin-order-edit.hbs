@@ -5,20 +5,36 @@
         <div class="card">
           <form method="POST" action="/adminOrder/{{order._id}}?_method=PUT">
             <div class="card-header">
-
-              <h4 class="card-title">Chỉnh sửa đơn hàng - {{order._id}}</h4>
-
-              <div>
-                <button type="button" class="btn btn-danger">
-                  <a href="/adminOrder/{{order._id}}/editOrder/cancelOrder?_method=PUT" class="btn btn-danger btn-xs">Hủy đơn hàng</a>
-                </button>
-                <button type="button" class="btn btn-info">
-                  <a href="/adminOrder/{{order._id}}/editOrder/confirmOrder?_method=PUT" class="btn btn-info btn-xs">Xác nhận</a>
-                </button>
+              <div class="track">
+                <div class="step active">
+                  <span class="icon"><i class="order-icon fa fa-check"></i></span>
+                  <span class="text">Đã xác nhận</span>
+                </div>
+                <div class="step active">
+                  <span class="icon"><i class="order-icon fa fa-user"></i></span>
+                  <span class="text">Đã lấy hàng</span>
+                </div>
+                <div class="step">
+                  <span class="icon"><i class="order-icon fa fa-truck"></i></span>
+                  <span class="text">Đang giao</span>
+                </div>
+                <div class="step">
+                  <span class="icon"><i class="fas fa-check-double"></i></span>
+                  <span class="text">Đã giao</span>
+                </div>
               </div>
 
+              <div>
+                <a href="/adminOrder/{{order._id}}/editOrder/cancelOrder?_method=PUT"
+                  class="btn btn-outline-dark btn-xs">Hủy đơn</a>
+                <a href="/adminOrder/{{order._id}}/editOrder/confirmOrder?_method=PUT" class="btn btn-info btn-xs">Xác
+                  nhận</a>
+              </div>
             </div>
+
+
             <div class="card-body">
+              <h4 class="card-title mb-5">ĐƠN HÀNG: {{order._id}}</h4>
               <div class="form-validation">
                 <div class="row">
                   <div class="col-xl-12">
@@ -62,122 +78,88 @@
                         <input type="text" class="form-control" id="cusNumber" name="phonenumber" readonly
                           value="{{order.orderType}}" />
                       </div>
+                    </div>
 
+                    <div class="form-group row">
                       <label class="col-lg-2 col-form-label" for="cusPromo">Mã
                         khuyến mãi:
                         <span class="text-danger">*</span>
                       </label>
-                      {{#ifCond order.orderPromo ""}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="Không có mã giảm"
-                          />
-                        </div>
-                      {{else}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="{{order.orderPromoName}}"
-                          />
-                        </div>
-                      {{/ifCond}}
-                    </div>
-
-                    <div class="form-group row">
-                      {{!-- <label
-                        class="col-lg-2 col-form-label"
-                        for="cusNumber"
-                      >Tổng tiền hàng:<span class="text-danger">*</span>
-                      </label>
+                      {{#ifCond order.orderPromoName "empty"}}
                       <div class="col-lg-4">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="cusNumber"
-                          name="phonenumber"
-                          readonly
-                          value="{{order.orderTotal}}đ"
-                        />
-                      </div> --}}
+                        <input type="text" class="form-control" id="cusPromo" readonly value="Không có mã giảm" />
+                      </div>
+                      {{else}}
+                      <div class="col-lg-4">
+                        <input type="text" class="form-control" id="cusPromo" readonly
+                          value="{{order.orderPromoName}}" />
+                      </div>
+                      {{/ifCond}}
 
                       <label class="col-lg-2 col-form-label" for="cusPromo">Tổng thanh toán:
                         <span class="text-danger">*</span>
                       </label>
-                      {{#ifCond order.orderPromo ""}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="{{order.orderTotal}}đ"
-                          />
-                        </div>
+                      {{#ifCond order.orderPromoName "empty"}}
+                      <div class="col-lg-4">
+                        <input type="text" class="form-control" id="cusPromo" readonly value="{{order.orderTotal}}đ" />
+                      </div>
                       {{else}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="{{order.orderTotalPromo}}đ"
-                          />
-                        </div>
+                      <div class="col-lg-4">
+                        <input type="text" class="form-control" id="cusPromo" readonly
+                          value="{{order.orderTotalPromo}}đ" />
+                      </div>
                       {{/ifCond}}
                     </div>
 
                     <h4 class="card-title">Giỏ hàng</h4>
-                      <div class="form-group row">
-                        <table class="table">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">STT</th>
-                              <th scope="col">Sku</th>
-                              <th scope="col">Số lượng</th>
-                              <th scope="col">Đơn giá</th>
-                            </tr>
-                          </thead>
-                    	    {{#each order.items}}
-                          <tbody>
-                            <tr>
-                              <td>{{@index}}</td>
-                              <td>{{this.sku}}</td>
-                              <td>{{this.qty}}</td>
-                              <td>{{this.price}}</td>
-                            </tr>
-                   		    {{/each}}
-							              <tr>
-                              <td></td>
-                              <td></td>
-                              <td>in tổng số lượng</td>
-                              <td>in tổng tiền</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                    <div class="form-group row">
+                      <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Sku</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Đơn giá</th>
+                          </tr>
+                        </thead>
+                        {{#each order.items}}
+                        <tbody>
+                          <tr>
+                            <td>{{@index}}</td>
+                            <td>{{this.sku}}</td>
+                            <td class="quantity">{{this.qty}}</td>
+                            <td class="product-price">{{this.price}}</td>
+                          </tr>
+                          {{/each}}
+                        </tbody>
+                      </table>
+                    </div>
+
+ 
+
                     <div class="form-group row justify-content-end">
                       <div class="col-2 text-right">
                         <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
                       </div>
                     </div>
 
+                    
                   </div>
                 </div>
               </div>
             </div>
           </form>
-          <div class="order-amount-container">
-            <span class="shipping-fee">Phí</span>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  var product_price = document.querySelectorAll('.product-price')
+  var product_Total = document.querySelector('.product-total')
+  console.log(product_Total)
+  for (var i = 0; i < product_price.length; i++) {
+    console.log(product_price[i]);
+  }
+</script>
