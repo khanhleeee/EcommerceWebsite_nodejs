@@ -32,15 +32,6 @@ const confirmOrder = async(req, res, next) => {
     await Order.updateOne({ _id: req.params.id }, {
         orderStatus: "success"
     });
-
-    const order = await Order.findOne({_id: req.params.id});
-    for (var i in order.items) {
-        Product.updateOne(
-            {"skus.sku": order.items[i].sku},
-            { $inc: {'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty)}},
-            {arrayFilters: [{'size.size': order.items[i].size}]}
-        ).then(console.log('updated'))
-    }
     res.redirect('/adminOrder');
 }
 
