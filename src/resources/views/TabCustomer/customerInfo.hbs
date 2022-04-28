@@ -56,11 +56,13 @@
                 <h5 class="sub-title">Thông tin cá nhân</h5>
                 <form action="/customer/{{userInfo._id}}?_method=PUT" method="POST">
                     <label for="tel">Hình đại diện</label><br>
-                    <input type="file" name="avatar" class="form-control" value="{{userInfo.avatar}}"><br>
+                    <input type="text" name="avatar" class="form-control" value="{{userInfo.avatar}}"><br>
                     <label for="tel">Email</label><br>
                     <input type="email" name="email" class="form-control" value="{{userInfo.email}}"><br>
                     <label for="name">Họ tên:</label><br>
                     <input type="text" id="name" name="name" class="form-control" value="{{userInfo.name}}"><br>
+                    <label for="phone">Số điện thoại:</label><br>
+                    <input type="text" id="phone" name="phonenumber" class="form-control" value="{{userInfo.phonenumber}}"><br>
                     <label for="address">Địa chỉ:</label><br>
                     <input type="text" id="address" name="address" class="form-control"
                         value="{{userInfo.address}}"><br>

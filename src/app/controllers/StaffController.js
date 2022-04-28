@@ -1,34 +1,40 @@
-const Product = require('../models/Product');
-const User = require('../models/User');
-
 const { mongooseToObject } = require('../../config/utility/mongoose')
 const { multipleToObject } = require('../../config/utility/mongoose');
 
-//[GET] /admin
-const showAdmin = async(req, res, next) => {
+const bcrypt = require('bcryptjs');
+const User = require('../models/User');
+
+//[GET] /staff
+const showStaff = async(req, res, next) => {
     const user = await User.findById(req.user._id);
     res.render('TabAdmin/admin-info', { layout: 'mainAdmin.hbs', user: mongooseToObject(user) });
 }
 
-//[GET] /admin/:id/adminProfile
-const showAdminProfile = async(req, res, next) => {
+//[GET] /staff/:id/staffProfile
+const showStaffProfile = async(req, res, next) => {
     const user = await User.findById(req.user._id);
     res.render('TabAdmin/admin-profile', { layout: 'mainAdmin.hbs', user: mongooseToObject(user) });
 }
 
-//[PUT] /admin/:id
-const updateProfile = async(req, res, next) => {
+//[PUT] /staff/:id
+const updateStaffProfile = async(req, res, next) => {
+    // const password = req.body.password;
+    // const salt = await bcrypt.genSalt(10);
+    // const hashPassword = await bcrypt.hash(req.body.password, salt);
+
     await User.updateOne({ _id: req.params.id }, {
         name: req.body.name,
+        phonenumber: req.body.phonenumber,
         email: req.body.email,
+        // password: hashPassword,
         avatar: req.body.avatar,
         cover: req.body.cover,
         address: req.body.address
     }).then((test) => {
         // console.log(test);
     });
+    res.redirect('back')
 
-    res.redirect('/admin/' + req.user._id + '/adminProfile');
 }
 
-module.exports = { showAdmin, showAdminProfile, updateProfile }
+module.exports = { showStaff, showStaffProfile, updateStaffProfile }

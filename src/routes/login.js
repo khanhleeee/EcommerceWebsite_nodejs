@@ -10,6 +10,8 @@ router.post('/loginStore', passport.authenticate('custom', { failureRedirect: '/
     (req, res) => {
         if (req.user.role == 'admin') {
             res.redirect('/admin');
+        } else if (req.user.role == 'staff') {
+            res.redirect('/staff');
         } else {
             res.redirect('/');
         }

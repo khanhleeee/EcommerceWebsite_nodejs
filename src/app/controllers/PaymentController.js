@@ -76,19 +76,17 @@ const getPayment = async(req, res, next) => {
         orderPromoName: req.body.orderPromoName,
         convertToGiaKm: req.body.convertToGiaKm,
         items: []
-        
+
     });
 
-    if(typeof(req.body.sku) === 'object') {
+    if (typeof(req.body.sku) === 'object') {
         for (var i in req.body.sku) {
-            order.items.push({ sku: req.body.sku[i], size: req.body.size[i],  qty: parseInt(req.body.qty[i]), price: req.body.price[i]})
-            
+            order.items.push({ sku: req.body.sku[i], size: req.body.size[i], qty: parseInt(req.body.qty[i]), price: req.body.price[i] })
         }
+    } else {
+        order.items.push({ sku: req.body.sku, size: req.body.size, qty: parseInt(req.body.qty), price: req.body.price })
     }
-    else {
-        order.items.push({ sku: req.body.sku, size: req.body.size,  qty: parseInt(req.body.qty), price: req.body.price})
-    }
-    
+
     try {
         await order.save();
         res.redirect('/payment/' + order.id + '/order');
