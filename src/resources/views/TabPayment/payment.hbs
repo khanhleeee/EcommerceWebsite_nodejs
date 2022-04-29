@@ -29,7 +29,7 @@
             </div>
 
             <div class="">
-               <label for="emailCus" style="font-weight:bold; font-size: 12px">Thêm ghi chú: </label>
+               <label for="emailCus" style="font-weight:bold; font-size: 12px">Ghi chú: </label>
                <textarea class="form-control mb-3" id="exampleFormControlTextarea1" name="note" placeholder="Ghi chú" rows="3"></textarea>
             </div>
             {{else}}
@@ -108,11 +108,11 @@
                         autocomplete="off">
                   </td>
                   <td class="text-right col-4">
-                     {{!-- {{#if isAuthenticated}} --}}
+                     {{#if isAuthenticated}}
                      <button class="btn btn-success" id="js-promo-btn-customer">Áp dụng</button>
-                     {{!-- {{else}}
+                     {{else}}
                      <button class="btn btn-success" id="js-promo-btn">Áp dụng</button>
-                     {{/if}} --}}
+                     {{/if}}
                   </td>
                   {{!--
                </form> --}}
@@ -215,7 +215,7 @@
 </script>
 
 <script>
-   /*var promoBtn = document.getElementById('js-promo-btn');
+   var promoBtn = document.getElementById('js-promo-btn');
    promoBtn.addEventListener('click', function () {
       const form = document.getElementById('main-form');
       form.action = "/payment/promotion";
