@@ -38,6 +38,9 @@
       {{>headerAdmin}}  
       {{{body}}}
       {{>footerAdmin}}
+
+      <input type="text" class="dieukien" value="{{order.orderStatus}}" hidden>
+      <input type="text" class="dieukien2" value="{{order2.orderStatus}}" hidden>
    </div>
 
    <!-- Start Script -->
@@ -54,6 +57,8 @@
    <script src="/admin/js/deznav-init.js"></script>
    <script src="/admin/js/demo.js"></script>
    <script src="/admin/js/styleSwitcher.js"></script>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   {{!-- Socketio --}}
    <script>
       const socket = io();
 
@@ -79,6 +84,80 @@
 
          messages.appendChild(chatItem);
       })
+   </script>
+
+   <script type="text/javascript">
+      var condition = document.getElementsByClassName('dieukien');
+      condition.innerHTML = "{{order.orderStatus}}";
+      var cond = condition.innerHTML
+      if (cond === "success") {
+         let sum = 0;
+         sum = sum + 1;
+         var orderSuccess = sum
+      }
+
+      var condition2 = document.getElementsByClassName('dieukien2');
+      condition2.innerHTML = "{{order2.orderStatus}}";
+      var cond2 = condition2.innerHTML
+      if (cond2 === "danger") {
+         let sum = 0;
+         sum = sum + 1;
+         var orderFail = sum
+      }
+   
+      const pieChart = {
+         chart: null,
+         data: [
+            ['Jewels', 'Sales'],
+            ['Đơn hàng thành công', orderSuccess],
+            ['Đơn hàng đã hủy', orderFail],
+         ],
+         element: '#pie-chart',
+         options: {
+            title: '05/2022 Thống kê đơn hàng',
+            width: 800,
+            height: 200
+         }
+         };
+
+         const barChart = {
+         chart: null,
+         data: [
+            ['Product', 'Đơn hàng'],
+            ['Đơn hàng đã hủy', orderFail],
+            ['Đơn hàng thành công', orderSuccess]
+         ],
+         element: '#bar-chart',
+         options:  {
+            title: '2019 Units Sold',
+            width: 800,
+            height: 200
+         }
+         };
+
+         const init = () => {
+            pieChart.chart = new google.visualization.PieChart(
+               document.querySelector(pieChart.element)
+            );
+            pieChart.chart.draw(
+               google.visualization.arrayToDataTable(pieChart.data),
+               pieChart.options
+            );
+            
+            barChart.chart = new google.visualization.BarChart(
+               document.querySelector(barChart.element)
+            );
+            barChart.chart.draw(
+               google.visualization.arrayToDataTable(barChart.data),
+               barChart.options
+            );
+            
+         };
+
+         google.charts.load('current', {
+            packages: ['corechart'],
+            callback: init
+         });
    </script>
    <!-- End Script -->
 </body>

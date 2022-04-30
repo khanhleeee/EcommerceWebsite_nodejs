@@ -1,5 +1,6 @@
 const Product = require('../models/Product');
 const User = require('../models/User');
+const Order = require('../models/Order');
 
 const { mongooseToObject } = require('../../config/utility/mongoose')
 const { multipleToObject } = require('../../config/utility/mongoose');
@@ -7,7 +8,12 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 //[GET] /admin
 const showAdmin = async(req, res, next) => {
     const user = await User.findById(req.user._id);
-    res.render('TabAdmin/admin-info', { layout: 'mainAdmin.hbs', user: mongooseToObject(user) });
+    const product = await Product.findOne({ name: 'ELAN EARRINGS' });
+    const order = await Order.findOne({ orderStatus: 'success' });
+    const order2 = await Order.findOne({ orderStatus: 'danger' });
+    // console.log(order)
+    // console.log(product)
+    res.render('TabAdmin/admin-info', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), product: mongooseToObject(product), order: mongooseToObject(order), order2: mongooseToObject(order2) });
 }
 
 //[GET] /admin/:id/adminProfile
