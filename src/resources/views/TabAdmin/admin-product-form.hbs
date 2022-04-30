@@ -40,8 +40,13 @@
 													<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="val-password" required
-														name="gender" placeholder="unisex">
+													<div class="input-group mb-3">
+														<select name="gender" class="custom-select form-control" id="inputGroupSelect01">
+															<option selected value="unisex">Unisex</option>
+															<option value="nam">Nam</option>
+															<option value="nữ">Nữ</option>
+														</select>
+													</div>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -129,11 +134,11 @@
 														placeholder="0,1,2,..." name="qty">
 												</div>
 											</div>
-											<div class="form-group row justify-content-end">
-												<div class="col-2 text-right">
+											<div class="row justify-content-end">
+												<div class="col-12 col-lg-4 col-xl-2">
 													{{!-- <button type="button" class="btn btn-primary" data-toggle="modal"
 														data-target="#saveProduct">Lưu sản phẩm</button> --}}
-													<button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+													<button type="submit" class="btn btn-primary btn-sm btn-block">Lưu sản phẩm</button>
 												</div>
 											</div>
 										</div>

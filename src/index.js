@@ -127,6 +127,11 @@ hbs.handlebars.registerHelper('ifPromo', function(v1, v2, options) {
     return options.inverse(this);
 });
 
+hbs.handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set("views", path.join(__dirname, 'resources', 'views'));

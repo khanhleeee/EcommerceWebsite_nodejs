@@ -81,10 +81,7 @@
                     </div>
 
                     <div class="form-group row">
-                      <label class="col-lg-2 col-form-label" for="cusPromo">Mã
-                        khuyến mãi:
-                        <span class="text-danger">*</span>
-                      </label>
+                      <label class="col-lg-2 col-form-label" for="cusPromo">Mã khuyến mãi:</label>
                       {{#ifCond order.orderPromoName "empty"}}
                       <div class="col-lg-4">
                         <input type="text" class="form-control" id="cusPromo" readonly value="Không có mã giảm" />
@@ -97,9 +94,7 @@
 
                       {{/ifCond}}
 
-                      <label class="col-lg-2 col-form-label" for="cusPromo">Tổng thanh toán:
-                        <span class="text-danger">*</span>
-                      </label>
+                      <label class="col-lg-2 col-form-label" for="cusPromo">Tổng thanh toán:</label>
                       {{#ifCond order.orderPromoName "empty"}}
                       <div class="col-lg-4">
                         <input type="text" class="form-control" id="cusPromo" readonly value="{{order.orderTotal}}đ" />
@@ -119,20 +114,22 @@
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">STT</th>
-                            <th scope="col">Sku</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Màu - Size</th>
                             <th scope="col">Số lượng</th>
-                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Thành tiền</th>
                           </tr>
                         </thead>
-                        {{#each order.items}}
+                        {{#each products}}
                         <tbody>
                           <tr>
-                            <td>{{@index}}</td>
-                            <td>{{this.sku}}</td>
+                            <td>{{inc @index}}</td>
+                            <td>{{this.p_name}} ({{this.sku}})</td>
+                            <td>{{this.color}} - {{this.size}} </td>
                             <td class="quantity">{{this.qty}}</td>
                             <td class="product-price">{{this.price}}</td>
                           </tr>
-                          {{/each}}
+                        {{/each}}
                         </tbody>
                       </table>
                     </div>
@@ -152,4 +149,3 @@
     </div>
   </div>
 </div>
-
