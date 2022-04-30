@@ -125,7 +125,7 @@ const promotion = async(req, res, next) => {
             var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
             var convertToGiaKm = Intl.NumberFormat().format(convertGiakm);
             var orderPromoName = findPromo.tenkm;
-            return res.render('TabPayment/paymentPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
+            return res.render('TabPayment/applyPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
         } else {
             req.session.message1 = {
                 type: 'danger',
@@ -150,6 +150,11 @@ const promotion = async(req, res, next) => {
     }
 }
 
+//[GET] /payment/:id/promotion
+const paymentPromo = async(req, res, next) => {
+    res.render('TabPayment/applyPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
+}
+
 // [POST] /payment/paymentCus/:id/promotion
 const promotion2 = async(req, res, next) => {
     const orderPromo = req.body.promo;
@@ -171,7 +176,7 @@ const promotion2 = async(req, res, next) => {
             var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
             var convertToGiaKm = Intl.NumberFormat().format(convertGiakm);
             var orderPromoName = findPromo.tenkm;
-            return res.render('TabPayment/paymentPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
+            return res.render('TabPayment/applyPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
         } else {
             req.session.message1 = {
                 type: 'danger',
@@ -179,22 +184,20 @@ const promotion2 = async(req, res, next) => {
             }
             var orderPromoAfter = "";
             var orderTotalPromo = Intl.NumberFormat().format(orderTotal);
-            return res.redirect('/payment');
+            return res.redirect('/payment/paymentCus');
         }
     } else if (!orderPromo) {
         req.session.message1 = {
             type: 'info',
             intro: 'Không có mã giảm giá',
         }
-        return res.render('TabPayment/paymentErr', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user) });
-        // return res.redirect('/payment');
+        return res.redirect('/payment/paymentCus');
     } else {
         req.session.message1 = {
             type: 'danger',
             intro: 'Mã giảm giá không hợp lệ',
         }
-        return res.render('TabPayment/paymentNoPro', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user) });
-        // return res.redirect('/payment');
+        return res.redirect('/payment/paymentCus');
     }
 }
 
@@ -345,4 +348,4 @@ const paySuccess = async(req, res, next) => {
 
 }
 
-module.exports = { showPayment, showCusPayment, getPayment, showOrder, payOrder, paySuccess, promotion, promotion2 }
+module.exports = { showPayment, showCusPayment, getPayment, showOrder, payOrder, paySuccess, promotion, paymentPromo, promotion2 }
