@@ -15,15 +15,17 @@ const adminPromotionRouter = require('./adminPromotion');
 const adminOrderRouter = require('./adminOrder');
 const adminStaffRouter = require('./adminStaff');
 
+const staffRouter = require('./staff');
+const deliveryStaffRouter = require('./deliveryStaff');
 
 const testRouter = require('./test');
 
-const staffRouter = require('./staff');
 
 function route(app) {
 
     app.use('/test', testRouter);
 
+    app.use('/deliveryStaff', deliveryStaffRouter);
     app.use('/staff', staffRouter);
 
     app.use('/adminStaff', adminStaffRouter);

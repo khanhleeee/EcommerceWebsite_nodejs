@@ -59,6 +59,7 @@
 							<th scope="col">Email</th>
 							<th scope="col">Tên nhân viên</th>
 							<th scope="col">Số điện thoại</th>
+							<th scope="col">Vai trò</th>
 							<th scope="col"></th>
 							<th scope="col"></th>
 						</tr>
@@ -70,6 +71,40 @@
 							<td>{{this.email}}</td>
 							<td>{{this.name}}</td>
 							<td>{{this.phonenumber}}</td>
+							<td>{{this.role}}</td>
+							<td>
+								<a href="/adminStaff/{{this._id}}/editStaff" class="btn btn-primary btn-xs">Chỉnh sửa</a>
+							</td>
+							<td>
+								<a href="/adminStaff/deleteStaff/{{this._id}}"
+									class="btn btn-danger btn-xs">Xoá
+								</a>
+							</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+				<hr>
+				<table class="table">
+					<thead class="thead-primary">
+						<tr>
+							<th scope="col">STT</th>
+							<th scope="col">Email</th>
+							<th scope="col">Tên nhân viên</th>
+							<th scope="col">Số điện thoại</th>
+							<th scope="col">Vai trò</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each userDeliStaff}}
+						<tr>
+							<th>{{@index}}</th>
+							<td>{{this.email}}</td>
+							<td>{{this.name}}</td>
+							<td>{{this.phonenumber}}</td>
+							<td>{{this.role}}</td>
 							<td>
 								<a href="/adminStaff/{{this._id}}/editStaff" class="btn btn-primary btn-xs">Chỉnh sửa</a>
 							</td>
