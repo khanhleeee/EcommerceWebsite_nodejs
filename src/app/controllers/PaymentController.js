@@ -160,8 +160,8 @@ const promotion2 = async(req, res, next) => {
     const orderPromo = req.body.promo;
     const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
     var orderTotal = req.body.orderTotal;
-    orderTotal = orderTotal.replaceAll(',', '')
-    orderTotal = orderTotal.replaceAll('.', '')
+    orderTotal = orderTotal.replace(/,/g, '')
+    orderTotal = orderTotal.replace(/./g, '')
     if (orderPromo == findPromo.makm) {
         const promoRange = findPromo.promoRange;
         if (orderTotal > promoRange) {
