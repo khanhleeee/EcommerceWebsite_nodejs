@@ -15,9 +15,13 @@ router.post('/loginStore', passport.authenticate('custom', { failureRedirect: '/
             res.redirect('/admin');
         } else if (req.user.role == 'staff') {
             res.redirect('/staff');
-        } else {
-            // res.json(req.user)
+        } else if (req.user.role == 'deliveryStaff') {
+            res.redirect('/deliveryStaff');
+        } else if (req.user.role == 'customer') {
             res.redirect('/');
+            // } else {
+            //     res.redirect('/');
+            // res.json(req.user)
             // res.render('TabHome/home', { layout: 'mainClient.hbs', userInfo: req.user });
         }
     });

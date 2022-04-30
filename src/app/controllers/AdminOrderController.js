@@ -12,7 +12,7 @@ const showOrder = async(req, res, next) => {
     res.render('TabAdOrder/admin-order-list', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: multipleToObject(order) });
 }
 
-//[GET] /adminOrder/:status
+//[GET] /adminOrder/:orderStatus
 const filterStatus = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
     const order = await Order.find({ orderStatus: req.params.orderStatus });

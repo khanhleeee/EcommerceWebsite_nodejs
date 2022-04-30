@@ -1,17 +1,21 @@
 const { mongooseToObject } = require('../../config/utility/mongoose');
+const { multipleToObject } = require('../../config/utility/mongoose');
+
 
 const User = require('../models/User');
+const Order = require('../models/Order');
 
 //[GET] /customer
 const showCustomer = async(req, res, next) => {
     const userInfo = await User.findById(req.user._id);
-    res.render('TabCustomer/customerPage', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
+    const orderCus = await Order.find({ name: userInfo.name });
+    res.render('TabCustomer/cus-reward', { layout: 'mainClient.hbs', orderCus: multipleToObject(orderCus), user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
 }
 
-//[GET] /customer/:id/customerInfo
+//[GET] /customer/:id/customerInfo 
 const showCustomerInfo = async(req, res, next) => {
     const userInfo = await User.findById(req.user._id);
-    res.render('TabCustomer/customerInfo', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
+    res.render('TabCustomer/cus-info', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
 }
 
 //[PUT] /customer/:id/
@@ -26,4 +30,26 @@ const updateCustomer = async(req, res, next) => {
     res.redirect('/customer/' + req.user._id + '/customerInfo');
 }
 
-module.exports = { showCustomer, showCustomerInfo, updateCustomer }
+//[GET] /customer/:id/customerTransaction
+const showCustomerTransaction = async(req, res, next) => {
+    const userInfo = await User.findById(req.user._id);
+    const orderCus = await Order.find({ name: userInfo.name });
+    res.render('TabCustomer/cus-transaction', { layout: 'mainClient.hbs', orderCus: multipleToObject(orderCus), user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
+}
+
+//[GET] /customer/:id/customerTransaction/:id
+const showElementTransaction = async(req, res, next) => {
+    const userInfo = await User.findById(req.user._id);
+    const orderCus = await Order.findById(req.params.id);
+    res.render('TabCustomer/cus-transaction-element', { layout: 'mainClient.hbs', orderCus: multipleToObject(orderCus), user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
+}
+
+//[GET] /customer/:id/customerPass
+const showCustomerPass = async(req, res, next) => {
+    const userInfo = await User.findById(req.user._id);
+    res.render('TabCustomer/cus-pass', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
+}
+
+
+
+module.exports = { showCustomer, showCustomerInfo, updateCustomer, showCustomerTransaction, showCustomerPass, showElementTransaction }

@@ -9,7 +9,8 @@ const User = require('../models/User');
 const showAdminStaff = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
     const userStaff = await User.find({ role: 'staff' });
-    res.render('TabAdStaff/admin-staff-list', { layout: 'mainAdmin.hbs', userStaff: multipleToObject(userStaff), user: mongooseToObject(user) });
+    const userDeliStaff = await User.find({ role: 'deliveryStaff' });
+    res.render('TabAdStaff/admin-staff-list', { layout: 'mainAdmin.hbs', userDeliStaff: multipleToObject(userDeliStaff), userStaff: multipleToObject(userStaff), user: mongooseToObject(user) });
 }
 
 //[GET] /adminStaff/createStaff
@@ -20,7 +21,7 @@ const showCreateStaff = async(req, res, next) => {
 
 //[POST] /adminStaff/createStaff/create
 const createStaff = async(req, res, next) => {
-    const { name, password, phonenumber, email, address } = req.body;
+    const { name, password, phonenumber, email, address, role } = req.body;
     const checkEmailExist = await User.findOne({ email: email });
     if (checkEmailExist) {
         req.session.message = {
@@ -38,7 +39,7 @@ const createStaff = async(req, res, next) => {
             email,
             password: hashPassword,
             address,
-            role: 'staff',
+            role,
         });
         await newUser.save();
         return res.redirect('/adminStaff');
@@ -60,8 +61,9 @@ const updateStaff = async(req, res, next) => {
         email: req.body.email,
         password: req.body.password,
         address: req.body.address,
+        role: req.body.role,
     });
-    res.redirect('/adminPromotion')
+    res.redirect('/adminStaff');
 }
 
 //[DELETE] /adminStaff/deleteStaff/:id
