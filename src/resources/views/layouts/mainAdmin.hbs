@@ -39,8 +39,9 @@
       {{{body}}}
       {{>footerAdmin}}
 
-      <input type="text" class="dieukien" value="{{order.orderStatus}}" hidden>
-      <input type="text" class="dieukien2" value="{{order2.orderStatus}}" hidden>
+      <input type="text" class="succ" value="{{orderSuccess}}" hidden>
+      <input type="text" class="fail" value="{{orderFail}}" hidden>
+
    </div>
 
    <!-- Start Script -->
@@ -87,23 +88,14 @@
    </script>
 
    <script type="text/javascript">
-      var condition = document.getElementsByClassName('dieukien');
-      condition.innerHTML = "{{order.orderStatus}}";
-      var cond = condition.innerHTML
-      if (cond === "success") {
-         let sum = 0;
-         sum = sum + 1;
-         var orderSuccess = sum
-      }
+      var condition = document.getElementsByClassName('succ');
+      condition.innerHTML = "{{orderSuccess}}";
+      var orderSuccess = parseInt(condition.innerHTML)
 
-      var condition2 = document.getElementsByClassName('dieukien2');
-      condition2.innerHTML = "{{order2.orderStatus}}";
-      var cond2 = condition2.innerHTML
-      if (cond2 === "danger") {
-         let sum = 0;
-         sum = sum + 1;
-         var orderFail = sum
-      }
+      var condition = document.getElementsByClassName('fail');
+      condition.innerHTML = "{{orderFail}}";
+      var orderFail = parseInt(condition.innerHTML)
+    
    
       const pieChart = {
          chart: null,
@@ -129,7 +121,7 @@
          ],
          element: '#bar-chart',
          options:  {
-            title: '2019 Units Sold',
+            title: '05/2022 Thống kê đơn hàng',
             width: 800,
             height: 200
          }
