@@ -86,7 +86,6 @@ const getPayment = async(req, res, next) => {
 
     if (typeof(req.body.sku) === 'object') {
         for (var i in req.body.sku) {
-            console.log(order)
             order.items.push({ sku: req.body.sku[i], size: req.body.size[i], qty: parseInt(req.body.qty[i]), price: req.body.price[i] })
         }
     } else {
