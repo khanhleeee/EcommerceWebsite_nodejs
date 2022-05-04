@@ -9,11 +9,22 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 const showAdmin = async(req, res, next) => {
     const user = await User.findById(req.user._id);
     const product = await Product.findOne({ name: 'ELAN EARRINGS' });
-    const order = await Order.findOne({ orderStatus: 'success' });
+    const order = await Order.find();
     const order2 = await Order.findOne({ orderStatus: 'danger' });
-    // console.log(order)
-    // console.log(product)
-    res.render('TabAdmin/admin-info', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), product: mongooseToObject(product), order: mongooseToObject(order), order2: mongooseToObject(order2) });
+
+    let sum = 0;
+    for (var i in order) {
+        if (order[i].orderStatus == 'success') {
+            sum++
+            var orderSuccess = sum
+
+        }
+        if (order[i].orderStatus == 'danger') {
+            sum++
+            var orderFail = sum
+        }
+    }
+    res.render('TabAdmin/admin-info', { layout: 'mainAdmin.hbs', orderSuccess: orderSuccess, orderFail: orderFail, user: mongooseToObject(user), product: mongooseToObject(product), order: multipleToObject(order), order2: mongooseToObject(order2) });
 }
 
 //[GET] /admin/:id/adminProfile
