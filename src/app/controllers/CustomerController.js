@@ -37,7 +37,7 @@ const showCustomerTransaction = async(req, res, next) => {
     res.render('TabCustomer/cus-transaction', { layout: 'mainClient.hbs', orderCus: multipleToObject(orderCus), user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
 }
 
-//[GET] /customer/:id/customerTransaction/:id
+//[GET] /customer/elementTransaction/:id
 const showElementTransaction = async(req, res, next) => {
     const userInfo = await User.findById(req.user._id);
     const orderCus = await Order.findById(req.params.id);
@@ -47,7 +47,7 @@ const showElementTransaction = async(req, res, next) => {
     if (orderCus.orderPromoName != "") {
         var orderTotalPromo = orderCus.orderTotalPromo;
     }
-    res.render('TabCustomer/cus-transaction-element', { layout: 'mainClient.hbs', orderCus: multipleToObject(orderCus), user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo), orderTotal, orderTotalPromo });
+    res.render('TabCustomer/cus-transaction-element', { layout: 'mainClient.hbs', orderCus: mongooseToObject(orderCus), user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo), orderTotal, orderTotalPromo });
 }
 
 //[GET] /customer/:id/customerPass

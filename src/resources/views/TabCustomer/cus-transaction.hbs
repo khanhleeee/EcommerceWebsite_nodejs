@@ -89,13 +89,14 @@
               <th scope="col">Mã đơn hàng</th>
               <th scope="col">Ngày đặt hàng</th>
               <th scope="col">Tổng tiền</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {{#each orderCus}}
             <tr>
               <th scope="row">{{@index}}</th>
-              <td>{{this._id}}</td>
+              <td><a href="/customer/elementTransaction/{{this._id}}">{{this._id}}</a></td>
               <td>{{this.orderDate}}</td>
               {{#ifCond this.orderType "Momo"}}
                 <td>{{orderTotal}}</td>
@@ -106,6 +107,7 @@
                 <td>{{this.orderTotal}}</td>
                 {{/ifNotCond}}
               {{/ifCond}}
+              <td><a href="/customer/elementTransaction/{{this._id}}">Xem chi tiết</a></td>
             </tr>
             {{/each}}
           </tbody>
