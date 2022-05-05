@@ -18,7 +18,7 @@ const showProductList = async(req, res, next) => {
 
 // [GET] /product/category_id
 const filterGender = async(req, res, next) => {
-    const userInfo = await User.findById(req.user._id);
+    // const userInfo = await User.findById(req.user._id);
     let p = await Product.find({ gender: req.params.gender })
     let categories = await Category.find();
     let colors = await Color.find();

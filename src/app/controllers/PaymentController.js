@@ -62,6 +62,7 @@ const getPayment = async(req, res, next) => {
     //         intro: 'Mã giảm giá không hợp lệ',
     //     }
     // }
+
     var regexNumber = new RegExp(/(84|0[3|5|7|8|9])+([0-9]{8})\b/);
     if (regexNumber.test(req.body.phonenumber) == false) {
         req.session.message = {
@@ -86,7 +87,7 @@ const getPayment = async(req, res, next) => {
 
     if (typeof(req.body.sku) === 'object') {
         for (var i in req.body.sku) {
-            console.log(order)
+            // console.log(order)
             order.items.push({ sku: req.body.sku[i], size: req.body.size[i], qty: parseInt(req.body.qty[i]), price: req.body.price[i] })
         }
     } else {
