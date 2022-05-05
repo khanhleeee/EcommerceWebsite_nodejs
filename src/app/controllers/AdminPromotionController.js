@@ -20,7 +20,7 @@ const showCreatePromotion = async(req, res, next) => {
 
 //[POST] /adminPromotion/createPromotion/save
 const createPromotion = async(req, res, next) => {
-    const { makm, tenkm, giakm, ngayapdung, ngayhethan, motakm } = req.body;
+    const { makm, tenkm, giakm, ngayapdung, ngayhethan, motakm, promoRange } = req.body;
     const newPromotion = new Promotion({
         makm,
         tenkm,

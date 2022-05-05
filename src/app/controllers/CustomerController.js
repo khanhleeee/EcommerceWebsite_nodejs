@@ -1,7 +1,7 @@
 const { mongooseToObject } = require('../../config/utility/mongoose');
 const { multipleToObject } = require('../../config/utility/mongoose');
 
-
+const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Order = require('../models/Order');
 
@@ -56,6 +56,42 @@ const showCustomerPass = async(req, res, next) => {
     res.render('TabCustomer/cus-pass', { layout: 'mainClient.hbs', user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
 }
 
+//[PUT] /customer/:id/customerPass
+const changePass = async(req, res, next) => {
+    const { passwordOld, password, passwordConf } = req.body;
+
+    const user = await User.findOne({ _id: req.params.id });
+    const checkOldPass = bcrypt.compare(passwordOld, user.password);
+
+    if (!checkOldPass) {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Mật khẩu không đúng !',
+        }
+        return res.redirect('/customer/' + req.user._id + '/customerPass');
+    } else {
+        if (password != passwordConf) {
+            req.session.message = {
+                type: 'danger',
+                intro: 'Mật khẩu không khớp !',
+            }
+            return res.redirect('/customer/' + req.user._id + '/customerPass');
+        } else {
+            const salt = await bcrypt.genSalt(10);
+            const hashPassword = await bcrypt.hash(password, salt);
+            await User.updateOne({ _id: req.params.id }, {
+                password: hashPassword,
+            });
+            req.session.message = {
+                type: 'success',
+                intro: 'Đổi mật khẩu thành công !',
+            }
+            return res.redirect('/customer/' + req.user._id + '/customerPass');
+        }
+    }
+    // res.redirect('/customer/' + req.user._id + '/customerPass');
+
+}
 
 
-module.exports = { showCustomer, showCustomerInfo, updateCustomer, showCustomerTransaction, showCustomerPass, showElementTransaction }
+module.exports = { showCustomer, showCustomerInfo, updateCustomer, showCustomerTransaction, showElementTransaction, showCustomerPass, changePass, }

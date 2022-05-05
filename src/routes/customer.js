@@ -5,6 +5,7 @@ const { ensureAuthenticated } = require('../middlewares/authorize');
 
 const customerController = require('../app/controllers/CustomerController');
 
+router.post('/:id/customerPass', customerController.changePass);
 router.get('/:id/customerPass', customerController.showCustomerPass);
 
 router.get('/:id/customerTransaction/:id', customerController.showElementTransaction);
