@@ -89,7 +89,6 @@
               <th scope="col">Mã đơn hàng</th>
               <th scope="col">Ngày đặt hàng</th>
               <th scope="col">Tổng tiền</th>
-              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -98,11 +97,15 @@
               <th scope="row">{{@index}}</th>
               <td>{{this._id}}</td>
               <td>{{this.orderDate}}</td>
-              {{#ifCond this.orderType "COD"}}
-              <td>{{this.orderTotal}}</td>
+              {{#ifCond this.orderType "Momo"}}
+                <td>{{orderTotal}}</td>
                 {{else}}
-                <td>{{this.orderTotalPromo}}</td>
-                {{/ifCond}}
+                {{#ifNotCond this.orderPromoName "empty"}}
+                  <td>{{orderTotalPromo}}</td>
+                  {{else}}
+                <td>{{this.orderTotal}}</td>
+                {{/ifNotCond}}
+              {{/ifCond}}
             </tr>
             {{/each}}
           </tbody>
