@@ -1,0 +1,108 @@
+<div class="content-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Chỉnh sửa khuyến mãi</h4>
+					</div>
+					<form method="POST" action="/adminPromotion/{{promotion._id}}?_method=PUT">
+						<div class="card-body">
+							<div class="form-validation">
+								{{!-- <form class="form-valide" novalidate="novalidate" method="POST"
+									action="/adminCreateList/productForm"> --}}
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-email">Mã khuyến
+													mãi<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="makm" required
+														value="{{promotion.makm}}">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-username">Tên khuyến mãi
+													<span class="text-danger">*</span>
+												</label>
+
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="" name="tenkm" required
+														value="{{promotion.tenkm}}">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-password">Giá khuyến mãi
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="val-password" required
+														name="giakm" value="{{promotion.giakm}}">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Điều kiện
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="val-confirm-password"
+														required name="ngayhethan" value="{{promotion.promoRange}} vnđ">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Ngày
+													áp dụng
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="date" class="form-control" id="val-confirm-password"
+														required name="ngayapdung" value="{{promotion.ngayapdung}}">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Ngày
+													hết hạn
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="date" class="form-control" id="val-confirm-password"
+														required name="ngayhethan" value="{{promotion.ngayhethan}}">
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-lg-2 col-form-label" for="val-confirm-password">Mô tả
+													khuyến mãi
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="val-confirm-password"
+														required name="motakm"
+														value="{{promotion.motakm}}">
+												</div>
+											</div>
+
+											<div class="form-group row justify-content-end">
+												<div class="col-2 text-right">
+													<button type="submit" class="btn btn-primary">Chỉnh sửa</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									{{!--
+								</form> --}}
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
