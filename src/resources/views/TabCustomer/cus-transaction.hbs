@@ -98,11 +98,16 @@
               <th scope="row">{{inc @index}}</th>
               <td>{{this._id}}</td>
               <td>{{this.orderDate}}</td>
-              {{#ifCond this.orderType "COD"}}
-              <td>{{this.orderTotal}}</td>
+              {{#ifCond this.orderType "Momo"}}
+                <td>{{orderTotal}}</td>
                 {{else}}
-                <td>{{this.orderTotalPromo}}</td>
-                {{/ifCond}}
+                {{#ifNotCond this.orderPromoName "empty"}}
+                  <td>{{orderTotalPromo}}</td>
+                  {{else}}
+                <td>{{this.orderTotal}}</td>
+                {{/ifNotCond}}
+              {{/ifCond}}
+              <td><a href="/customer/elementTransaction/{{this._id}}">Xem chi tiết</a></td>
             </tr>
             {{/each}}
           </tbody>

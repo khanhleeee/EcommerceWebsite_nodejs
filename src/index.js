@@ -82,6 +82,14 @@ hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
     return options.inverse(this);
 });
 
+hbs.handlebars.registerHelper('ifNotCond', function(v1, v2, options) {
+    if (v1 != v2) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
+
+
 hbs.handlebars.registerHelper('ifTest', function(v1, options) {
     //     if (v1 == 'info') {
     //         return options.fn(this);

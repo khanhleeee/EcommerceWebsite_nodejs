@@ -62,6 +62,7 @@ const getPayment = async(req, res, next) => {
     //         intro: 'Mã giảm giá không hợp lệ',
     //     }
     // }
+
     var regexNumber = new RegExp(/(84|0[3|5|7|8|9])+([0-9]{8})\b/);
     if (regexNumber.test(req.body.phonenumber) == false) {
         req.session.message = {

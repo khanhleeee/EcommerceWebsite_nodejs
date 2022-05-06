@@ -51,12 +51,19 @@
             </ul>
         </div>
 
+        
+
         <div class="col-lg-9">
-            <div class="row">
+            <div class="row">   
                 <h5 class="sub-title">Đổi mật khẩu</h5>
-                <form action="/customer/{{userInfo._id}}?_method=PUT" method="POST">
+                {{#if message}}
+                <div style="text-align: center" class="alert alert-{{message.type}}">
+                    <strong>{{message.intro}}</strong> {{message.message}}
+                </div>
+                {{/if}}
+                <form action="/customer/{{userInfo._id}}/customerPass" method="POST">
                     <label for="oldPass">Nhập mật khẩu cũ</label><br>
-                    <input type="password" name="password" class="form-control"><br>
+                    <input type="password" name="passwordOld" class="form-control"><br>
                     <label for="newPass">Nhập mật khẩu mới</label><br>
                     <input type="password" name="password" class="form-control"><br>
                     <label for="name">Xác nhận mật khẩu mới</label><br>

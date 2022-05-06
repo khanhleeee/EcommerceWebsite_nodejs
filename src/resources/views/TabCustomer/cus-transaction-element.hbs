@@ -52,22 +52,42 @@
 
         <div class="col-lg-9">
             <div class="row">
-                <h5 class="sub-title">Thông tin cá nhân</h5>
-                <form action="/customer/{{userInfo._id}}?_method=PUT" method="POST">
-                    <label for="tel">Hình đại diện</label><br>
-                    <input type="text" name="avatar" class="form-control" value="{{userInfo.avatar}}"><br>
-                    <label for="tel">Email</label><br>
-                    <input type="email" name="email" class="form-control" value="{{userInfo.email}}"><br>
-                    <label for="name">Họ tên:</label><br>
-                    <input type="text" id="name" name="name" class="form-control" value="{{userInfo.name}}"><br>
-                    <label for="phone">Số điện thoại:</label><br>
-                    <input type="text" id="phone" name="phonenumber" class="form-control" value="{{userInfo.phonenumber}}"><br>
-                    <label for="address">Địa chỉ:</label><br>
-                    <input type="text" id="address" name="address" class="form-control"
-                        value="{{userInfo.address}}"><br>
+                <h5 class="sub-title">Thông tin đơn hàng</h5>
+                <form>
+                    <label for="tel">Mã đơn hàng</label><br>
+                    <input type="text"  class="form-control" value="{{orderCus._id}}" readonly><br>
+                    <label for="tel">Ngày đặt hàng</label><br>
+                    <input type="email" class="form-control" value="{{orderCus.orderDate}}" readonly><br>
+                    <label for="name">Phương thức thanh toán</label><br>
+                    <input type="text" class="form-control" value="{{orderCus.orderType}}" readonly><br>
+                    <label for="name">Tổng tiền</label><br>
+                    <input type="text" class="form-control" value="{{orderCus.orderTotal}}" readonly><br>
+                    <h5 class="sub-title">Sản phẩm</h5>
+                    <table class="table">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col">STT</th>
+                              <th scope="col">Sku</th>
+                              <th scope="col">Số lượng</th>
+                              <th scope="col">Kích cỡ</th>
+                              <th scope="col">Đơn giá</th>
+                            </tr>
+                          </thead>
+                    	    {{#each orderCus.items}}
+                          <tbody>
+                            <tr>
+                              <td>{{@index}}</td>
+                              <td>{{this.sku}}</td>
+                              <td id="quantity">{{this.qty}}</td>
+                              <td>{{this.size}}</td>
+                              <td>{{this.price}}</td>
+                            </tr>
+                   		    {{/each}}
+                          </tbody>
+                        </table>
                     <div class="row">
                         <div class="col-12 text-right">
-                            <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                            <a href="/customer/{{userInfo._id}}/customerTransaction">Quay lại</a>
                         </div>
                     </div>
                 </form>
