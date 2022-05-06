@@ -40,7 +40,7 @@
       <ul class="customer-function-list mt-5">
         <li class="">
           <a
-            class="function-link active"
+            class="function-link"
             href="/customer/{{userInfo._id}}/customerInfo"
           >
             <span class="function-icon"><i
@@ -52,7 +52,7 @@
         </li>
         <li class="">
           <a
-            class="function-link"
+            class="function-link active"
             href="/customer/{{userInfo._id}}/customerTransaction"
           >
             <span class="function-icon"><i
@@ -95,8 +95,8 @@
           <tbody>
             {{#each orderCus}}
             <tr>
-              <th scope="row">{{@index}}</th>
-              <td><a href="/customer/elementTransaction/{{this._id}}">{{this._id}}</a></td>
+              <th scope="row">{{inc @index}}</th>
+              <td>{{this._id}}</td>
               <td>{{this.orderDate}}</td>
               {{#ifCond this.orderType "Momo"}}
                 <td>{{orderTotal}}</td>

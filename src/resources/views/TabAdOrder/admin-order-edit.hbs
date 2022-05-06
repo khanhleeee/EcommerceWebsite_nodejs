@@ -5,20 +5,36 @@
         <div class="card">
           <form method="POST" action="/adminOrder/{{order._id}}?_method=PUT">
             <div class="card-header">
-
-              <h4 class="card-title">Chỉnh sửa đơn hàng - {{order._id}}</h4>
-
-              <div>
-                <button type="button" class="btn btn-danger">
-                  <a href="/adminOrder/{{order._id}}/editOrder/cancelOrder?_method=PUT" class="btn btn-danger btn-xs">Hủy đơn hàng</a>
-                </button>
-                <button type="button" class="btn btn-info">
-                  <a href="/adminOrder/{{order._id}}/editOrder/confirmOrder?_method=PUT" class="btn btn-info btn-xs">Xác nhận</a>
-                </button>
+              <div class="track">
+                <div class="step active">
+                  <span class="icon"><i class="order-icon fa fa-check"></i></span>
+                  <span class="text">Đã xác nhận</span>
+                </div>
+                <div class="step active">
+                  <span class="icon"><i class="order-icon fa fa-user"></i></span>
+                  <span class="text">Đã lấy hàng</span>
+                </div>
+                <div class="step">
+                  <span class="icon"><i class="order-icon fa fa-truck"></i></span>
+                  <span class="text">Đang giao</span>
+                </div>
+                <div class="step">
+                  <span class="icon"><i class="fas fa-check-double"></i></span>
+                  <span class="text">Đã giao</span>
+                </div>
               </div>
 
+              <div>
+                <a href="/adminOrder/{{order._id}}/editOrder/cancelOrder?_method=PUT"
+                  class="btn btn-outline-dark btn-xs">Hủy đơn</a>
+                <a href="/adminOrder/{{order._id}}/editOrder/confirmOrder?_method=PUT" class="btn btn-info btn-xs">Xác
+                  nhận</a>
+              </div>
             </div>
+
+
             <div class="card-body">
+              <h4 class="card-title mb-5">ĐƠN HÀNG: {{order._id}}</h4>
               <div class="form-validation">
                 <div class="row">
                   <div class="col-xl-12">
@@ -65,128 +81,58 @@
                     </div>
 
                     <div class="form-group row">
-                      <label class="col-lg-2 col-form-label" for="cusPromo">Mã
-                        khuyến mãi:
-                        <span class="text-danger">*</span>
-                      </label>
+                      <label class="col-lg-2 col-form-label" for="cusPromo">Mã khuyến mãi:</label>
                       {{#ifCond order.orderPromoName "empty"}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="Không có mã giảm"
-                          />
-                        </div>
+                      <div class="col-lg-4">
+                        <input type="text" class="form-control" id="cusPromo" readonly value="Không có mã giảm" />
+                      </div>
                       {{else}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="{{order.orderPromoName}}"
-                          />
-                        </div>
+                      <div class="col-lg-4">
+                        <input type="text" class="form-control" id="cusPromo" readonly
+                          value="{{order.orderPromoName}}" />
+                      </div>
+
                       {{/ifCond}}
 
-                      <label class="col-lg-2 col-form-label" for="cusPromo">Tổng thanh toán:
-                        <span class="text-danger">*</span>
-                      </label>
+                      <label class="col-lg-2 col-form-label" for="cusPromo">Tổng thanh toán:</label>
                       {{#ifCond order.orderPromoName "empty"}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="{{order.orderTotal}}đ"
-                          />
-                        </div>
+                      <div class="col-lg-4">
+                        <input type="text" class="form-control" id="cusPromo" readonly value="{{order.orderTotal}}đ" />
+                      </div>
+
                       {{else}}
-                        <div class="col-lg-4">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="cusPromo"
-                            readonly
-                            value="{{order.orderTotalPromo}}đ"
-                          />
-                        </div>
+                      <div class="col-lg-4">
+                        <input type="text" class="form-control" id="cusPromo" readonly
+                          value="{{order.orderTotalPromo}}đ" />
+                      </div>
                       {{/ifCond}}
                     </div>
 
                     <h4 class="card-title">Giỏ hàng</h4>
-                      <div class="form-group row">
-                        <table class="table">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">STT</th>
-                              <th scope="col">Sku</th>
-                              <th scope="col">Số lượng</th>
-                              <th scope="col">Đơn giá</th>
-                            </tr>
-                          </thead>
-                    	    {{#each order.items}}
-                          <tbody>
-                            <tr>
-                              <td>{{@index}}</td>
-                              <td>{{this.sku}}</td>
-                              <td id="quantity">{{this.qty}}</td>
-                              <td>{{this.price}}</td>
-                            </tr>
-                   		    {{/each}}
-							              <tr>
-                              <td></td>
-                              <td></td>
-                              <td>in tổng số lượng</td>
-                              <td>in tổng tiền</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                    {{#ifCond order.orderStatus "success"}}
-                    <div class="container">
-                        <article class="card">
-                            {{!-- <header class="card-header"> My Orders / Tracking </header> --}}
-                            <div class="card-body">
-                                <h6>Order ID: {{order._id}}</h6>
-                                <article class="card">
-                                    <div class="card-body row">
-                                        <div class="col"> <strong>Thời gian giao hàng:</strong> <br>{{order.orderDate}}</div>
-                                        <div class="col"> <strong>Giao bởi:</strong> <br> GHN | <i class="fa fa-phone"></i> 1900 636677 </div>
-                                        <div class="col"> <strong>Tình trạng:</strong> <br> Đã lấy hàng </div>
-                                        <div class="col"> <strong>Đơn #:</strong> <br> BD045903594059 </div>
-                                    </div>
-                                </article>
-                                <div class="track">
-                                    <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Đã xác nhận</span> </div>
-                                    <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Đã lấy hàng</span> </div>
-                                    <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">Đang giao</span> </div>
-                                    <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Đã giao</span> </div>
-                                </div>
-                                <hr>
-                                <ul class="row">
-                                  {{#each order.items}}
-                                  <li class="col-md-4">
-                                      <figure class="itemside mb-3">
-                                          {{#each product}}
-                                          <div class="aside"><img src="" class="img-sm border"></div>
-                                          {{/each}}
-                                          <figcaption class="info align-self-center">
-                                              <p class="title">{{this.sku}} <br> {{this.qty}}</p> <span class="text-muted">{{this.price}}</span>
-                                          </figcaption>
-                                      </figure>
-                                  </li>
-                                  {{/each}}
-                                </ul>
-                                <hr> <a href="#" class="btn btn-info" data-abc="true"> <i class="fa fa-chevron-left"></i> Đã giao</a>
-                            </div>
-                        </article>
+                    <div class="form-group row">
+                      <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Màu - Size</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Thành tiền</th>
+                          </tr>
+                        </thead>
+                        {{#each products}}
+                        <tbody>
+                          <tr>
+                            <td>{{inc @index}}</td>
+                            <td>{{this.p_name}} ({{this.sku}})</td>
+                            <td>{{this.color}} - {{this.size}} </td>
+                            <td class="quantity">{{this.qty}}</td>
+                            <td class="product-price">{{this.price}}</td>
+                          </tr>
+                        {{/each}}
+                        </tbody>
+                      </table>
                     </div>
-                    {{/ifCond}}
 
                     <div class="form-group row justify-content-end">
                       <div class="col-2 text-right">
@@ -198,9 +144,6 @@
               </div>
             </div>
           </form>
-          <div class="order-amount-container">
-            <span class="shipping-fee">Phí</span>
-          </div>
         </div>
       </div>
     </div>

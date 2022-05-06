@@ -87,7 +87,6 @@ const getPayment = async(req, res, next) => {
 
     if (typeof(req.body.sku) === 'object') {
         for (var i in req.body.sku) {
-            // console.log(order)
             order.items.push({ sku: req.body.sku[i], size: req.body.size[i], qty: parseInt(req.body.qty[i]), price: req.body.price[i] })
         }
     } else {
@@ -107,9 +106,12 @@ const promotion = async(req, res, next) => {
     const orderPromo = req.body.promo;
     const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
     var orderTotal = req.body.orderTotal;
-    // console.log(orderTotal)
-    orderTotal = orderTotal.replaceAll(',', '')
-    orderTotal = orderTotal.replaceAll('.', '')
+    if(orderTotal.indexOf(',') != -1) {
+        orderTotal = orderTotal.replace(/,/g, '');
+    }
+    else if(orderTotal.indexOf('.') != -1) {
+        orderTotal = orderTotal.replace(/./g, '');
+    }
     if (orderPromo == findPromo.makm) {
         const promoRange = findPromo.promoRange;
         if (orderTotal > promoRange) {
@@ -118,14 +120,19 @@ const promotion = async(req, res, next) => {
                 intro: 'Đã áp dụng mã giảm giá',
             }
             var convertGiakm = findPromo.giakm
-            convertGiakm = convertGiakm.replaceAll(',', '')
-            convertGiakm = convertGiakm.replaceAll('.', '')
+            if(convertGiakm.indexOf(',') != -1) {
+                convertGiakm = convertGiakm.replace(/,/g, '');
+            }
+            else if(convertGiakm.indexOf('.') != -1) {
+                convertGiakm = convertGiakm.replace(/./g, '');
+            }
             var totalOrder = orderTotal - convertGiakm;
             var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
             var convertToGiaKm = Intl.NumberFormat().format(convertGiakm);
             var orderPromoName = findPromo.tenkm;
             return res.render('TabPayment/applyPromo', { layout: 'mainEmpty.hbs', userInfo: mongooseToObject(req.user), orderTotalPromo: orderTotalPromo, orderPromoName: orderPromoName, convertToGiaKm: convertToGiaKm });
         } else {
+            console.log(orderTotal);
             req.session.message1 = {
                 type: 'danger',
                 intro: 'Không đủ điều kiện áp dụng mã giảm giá',
@@ -159,8 +166,12 @@ const promotion2 = async(req, res, next) => {
     const orderPromo = req.body.promo;
     const findPromo = await Promotion.findOne({ promoOrder: req.body.promoOrder });
     var orderTotal = req.body.orderTotal;
-    orderTotal = orderTotal.replaceAll(',', '')
-    orderTotal = orderTotal.replaceAll('.', '')
+    if(orderTotal.indexOf(',') != -1) {
+        orderTotal = orderTotal.replace(/,/g, '');
+    }
+    else if(orderTotal.indexOf('.') != -1) {
+        orderTotal = orderTotal.replace(/./g, '');
+    }
     if (orderPromo == findPromo.makm) {
         const promoRange = findPromo.promoRange;
         if (orderTotal > promoRange) {
@@ -169,8 +180,12 @@ const promotion2 = async(req, res, next) => {
                 intro: 'Đã áp dụng mã giảm giá',
             }
             var convertGiakm = findPromo.giakm
-            convertGiakm = convertGiakm.replaceAll(',', '')
-            convertGiakm = convertGiakm.replaceAll('.', '')
+            if(convertGiakm.indexOf(',') != -1) {
+                convertGiakm = convertGiakm.replace(/,/g, '');
+            }
+            else if(convertGiakm.indexOf('.') != -1) {
+                convertGiakm = convertGiakm.replace(/./g, '');
+            }
             var totalOrder = orderTotal - convertGiakm;
             var orderTotalPromo = Intl.NumberFormat().format(totalOrder);
             var convertToGiaKm = Intl.NumberFormat().format(convertGiakm);
@@ -211,14 +226,14 @@ const showOrder = async(req, res, next) => {
 // [POST] /payment/:id/order/:id/payOrder
 const payOrder = async(req, res, next) => {
     const orderid = await Order.findById(req.params.id);
-    // const order = await Order.findOne({_id: req.params.id});
-    // for (var i in order.items) {
-    // Product.updateOne(
-    //     {"skus.sku": order.items[i].sku},
-    //     { $inc: {'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty)}},
-    //     {arrayFilters: [{'size.size': order.items[i].size}]}
-    // ).then(console.log('updated'))
-    // }
+    const order = await Order.findOne({_id: req.params.id});
+    for (var i in order.items) {
+    Product.updateOne(
+        {"skus.sku": order.items[i].sku},
+        { $inc: {'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty)}},
+        {arrayFilters: [{'size.size': order.items[i].size}]}
+    ).then(console.log('updated'))
+    }
 
     //Check method payment
     if (orderid.orderType === 'Momo') {
@@ -335,7 +350,6 @@ const payOrder = async(req, res, next) => {
         } catch (error) {
             return res.status(400).send(err);
         }
-
         res.redirect('/payment/' + orderid.id + '/order/orderSuccess');
     }
 }

@@ -31,9 +31,8 @@ body {
 }
 
 .card-header {
-    padding: 0.75rem 1.25rem;
+    padding: 1rem 1.25rem 3rem 1.25rem;
     margin-bottom: 0;
-    background-color: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1)
 }
 
@@ -44,18 +43,18 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-bottom: 60px;
-    margin-top: 50px
+    margin-bottom: 56px;
+    margin-top: 46px;
 }
 
 .track .step {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    width: 25%;
     margin-top: -18px;
     text-align: center;
-    position: relative
+    position: relative;
+    min-width: 43%;
 }
 
 .track .step.active:before {
@@ -63,6 +62,7 @@ body {
 }
 
 .track .step::before {
+    background-color: #ddd;
     height: 7px;
     position: absolute;
     content: "";
@@ -86,12 +86,21 @@ body {
     background: #ddd
 }
 
+.track .icon .order-icon {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 .track .step.active .text {
     font-weight: 400;
     color: #000
 }
 
 .track .text {
+    min-width: 100%;
     display: block;
     margin-top: 7px
 }

@@ -23,12 +23,28 @@ const filterStatus = async(req, res, next) => {
 const showEditOrder = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
     const order = await Order.findById(req.params.id);
-
+    const products = [];
     for (var i in order.items) {
-        // console.log(order.items[i].sku);
-        var product = await Product.findOne({ "skus.sku": order.items[i].sku });
+        var product = await Product.findOne({ "skus.sku": order.items[i].sku});
+        for(var j in product.skus) {
+            if(product.skus[j].sku == order.items[i].sku){
+                for(var y in product.skus[j].sizes) {
+                    if(product.skus[j].sizes[y].size == order.items[i].size) {
+                        var item = {
+                            p_name: product.name,
+                            sku: product.skus[j].sku,
+                            color: product.skus[j].color.title,
+                            size: product.skus[j].sizes[y].size,
+                            qty: order.items[i].qty,
+                            price: order.items[i].price,
+                        }
+                        products.push(item);
+                    }
+                }
+            }
+        }
     }
-    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order), product: mongooseToObject(product) });
+    res.render('TabAdOrder/admin-order-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), order: mongooseToObject(order), products: products});
 }
 
 //[PUT] /adminOrder/:id/editOrder/confirmOrder

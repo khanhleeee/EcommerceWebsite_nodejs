@@ -2,6 +2,7 @@ const { mongooseToObject } = require('../../config/utility/mongoose');
 const { multipleToObject } = require('../../config/utility/mongoose');
 
 const bcrypt = require('bcryptjs');
+
 const User = require('../models/User');
 const Order = require('../models/Order');
 
@@ -9,7 +10,23 @@ const Order = require('../models/Order');
 const showCustomer = async(req, res, next) => {
     const userInfo = await User.findById(req.user._id);
     const orderCus = await Order.find({ name: userInfo.name });
-    res.render('TabCustomer/cus-reward', { layout: 'mainClient.hbs', orderCus: multipleToObject(orderCus), user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
+    var orderTotal = 0;
+    for(var i in orderCus) {
+        orderCus[i].orderTotal = orderCus[i].orderTotal.replace(/,/g, '');
+        // orderCus[i].orderTotal = orderCus[i].orderTotal.replace(/./g, '');
+        orderTotal += parseFloat(orderCus[i].orderTotal);
+    }
+    var total = Intl.NumberFormat().format(orderTotal);
+    if(orderTotal >= 10000000) {
+        await User.updateOne({_id:req.user._id}, {$set: {rank: 'bronze'}});
+    }
+    else if(orderTotal >= 30000000) {
+        await User.updateOne({_id:req.user._id}, {$set: {rank: 'silver'}})
+    }
+    else if(orderTotal >= 50000000) {
+        await User.updateOne({_id:req.user._id}, {$set: {rank: 'gold'}});
+    }
+    res.render('TabCustomer/cus-reward', { layout: 'mainClient.hbs', orderTotal: total, user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });
 }
 
 //[GET] /customer/:id/customerInfo 

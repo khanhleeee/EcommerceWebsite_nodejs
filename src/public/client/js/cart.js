@@ -1,10 +1,11 @@
 // Cart
 var product = document.querySelector('.product-container')
 var addBtn = product.querySelector('.add-cart-btn')
+var product_max_qty = product.querySelector('.product-qty').getAttribute('data-maxqty')
+
 let items = [];
 
 addBtn.addEventListener('click', function () {
-	
 	if(typeof(Storage) !== 'undefined') {
 		let item = {
 			sku: product.querySelector('.product-sku').value,
@@ -25,8 +26,14 @@ addBtn.addEventListener('click', function () {
 			const localItems = JSON.parse(localStorage.getItem('items'))
 			localItems.map(data => {
 				if(item.sku == data.sku && item.size == data.size) {
-					item.qty = item.qty + data.qty;
+					if((item.qty + data.qty) > product_max_qty) {
+						item.qty = data.qty;
+					}
+					else {
+						item.qty = item.qty + data.qty;
+					}
 				}
+
 				else {
 					items.push(data);
 				}

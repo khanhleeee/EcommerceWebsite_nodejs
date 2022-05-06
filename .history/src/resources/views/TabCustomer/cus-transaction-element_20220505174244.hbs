@@ -1,0 +1,77 @@
+<!-- Modal -->
+<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="w-100 pt-1 mb-5 text-right">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                <button type="submit" class="input-group-text bg-success text-light">
+                    <i class="fa fa-fw fa-search text-white"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{!-- Sidebar --}}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-3">
+            <ul class="customer-function-list mt-5">
+                <li class="">
+                    <a class="function-link active" href="/customer/{{userInfo._id}}/customerInfo">
+                        <span class="function-icon"><i class="fas fa-info-circle"></i></span>
+                        <span>Thông tin cá nhân</span> </a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+                <li class="">
+                    <a class="function-link" href="/customer/{{userInfo._id}}/customerTransaction">
+                        <span class="function-icon"><i class="fas fa-file-invoice"></i></span>
+                        <span>Đơn hàng của tôi</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+
+                <li class="">
+                    <a class="function-link" href="/customer">
+                        <span class="function-icon"><i class="fas fa-crown"></i></span>
+                        <span>Hạng thành viên</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+
+                <li class="">
+                    <a class="function-link" href="/customer/{{userInfo._id}}/customerPass">
+                        <span class="function-icon"><i class="fas fa-lock"></i></span>
+                        <span>Đổi mật khẩu</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="row">
+                <h5 class="sub-title">Thông tin cá nhân</h5>
+                <form action="/customer/{{userInfo._id}}?_method=PUT" method="POST">
+                    <label for="tel">Hình đại diện</label><br>
+                    <input type="text" name="avatar" class="form-control" value="{{userInfo.avatar}}"><br>
+                    <label for="tel">Email</label><br>
+                    <input type="email" name="email" class="form-control" value="{{userInfo.email}}"><br>
+                    <label for="name">Họ tên:</label><br>
+                    <input type="text" id="name" name="name" class="form-control" value="{{userInfo.name}}"><br>
+                    <label for="phone">Số điện thoại:</label><br>
+                    <input type="text" id="phone" name="phonenumber" class="form-control" value="{{userInfo.phonenumber}}"><br>
+                    <label for="address">Địa chỉ:</label><br>
+                    <input type="text" id="address" name="address" class="form-control"
+                        value="{{userInfo.address}}"><br>
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

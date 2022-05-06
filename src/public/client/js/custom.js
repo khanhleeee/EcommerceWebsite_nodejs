@@ -74,6 +74,7 @@ if(JSON.parse(localStorage.getItem('items')) === null || JSON.parse(localStorage
 }
 else {
 	(JSON.parse(localStorage.getItem('items')).map(data => {
+
 		var productTotal = parseFloat(data.qty) * parseFloat(data.price)
 		productTotalFormat = Intl.NumberFormat().format(productTotal);
 		Total();
