@@ -39,7 +39,7 @@ function route(app) {
     app.use('/payment', paymentRouter);
     app.use('/forgotPass', forgotPassRouter);
     app.use('/logout', logoutRouter);
-    // app.use('/loginFB', loginFBRouter);
+    app.use('/loginFB', loginFBRouter);
     app.use('/login', loginRouter);
     app.use('/register', registerRouter);
     app.use('/product', productRouter);
