@@ -18,14 +18,15 @@ const showCustomer = async(req, res, next) => {
         orderTotal += parseFloat(orderCus[i].orderTotal);
     }
     var total = Intl.NumberFormat().format(orderTotal);
-    
-    if(orderTotal >= 1e7 && orderTotal < 2e7) {
+    console.log(typeof orderTotal);
+    if(orderTotal >= 10000000) {
         await User.updateOne({_id:req.user._id}, {$set: {rank: 'bronze'}});
     }
-    else if(orderTotal >= 2e7 && orderTotal < 4e7) {
+    else if(orderTotal >= 30000000) {
+        
         await User.updateOne({_id:req.user._id}, {$set: {rank: 'silver'}})
     }
-    else if(orderTotal >= 4e7) {
+    else if(orderTotal >= 50000000) {
         await User.updateOne({_id:req.user._id}, {$set: {rank: 'gold'}});
     }
     res.render('TabCustomer/cus-reward', { layout: 'mainClient.hbs', orderTotal: total, user: mongooseToObject(req.user), userInfo: mongooseToObject(userInfo) });

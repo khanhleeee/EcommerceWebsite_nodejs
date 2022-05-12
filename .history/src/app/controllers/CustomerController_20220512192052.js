@@ -19,10 +19,12 @@ const showCustomer = async(req, res, next) => {
     }
     var total = Intl.NumberFormat().format(orderTotal);
     
-    if(orderTotal >= 1e7 && orderTotal < 2e7) {
+    if(orderTotal >= 1e7) {
+        console.log(typeof orderTotal);
         await User.updateOne({_id:req.user._id}, {$set: {rank: 'bronze'}});
     }
-    else if(orderTotal >= 2e7 && orderTotal < 4e7) {
+    else if(orderTotal >= 2e7) {
+        
         await User.updateOne({_id:req.user._id}, {$set: {rank: 'silver'}})
     }
     else if(orderTotal >= 4e7) {
