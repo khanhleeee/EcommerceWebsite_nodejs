@@ -2,7 +2,7 @@ const homeRouter = require('./home');
 const productRouter = require('./product');
 const registerRouter = require('./register');
 const loginRouter = require('./login');
-const loginFBRouter = require('./loginFb');
+// const loginFBRouter = require('./loginFB');
 const logoutRouter = require('./logout');
 const forgotPassRouter = require('./forgotPass');
 const paymentRouter = require('./payment');
@@ -39,7 +39,7 @@ function route(app) {
     app.use('/payment', paymentRouter);
     app.use('/forgotPass', forgotPassRouter);
     app.use('/logout', logoutRouter);
-    app.use('/loginFB', loginFBRouter);
+    // app.use('/loginFB', loginFBRouter);
     app.use('/login', loginRouter);
     app.use('/register', registerRouter);
     app.use('/product', productRouter);
