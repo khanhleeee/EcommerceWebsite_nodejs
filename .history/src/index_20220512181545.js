@@ -2,7 +2,7 @@ const express = require('express');
 var handlebars = require('express-handlebars');
 const app = express();
 const path = require('path');
-const port = 3000 || process.env.PORT;
+const port = 3000;
 const bodyParser = require('body-parser');
 const route = require('./routes');
 const methodOverride = require('method-override');
@@ -125,6 +125,6 @@ app.set("views", path.join(__dirname, 'resources', 'views'));
 
 route(app)
 
-app.listen(port, () => {
-    console.log(`app listen at ${port}`)
+app.listen(port || process.env.PORT, () => {
+    console.log(`app listen at ${process.env.PORT}`)
 })
