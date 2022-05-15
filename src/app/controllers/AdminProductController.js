@@ -80,19 +80,6 @@ const createProduct = async(req, res, next) => {
         })
 }
 
-//[GET] /adminProduct/createProduct/save/:id/saveSkus
-const showSaveSku = async(req, res, next) => {
-    const user = await User.findOne({ role: 'admin' });
-    const product = await Product.findById(req.params.id);
-    // var sku = '';
-    // for (var item of product.skus) {
-    //     if (`${item.sku}` === req.params.sku)
-    //         sku = `${JSON.stringify(item)}`
-    // }
-    // const productSku = JSON.parse(sku);
-    // res.render('TabAdmin/admin-skus-form', { layout: 'mainAdmin.hbs', p: mongooseToObject(product), sku: productSku, user: mongooseToObject(user) });
-    res.render('TabAdmin/admin-skus-form', { layout: 'mainAdmin.hbs', p: mongooseToObject(product), user: mongooseToObject(user) });
-}
 
 // [POST] /adminProduct/createProduct/save/:id/saveSkus
 const createSkus = async(req, res, next) => {
@@ -258,4 +245,4 @@ const deleteProduct = async(req, res, next) => {
         .catch(next);
 }
 
-module.exports = { showProductList, showCreateList, createProduct, createSkus, showSaveSku, showEditProduct, showEditSku, updateProduct, updateSKu, deleteProduct }
+module.exports = { showProductList, showCreateList, createProduct, createSkus, showEditProduct, showEditSku, updateProduct, updateSKu, deleteProduct }
