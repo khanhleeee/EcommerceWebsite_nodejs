@@ -232,7 +232,7 @@ const payOrder = async(req, res, next) => {
         {"skus.sku": order.items[i].sku},
         { $inc: {'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty)}},
         {arrayFilters: [{'size.size': order.items[i].size}]}
-    ).then(console.log('updated'))}
+    ).then(console.log(updated))}
 
     //Check method payment
     if (orderid.orderType === 'Momo') {
