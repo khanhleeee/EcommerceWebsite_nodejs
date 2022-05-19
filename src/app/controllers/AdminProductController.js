@@ -11,6 +11,22 @@ const showProductList = async(req, res, next) => {
     res.render('TabAdmin/admin-product-list', { layout: 'mainAdmin.hbs', products: multipleToObject(products), user: mongooseToObject(user) });
 }
 
+//[GET] /adminProduct/hideProduct/:id
+const hideProduct = async(req, res, next) => {
+    await Product.updateOne({ _id: req.params.id }, {
+        isHide: true,
+    });
+    return res.redirect('back')
+}
+
+//[GET] /adminProduct/showProduct/:id
+const showProduct = async(req, res, next) => {
+    await Product.updateOne({ _id: req.params.id }, {
+        isHide: false,
+    });
+    return res.redirect('back');
+}
+
 //[GET] /adminProduct/createProduct
 const showCreateList = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
@@ -79,7 +95,6 @@ const createProduct = async(req, res, next) => {
             res.render('TabAdmin/admin-skus-form', { layout: 'mainAdmin.hbs', p: mongooseToObject(p), user: mongooseToObject(user) });
         })
 }
-
 
 // [POST] /adminProduct/createProduct/save/:id/saveSkus
 const createSkus = async(req, res, next) => {
@@ -245,4 +260,4 @@ const deleteProduct = async(req, res, next) => {
         .catch(next);
 }
 
-module.exports = { showProductList, showCreateList, createProduct, createSkus, showEditProduct, showEditSku, updateProduct, updateSKu, deleteProduct }
+module.exports = { showProductList, hideProduct, showProduct, showCreateList, createProduct, createSkus, showEditProduct, showEditSku, updateProduct, updateSKu, deleteProduct }

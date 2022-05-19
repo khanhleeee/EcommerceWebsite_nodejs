@@ -10,7 +10,7 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 // [GET] /product
 const showProductList = async(req, res, next) => {
     // Find product and product variation
-    let p = await Product.find();
+    let p = await Product.find({ isHide: false });
     let colors = await Color.find();
     let categories = await Category.find();
     res.render('TabProduct/product', { layout: 'mainClient.hbs', userInfo: mongooseToObject(req.user), user: mongooseToObject(req.user), p: multipleToObject(p), color: multipleToObject(colors), category: multipleToObject(categories) });
@@ -47,12 +47,12 @@ const showProductDetail = async(req, res, next) => {
     for (const item of sizes) {
         if (`${item.size}` == req.params.size) {
             querySize = `${JSON.stringify(item)}`;
-            if(`${item.qty}` <= 0)
+            if (`${item.qty}` <= 0)
                 isOutOfStock = 'tạm hết hàng';
         }
     }
     const size = JSON.parse(querySize)
-    res.render('TabProduct/productdetail', { layout: 'mainClient.hbs', userInfo: mongooseToObject(req.user), sku, size, isOutOfStock, product: mongooseToObject(product), color: multipleToObject(colors), category: multipleToObject(categories), user: mongooseToObject(req.user)})
+    res.render('TabProduct/productdetail', { layout: 'mainClient.hbs', userInfo: mongooseToObject(req.user), sku, size, isOutOfStock, product: mongooseToObject(product), color: multipleToObject(colors), category: multipleToObject(categories), user: mongooseToObject(req.user) })
 }
 
 module.exports = { showProductList, filterGender, showProductDetail }

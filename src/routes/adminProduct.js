@@ -17,6 +17,9 @@ router.put('/:id', adminProductController.updateProduct);
 router.put('/:id/:sku', adminProductController.updateSKu);
 
 router.get('/createProduct', adminProductController.showCreateList);
+
+router.get('/hideProduct/:id', adminProductController.hideProduct);
+router.get('/showProduct/:id', adminProductController.showProduct);
 router.get('/', ensureAuthenticated, adminProductController.showProductList);
 
 

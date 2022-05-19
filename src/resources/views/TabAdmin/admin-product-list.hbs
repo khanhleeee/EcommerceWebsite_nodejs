@@ -46,6 +46,12 @@
 						<a href="/adminProduct/{{this._id}}/editProduct" class="btn btn-success btn-xs mr-2">Chỉnh sửa sản
 							phẩm</a>
 						<a href="/adminProduct/deleteProduct/{{this._id}}" class="btn btn-danger btn-xs">Xoá</a>
+
+						{{#ifCond this.isHide false}}
+						<a href="/adminProduct/hideProduct/{{this._id}}" class="btn btn-dark btn-xs">Ẩn</a>
+						{{else}}
+						<a href="/adminProduct/showProduct/{{this._id}}" class="btn btn-info btn-xs">Hiện</a>
+						{{/ifCond}}
 						
 						{{!-- <a href="">
 							<button type="submit" class="btn btn-danger btn-xs" data-toggle="modal"
