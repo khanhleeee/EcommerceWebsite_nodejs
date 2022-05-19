@@ -1093,77 +1093,26 @@ input[type=number].form-control::-webkit-outer-spin-button {
 }
 
 /* Comment */
+.comment-list {
+    display: flex;
+    margin-left: 0;
+    padding-left: 0;
+}
 .comment {
     display: flex;
-    align-items: top;
-    padding-bottom: 40px;
-    margin-bottom: 30px;
-    /* border-top: 1px solid #ccc; */
-    border-bottom: 1px solid #ccc;
-}
-
-.comment-list {
-    margin-bottom: 0;
 }
 
 .user-avatar {
-    min-width: 80px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 2px;
     background-size: contain;
     background-position: top center;
     background-repeat: no-repeat;
     /* padding-top: 100%; */
     
  }
-
- .comment-details {
-     display: flex;
-     flex-direction: column;
-     margin-left: 10px;
- }
  
  .user-name {
-     font-weight: 600;
-     font-size: 0.9rem;
+ 
  }
-
- .comment-date {
-    font-size: 0.7rem;
- }
-
-.comment-content {
-    display: block;
-    margin-top: 16px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 0 20px 0 0;
-    text-align: justify;
-}
-
-.comment-area {
-    display: flex;
-}
-.comment-side {
-    display: flex;
-    flex-direction: column;
-}
-
-.comment-btn {
-    display: flex;
-    /* justify-content: end; */
-    margin-left: 30px;
-    margin-top: 10px;
-}
-
-.comment-input {
-    border-radius: 8px;
-    width: 500px;
-    height: 100px;
-    outline: none;
-    border: 1px solid #ccc;
-    margin-left: 30px;
-    font-size: 0.9rem;
-    padding: 8px;
-}

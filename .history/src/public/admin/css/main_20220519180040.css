@@ -47,4 +47,9 @@
    opacity: 0.7;
 }
 
+.comment-content {
+   display: block;
+   padding: 0 8px;
+}
+
 

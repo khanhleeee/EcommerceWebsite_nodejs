@@ -1,0 +1,87 @@
+.table-custom {
+   min-width: 1400px;
+}
+
+.table-custom th {
+   border-right: 1px solid #fff;
+}
+
+.table-custom td {
+   border-bottom: 1px solid #fff;
+}
+
+.td-btn {
+   width: 60px;
+   text-align: center;
+}
+
+.td-details {
+   width: 170px;
+}
+
+.product-img {
+   width: 100px;
+   height: 100px;
+   margin-right: 10px;
+}
+
+.product-img img {
+   width: 100%;
+}
+
+.size-field {
+   align-items: center;
+}
+
+.add-btn,
+.remove-btn {
+   position: relative;   
+   top: -50%;
+   width: 30px;
+   height: 30px;
+   cursor: pointer;
+}
+
+.add-btn:hover,
+.remove-btn:hover {
+   opacity: 0.7;
+}
+
+/* .add-sku-container {
+   display: flex;
+   justify-content: end;
+   margin-bottom: 20px;
+}
+
+.add-sku-title {
+   margin-right: 10px;
+   color: #000;
+}
+
+.add-sku-btn,
+.remove-sku-btn {
+   display: flex;
+   align-items: center;
+   border: 1px solid var(--primary);
+   padding: 6px 10px;
+   cursor: pointer;
+   border-radius: 4px;
+}
+
+.add-sku-btn:hover,
+.remove-sku-btn:hover {
+   background-color: var(--primary);
+   color: #fff;
+}
+
+.add-sku-btn:hover .add-icon svg,
+.remove-sku-btn:hover .add-icon svg,
+.remove-sku-btn:hover .add-sku-title,
+.add-sku-btn:hover .add-sku-title {
+   color: #fff;
+}
+
+.add-icon {
+   width: 16px;
+   opacity: 0.7;
+} */

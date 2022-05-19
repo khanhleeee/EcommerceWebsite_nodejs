@@ -1100,10 +1100,7 @@ input[type=number].form-control::-webkit-outer-spin-button {
     margin-bottom: 30px;
     /* border-top: 1px solid #ccc; */
     border-bottom: 1px solid #ccc;
-}
-
-.comment-list {
-    margin-bottom: 0;
+    padding: 8px;
 }
 
 .user-avatar {
@@ -1145,17 +1142,6 @@ input[type=number].form-control::-webkit-outer-spin-button {
 .comment-area {
     display: flex;
 }
-.comment-side {
-    display: flex;
-    flex-direction: column;
-}
-
-.comment-btn {
-    display: flex;
-    /* justify-content: end; */
-    margin-left: 30px;
-    margin-top: 10px;
-}
 
 .comment-input {
     border-radius: 8px;
@@ -1163,7 +1149,6 @@ input[type=number].form-control::-webkit-outer-spin-button {
     height: 100px;
     outline: none;
     border: 1px solid #ccc;
-    margin-left: 30px;
+    margin-left: 10px;
     font-size: 0.9rem;
-    padding: 8px;
 }

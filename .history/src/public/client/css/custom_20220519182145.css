@@ -1147,14 +1147,6 @@ input[type=number].form-control::-webkit-outer-spin-button {
 }
 .comment-side {
     display: flex;
-    flex-direction: column;
-}
-
-.comment-btn {
-    display: flex;
-    /* justify-content: end; */
-    margin-left: 30px;
-    margin-top: 10px;
 }
 
 .comment-input {

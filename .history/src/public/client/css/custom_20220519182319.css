@@ -1152,8 +1152,7 @@ input[type=number].form-control::-webkit-outer-spin-button {
 
 .comment-btn {
     display: flex;
-    /* justify-content: end; */
-    margin-left: 30px;
+    justify-content: end;
     margin-top: 10px;
 }
 

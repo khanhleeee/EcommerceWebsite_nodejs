@@ -47,4 +47,16 @@
    opacity: 0.7;
 }
 
+.user-avatar {
+   border-top-left-radius: 2px;
+   border-top-right-radius: 2px;
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-position: top center;
+   padding-top: 100%;
+}
+
+.user-name {
+
+}
 

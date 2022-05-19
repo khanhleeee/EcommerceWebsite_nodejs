@@ -47,4 +47,14 @@
    opacity: 0.7;
 }
 
+.user-avatar {
+   padding-top: 100%;
+   width: 100px;
+   height: 100px;
+   background: url('https://i.pinimg.com/564x/b3/f9/f4/b3f9f4deb3c31b5c13a84c80b75dec4a.jpg')
+}
+
+.user-name {
+
+}
 

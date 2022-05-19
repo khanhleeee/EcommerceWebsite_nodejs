@@ -1096,14 +1096,9 @@ input[type=number].form-control::-webkit-outer-spin-button {
 .comment {
     display: flex;
     align-items: top;
-    padding-bottom: 40px;
-    margin-bottom: 30px;
-    /* border-top: 1px solid #ccc; */
+    padding-bottom: 30px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
-}
-
-.comment-list {
-    margin-bottom: 0;
 }
 
 .user-avatar {
@@ -1134,36 +1129,7 @@ input[type=number].form-control::-webkit-outer-spin-button {
  }
 
 .comment-content {
-    display: block;
     margin-top: 16px;
     font-size: 0.9rem;
     font-weight: 500;
-    padding: 0 20px 0 0;
-    text-align: justify;
-}
-
-.comment-area {
-    display: flex;
-}
-.comment-side {
-    display: flex;
-    flex-direction: column;
-}
-
-.comment-btn {
-    display: flex;
-    /* justify-content: end; */
-    margin-left: 30px;
-    margin-top: 10px;
-}
-
-.comment-input {
-    border-radius: 8px;
-    width: 500px;
-    height: 100px;
-    outline: none;
-    border: 1px solid #ccc;
-    margin-left: 30px;
-    font-size: 0.9rem;
-    padding: 8px;
 }

@@ -1102,10 +1102,6 @@ input[type=number].form-control::-webkit-outer-spin-button {
     border-bottom: 1px solid #ccc;
 }
 
-.comment-list {
-    margin-bottom: 0;
-}
-
 .user-avatar {
     min-width: 80px;
     width: 80px;
@@ -1144,17 +1140,6 @@ input[type=number].form-control::-webkit-outer-spin-button {
 
 .comment-area {
     display: flex;
-}
-.comment-side {
-    display: flex;
-    flex-direction: column;
-}
-
-.comment-btn {
-    display: flex;
-    /* justify-content: end; */
-    margin-left: 30px;
-    margin-top: 10px;
 }
 
 .comment-input {
