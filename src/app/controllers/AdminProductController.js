@@ -11,6 +11,22 @@ const showProductList = async(req, res, next) => {
     res.render('TabAdmin/admin-product-list', { layout: 'mainAdmin.hbs', products: multipleToObject(products), user: mongooseToObject(user) });
 }
 
+//[GET] /adminProduct/hideProduct/:id
+const hideProduct = async(req, res, next) => {
+    await Product.updateOne({ _id: req.params.id }, {
+        isHide: true,
+    });
+    return res.redirect('back')
+}
+
+//[GET] /adminProduct/showProduct/:id
+const showProduct = async(req, res, next) => {
+    await Product.updateOne({ _id: req.params.id }, {
+        isHide: false,
+    });
+    return res.redirect('back');
+}
+
 //[GET] /adminProduct/createProduct
 const showCreateList = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
@@ -28,7 +44,7 @@ const createProduct = async(req, res, next) => {
         price,
     });
     await product.save();
-    if(typeof(req.body.sizes) === 'object') {
+    if (typeof(req.body.sizes) === 'object') {
         await Product.findOneAndUpdate({ _id: product._id }, {
             $push: {
                 skus: [{
@@ -43,17 +59,16 @@ const createProduct = async(req, res, next) => {
             }
         }, { new: true });
 
-        for(var i = 0; i < req.body.sizes.length; i++) {
-            await Product.updateOne(
-                    {_id: product._id, 'skus.sku': req.body.sku},
-                    { $push: {
-                        'skus.$.sizes': {size: req.body.sizes[i], qty: req.body.qty[i]}
-                    }},
-                    // {arrayFilters: [{'skus.sku': order.items[i].size}]}
-                )
+        for (var i = 0; i < req.body.sizes.length; i++) {
+            await Product.updateOne({ _id: product._id, 'skus.sku': req.body.sku }, {
+                    $push: {
+                        'skus.$.sizes': { size: req.body.sizes[i], qty: req.body.qty[i] }
+                    }
+                },
+                // {arrayFilters: [{'skus.sku': order.items[i].size}]}
+            )
         }
-    }
-    else {
+    } else {
         await Product.findOneAndUpdate({ _id: product._id }, {
             $push: {
                 skus: [{
@@ -64,7 +79,7 @@ const createProduct = async(req, res, next) => {
                         color_code: req.body.color_id,
                     },
                     sizes: [{
-                        size: req.body.sizes, 
+                        size: req.body.sizes,
                         qty: req.body.qty,
                     }]
                 }]
@@ -83,7 +98,7 @@ const createProduct = async(req, res, next) => {
 
 // [POST] /adminProduct/createProduct/save/:id/saveSkus
 const createSkus = async(req, res, next) => {
-    if(typeof(req.body.sizes) === 'object') {
+    if (typeof(req.body.sizes) === 'object') {
         await Product.updateOne({ _id: req.params.id }, {
             $push: {
                 skus: [{
@@ -98,17 +113,16 @@ const createSkus = async(req, res, next) => {
             }
         }, { new: true });
 
-        for(var i = 0; i < req.body.sizes.length; i++) {
-            await Product.updateOne(
-                    {_id: req.params.id, 'skus.sku': req.body.sku},
-                    { $push: {
-                        'skus.$.sizes': {size: req.body.sizes[i], qty: req.body.qty[i]}
-                    }},
-                    // {arrayFilters: [{'skus.sku': order.items[i].size}]}
-                )
+        for (var i = 0; i < req.body.sizes.length; i++) {
+            await Product.updateOne({ _id: req.params.id, 'skus.sku': req.body.sku }, {
+                    $push: {
+                        'skus.$.sizes': { size: req.body.sizes[i], qty: req.body.qty[i] }
+                    }
+                },
+                // {arrayFilters: [{'skus.sku': order.items[i].size}]}
+            )
         }
-    }
-    else {
+    } else {
         await Product.updateOne({ _id: req.params.id }, {
             $push: {
                 skus: [{
@@ -126,6 +140,8 @@ const createSkus = async(req, res, next) => {
             }
         }, { new: true });
     }
+
+    res.redirect('/adminProduct/createProduct');
     // const product1 = await Product.findById(req.params.id);
 
     // const product = new Product.findById({ id: req.params.id }, function(err, product) {
@@ -151,7 +167,7 @@ const createSkus = async(req, res, next) => {
     // await product.save();
     // res.json(req.body);  
     // res.redirect('/admin/adminCreateList/step2');
-    
+
 }
 
 //[GET] /adminProduct/:id/editProduct
@@ -169,7 +185,7 @@ const updateProduct = async(req, res, next) => {
         gender: req.body.gender,
         price: req.body.price,
     });
-    
+
     // if(typeof req.body.sku !== 'object') {
     //     await Product.updateOne(
     //         {_id: req.params.id, "skus.sku": req.body.sku}, {
@@ -197,16 +213,15 @@ const updateSKu = async(req, res, next) => {
         },
         sizes: []
     }
-    if(typeof req.body.sizes === 'object') {
-        for(var i in req.body.sizes) {
+    if (typeof req.body.sizes === 'object') {
+        for (var i in req.body.sizes) {
             var size = {
                 size: req.body.sizes[i],
                 qty: req.body.qty[i],
             }
             obj.sizes.push(size);
         }
-    }
-    else {
+    } else {
         var size = {
             size: req.body.sizes,
             qty: req.body.qty,
@@ -214,10 +229,8 @@ const updateSKu = async(req, res, next) => {
         obj.sizes.push(size);
     }
 
-    await Product.updateOne(
-        {_id: req.params.id, 'skus.sku': req.body.sku},
-        {$set: {'skus.$': obj}} 
-    )
+
+    await Product.updateOne({ _id: req.params.id, 'skus.sku': req.body.sku }, { $set: { 'skus.$': obj } })
     await Product.updateOne({ _id: req.params.id }, {
         name: req.body.name,
         category: req.body.category,
@@ -228,12 +241,12 @@ const updateSKu = async(req, res, next) => {
 }
 
 //[PUT] /adminProduct/:id/:sku/edit
-const showEditSku = async(req, res, next) => { 
+const showEditSku = async(req, res, next) => {
     const user = await User.findOne({ role: 'admin' });
     const product = await Product.findById(req.params.id);
     var sku = '';
-    for(var item of product.skus) {
-        if(`${item.sku}` === req.params.sku)
+    for (var item of product.skus) {
+        if (`${item.sku}` === req.params.sku)
             sku = `${JSON.stringify(item)}`
     }
     const productSku = JSON.parse(sku);
@@ -247,4 +260,4 @@ const deleteProduct = async(req, res, next) => {
         .catch(next);
 }
 
-module.exports = { showProductList, showCreateList, createProduct, createSkus, showEditProduct, showEditSku, updateProduct, updateSKu, deleteProduct }
+module.exports = { showProductList, hideProduct, showProduct, showCreateList, createProduct, createSkus, showEditProduct, showEditSku, updateProduct, updateSKu, deleteProduct }
