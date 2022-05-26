@@ -14,6 +14,7 @@ const adminProductRouter = require('./adminProduct');
 const adminPromotionRouter = require('./adminPromotion');
 const adminOrderRouter = require('./adminOrder');
 const adminStaffRouter = require('./adminStaff');
+const adminFeedbackRouter = require('./adminFeedback');
 
 const staffRouter = require('./staff');
 const deliveryStaffRouter = require('./deliveryStaff');
@@ -28,6 +29,7 @@ function route(app) {
     app.use('/deliveryStaff', deliveryStaffRouter);
     app.use('/staff', staffRouter);
 
+    app.use('/adminFeedback', adminFeedbackRouter);
     app.use('/adminStaff', adminStaffRouter);
     app.use('/adminOrder', adminOrderRouter);
     app.use('/adminPromotion', adminPromotionRouter);
