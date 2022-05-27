@@ -1,0 +1,88 @@
+<div class="content-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body py-2 d-flex justify-content-between align-items-center">
+						<div>
+							<h4 class="m-0">Danh sách đánh giá</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Promotion -->
+
+			<div class="col-xl-4 col-xxl-4 col-md-6 col-sm-6">
+				{{!-- <div class="card user-card">
+					<div class="card-body pb-0">
+						<div class="d-flex mb-3 align-items-center">
+							<div class="dz-media">
+								<img src="{{this.skus.0.img}}" alt="image_product">
+							</div>
+						</div>
+						<h5 class="title"><a href="">{{this.name}}</a></h5>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<span class="mb-0 title">Loại:</span>
+								<span class="text-black ml-2">{{this.category}}</span>
+							</li>
+							<li class="list-group-item">
+								<span class="mb-0 title">SKU:</span>
+								{{#each this.skus}}
+								<span class="text-black ml-2">{{this.sku}}</span>
+								<span class="text-black ml-2">||</span>
+								{{/each}}
+							</li>
+							<li class="list-group-item">
+								<span class="mb-0 title">Giá:</span>
+								<span class="text-black desc-text ml-2">{{this.price}}</span>
+							</li>
+						</ul>
+					</div>
+					<div class="card-footer d-flex">
+						<a href="javascript:void(0);" class="btn btn-success btn-xs">Chỉnh sửa sản phẩm</a>
+
+						<a type="submit" class="btn btn-primary btn-xs ml-1">Xóa</a>
+
+
+					</div>
+				</div> --}}
+			</div>
+
+			<div class="col-12">
+				<table class="table">
+					<thead class="thead-primary">
+						<tr>
+							<th scope="col">STT</th>
+							<th scope="col">Thời gian đánh giá</th>
+							<th scope="col">Sản phẩm</th>
+							<th scope="col">Khách hàng</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each allCmt}}
+						<tr>
+							<th>{{@index}}</th>
+							<td>{{this.data}}</td>
+							<td>{{this.productId}}</td>
+							<td>{{this.userPoster.userName}}</td>
+							<td>
+								<a href="/adminPromotion/{{this._id}}/editPromotion" class="btn btn-primary btn-xs">Chỉnh sửa khuyến mãi</a>
+							</td>
+							<td>
+								<a href="/adminPromotion/deletePromotion/{{this._id}}"
+									class="btn btn-danger btn-xs">Xoá
+								</a>
+							</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+			<!-- End Promotion -->
+		</div>
+	</div>
+</div>
