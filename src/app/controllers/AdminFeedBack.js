@@ -10,12 +10,29 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 const showListFB = async(req, res, next) => {
     const user = await User.findById(req.user._id);
     const allCmt = await Comment.find();
-    var productData = [];
-    for (let i of allCmt) {
-        var p_id = i.productId.toString();
-        const prod = await Product.findById(p_id)
-        productData.push(prod)
-    }
-    res.render('TabFeedback/admin-feedback-list', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), allCmt: multipleToObject(allCmt), productData});
+    res.render('TabFeedback/admin-feedback-list', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), allCmt: multipleToObject(allCmt) });
 }
-module.exports = { showListFB }
+
+//[GET] /adminFeedback/:id/watchDetail
+const watchDetail = async(req, res, next) => {
+    const user = await User.findById(req.user._id);
+    const cmtParticular = await Comment.findById(req.params.id);
+    res.render('TabFeedback/admin-feedback-edit', { layout: 'mainAdmin.hbs', user: mongooseToObject(user), cmtParticular: mongooseToObject(cmtParticular) });
+}
+
+//[GET] /adminCmt/hideCmt/:id
+const hideCmt = async(req, res, next) => {
+    await Comment.updateOne({ _id: req.params.id }, {
+        isHide: true,
+    });
+    return res.redirect('back')
+}
+
+//[GET] /adminCmt/showCmt/:id
+const showCmt = async(req, res, next) => {
+    await Comment.updateOne({ _id: req.params.id }, {
+        isHide: false,
+    });
+    return res.redirect('back');
+}
+module.exports = { showListFB, watchDetail, hideCmt, showCmt }

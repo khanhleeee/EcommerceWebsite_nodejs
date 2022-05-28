@@ -40,7 +40,7 @@ const showProductDetail = async(req, res, next) => {
         }
     }
     const sku = JSON.parse(querySku)
-    // Find sizes[i] has size = req.params.size
+        // Find sizes[i] has size = req.params.size
     const sizes = sku.sizes;
     let querySize = '';
     let isOutOfStock = null;
@@ -53,25 +53,29 @@ const showProductDetail = async(req, res, next) => {
     }
     const size = JSON.parse(querySize);
 
-    const showUserCmt = await Comment.find({ productId: product._id});
+    const showUserCmt = await Comment.find({ productId: product._id, isHide: false });
 
     res.render('TabProduct/productdetail', { layout: 'mainClient.hbs', userInfo: mongooseToObject(req.user), sku, size, isOutOfStock, product: mongooseToObject(product), color: multipleToObject(colors), category: multipleToObject(categories), user: mongooseToObject(req.user), showUserCmt: multipleToObject(showUserCmt) })
 }
 
 // [POST] /:id/s:sku
-const postComment = async (req, res, next) => {
-    const { userInfo, productInfo, content} = req.body;
+const postComment = async(req, res, next) => {
+    const { userInfo, productInfo, content } = req.body;
     const findPoster = await User.findById(userInfo);
     const savePoster = {
         userId: findPoster._id,
         userName: findPoster.name,
         userAva: findPoster.avatar,
     }
-        const findProduct = await Product.findById(productInfo);
+    const findProduct = await Product.findById(productInfo);
+    const saveProduct = {
+        productId: findProduct._id,
+        productName: findProduct.name,
+    }
     const cmt = new Comment({
         content,
         userPoster: savePoster,
-        productId: findProduct._id,
+        productPoster: saveProduct,
     });
     try {
         const newCmt = await cmt.save();

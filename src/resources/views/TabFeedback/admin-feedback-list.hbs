@@ -59,25 +59,18 @@
 							<th scope="col">Sản phẩm</th>
 							<th scope="col">Khách hàng</th>
 							<th scope="col"></th>
-							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
+						<h1>{{productData}}</h1>
 						{{#each allCmt}}
 						<tr>
 							<th>{{@index}}</th>
 							<td>{{this.date}}</td>
-							{{!-- {{#each productData}}
-							<td>{{this.name}}</td>
-							{{/each}} --}}
+							<td>{{this.productPoster.productName}}</td>
 							<td>{{this.userPoster.userName}}</td>
 							<td>
-								<a href="/adminPromotion/{{this._id}}/editPromotion" class="btn btn-primary btn-xs">Chỉnh sửa khuyến mãi</a>
-							</td>
-							<td>
-								<a href="/adminPromotion/deletePromotion/{{this._id}}"
-									class="btn btn-danger btn-xs">Xoá
-								</a>
+								<a href="/adminFeedback/{{this._id}}/detail" class="btn btn-primary btn-xs">Xem chi tiết</a>
 							</td>
 						</tr>
 						{{/each}}
