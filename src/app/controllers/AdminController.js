@@ -9,8 +9,8 @@ const { multipleToObject } = require('../../config/utility/mongoose');
 const showAdmin = async(req, res, next) => {
     const user = await User.findById(req.user._id);
     const product = await Product.findOne({ name: 'ELAN EARRINGS' });
-    const order = await Order.find();
-    const order2 = await Order.findOne({ orderStatus: 'danger' });
+    const order = await Order.find({ orderStatus: 'done' });
+    const order2 = await Order.find({ orderStatus: 'danger' });
 
     let sum = 0;
     for (var i in order) {
@@ -24,7 +24,82 @@ const showAdmin = async(req, res, next) => {
             var orderFail = sum
         }
     }
-    res.render('TabAdmin/admin-info', { layout: 'mainAdmin.hbs', orderSuccess: orderSuccess, orderFail: orderFail, user: mongooseToObject(user), product: mongooseToObject(product), order: multipleToObject(order), order2: mongooseToObject(order2) });
+
+    // const test = await Order.aggregate([{
+    //     $match: { "orderStatus": "done" }
+    // },
+    // {
+    //     $group: {
+    //         _id: { $dateToString: { format: "%d-%m-%Y", date: "$createdAt" } },
+    //         // _id: '$hour',
+    //         price: { $sum: parseInt("$orderTotal") },
+    //         total: { $sum: 1 }
+    //     }
+    // }]);
+    // console.log(test)
+
+    const dataHour = await Order.aggregate([{
+                $match: { "orderStatus": "done" }
+            },
+            // {
+            //     $project: {
+            //         "hour": {
+            //             $hour: { date: "$createdAt", timezone: "+07:00" }
+            //         },
+            //     }
+            // },
+            {
+                $group: {
+                    _id: { $dateToString: { format: "%d-%m-%Y", date: "$createdAt" } },
+                    // _id: '$hour',
+                    price: { $sum: parseInt("$orderTotal") },
+                    total: { $sum: 1 }
+                }
+            }
+        ])
+        // console.log('hour', dataHour);
+    const objHour = Object.assign({}, dataHour);
+
+    const dataDay = await Order.aggregate([{
+                $match: { "orderStatus": "done" }
+            },
+            {
+                $project: {
+                    "day": {
+                        $dayOfMonth: { date: "$createdAt", timezone: "+07:00" }
+                    },
+                }
+            },
+            {
+                $group: {
+                    _id: '$day',
+                    total: { $sum: 1 }
+                }
+            }
+        ])
+        // console.log('day', dataDay);
+    const objDay = Object.assign({}, dataDay);
+
+
+    const dataMonth = await Order.aggregate([{
+            $match: { "orderStatus": "done" }
+        },
+        {
+            $project: {
+                month: { $month: '$createdAt' },
+            }
+        },
+        {
+            $group: {
+                _id: '$month',
+                total: { $sum: 1 }
+            }
+        }
+    ]);
+    // console.log('day', dataMonth);
+    const objMonth = Object.assign({}, dataMonth);
+
+    res.render('TabAdmin/admin-info', { layout: 'mainAdmin.hbs', objHour, objDay, objMonth, orderSuccess, orderFail, user: mongooseToObject(user), product: mongooseToObject(product), order: multipleToObject(order), order2: multipleToObject(order2) });
 }
 
 //[GET] /admin/:id/adminProfile

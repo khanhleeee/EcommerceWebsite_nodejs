@@ -12,6 +12,30 @@
                   <h1 class="py-5">1280,000,000</h1>
                 </div>
               </div>
+              <div class="col-8">
+                <div class="border-right">
+                  {{#each objHour}}
+                  <p><strong>Ngày mua:</strong> {{this._id}}</p>
+                  <p>Số lượng: {{this.total}} sản phẩm</p>
+                  {{/each}}
+                </div>
+              </div> 
+              {{!-- <div class="col-8">
+                <div class="border-right">
+                  {{#each objDay}}
+                  <p><strong>Ngày mua:</strong> {{this._id}}</p>
+                  <p>Số lượng: {{this.total}} sản phẩm</p>
+                  {{/each}}
+                </div>
+              </div> 
+              <div class="col-8">
+                <div class="border-right">
+                  {{#each objMonth}}
+                  <p><strong>Tháng mua:</strong> {{this._id}}</p>
+                  <p>Số lượng: {{this.total}} sản phẩm</p>
+                  {{/each}}
+                </div>
+              </div>  --}}
             </div>
           </div>
         </div>
