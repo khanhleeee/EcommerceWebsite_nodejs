@@ -1,0 +1,43 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row">
+      <h2 class="font-w600 title pl-3 mb-2 mr-auto">Dashboard</h2>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header pb-2">THỐNG KÊ DOANH THU</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 border-right">
+                <div class="col-12">
+                  <div class="d-flex align-items-center">
+                    <h1 class="py-5">{{objHour.0.price}}</h1>
+                    <span class="pl-2">VNĐ</span>
+                  </div>
+                </div>
+                <div class="col-12 mt-3">
+                  <p><strong>Ngày mua:</strong> {{objHour.0._id}}</p>
+                  <p>Tổng số đơn hàng: {{objHour.0.count}} đơn</p>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <input class="datepicker form-control" type="text" name="" id="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{!-- <div class="">
+      <div id="pie-chart"></div>
+      <div id="bar-chart"></div>
+      <div id="line-chart"></div>
+    </div> --}}
+  </div>
+</div>
+<script>
+  flatpickr("#myID", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+  });
+</script>
