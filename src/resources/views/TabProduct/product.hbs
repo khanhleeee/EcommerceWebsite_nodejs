@@ -22,11 +22,25 @@
                   {{/each}}
                </ul>
             </li>
+            <li class="pd-2">
+               <h3 class="subcate-title" href="#">Giá</h3>
+               <div class="priceRange">
+                  <div class="silderValue">
+                     <span>10</span>
+                  </div>
+                  <div class="filed">
+                     <input id="inputSlider" type="range" min="1" max="20" value="20" steps="1">
+                     <div class="filed-value">
+                        <div class="value left">1 triệu</div>
 
+                        <div class="value right">20 triệu</div>
+                     </div>
+                  </div>
+               </div>
+            </li>
          </ul>
          </ul>
       </div>
-
       <div class="col-lg-9 js-product-area">
          <div class="row">
             <div class="col-12 col-md-12 col-lg-6 pb-4 offset-lg-6">
@@ -46,7 +60,8 @@
          <div class="row js-product-area-2">
             {{#each p}}
             <div id="myDIV" class="col-12 col-md-4 col-lg-4">
-               <a href="/product/detail/{{this._id}}/{{this.skus.0.sku}}/{{this.skus.0.sizes.0.size}}" class="text-decoration-none">
+               <a href="/product/detail/{{this._id}}/{{this.skus.0.sku}}/{{this.skus.0.sizes.0.size}}"
+                  class="text-decoration-none">
                   <div class="card product-wap mb-4">
 
                      {{!--Product image --}}
@@ -85,3 +100,33 @@
    </div>
 </div>
 <!-- End Content -->
+
+<script>
+   var sliderValue = document.querySelector('.silderValue span');
+   var inputSlider = document.querySelector('#inputSlider');
+   var products = document.querySelectorAll('#myDIV');
+
+   //Khi thay doi input oninput
+   inputSlider.oninput = (() => {
+      let value = inputSlider.value;
+      sliderValue.innerText = value;
+      sliderValue.style.left = ((value*10)/2) + '%';
+      sliderValue.classList.add('show');
+      value = parseFloat(value) * 1e6;
+      //Filter san pham
+      for(var i in products) {
+         var productPriceElement = products[i].querySelector('.product-price');
+         var productPrice = parseFloat(productPriceElement.innerText.replace(/,/g,''));
+         if(productPrice <= value) {
+            products[i].classList.remove("product-none");
+         } else {
+            products[i].classList.add("product-none");
+         }
+      }
+   });
+   //Khi nhap ra ngoai onblur
+   inputSlider.onblur = (() => {
+      sliderValue.classList.remove('show');
+   });
+
+</script>
