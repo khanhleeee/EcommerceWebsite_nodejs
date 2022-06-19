@@ -122,7 +122,6 @@ const checkBtns = document.querySelectorAll('.check-btn').forEach(checkbox => {
             product.classList.add("product-none")
           }
       }
-
       else {
         product.classList.remove("product-none")
       }

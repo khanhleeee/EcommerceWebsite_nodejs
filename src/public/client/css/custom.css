@@ -1167,3 +1167,90 @@ input[type=number].form-control::-webkit-outer-spin-button {
     font-size: 0.9rem;
     padding: 8px;
 }
+
+/* PRICE RANGE SLIDER */
+.priceRange {
+    padding: 30px 6px;
+    box-shadow: 1px 1px 6px #ccc;
+    border-radius: 3px;
+}
+.priceRange .silderValue {
+    position: relative;
+    width: 100%;
+}
+.priceRange .silderValue span {
+    position: absolute;
+    text-align: center;
+    padding: 0 8px;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.3s ease-in-out;
+    font-size: 0.7rem;
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    color: #24432e;
+    z-index: 10;
+}
+.priceRange .silderValue span.show {
+    transform: translateX(-50%) scale(1);
+}
+.priceRange .silderValue span::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    z-index: -1;
+    border: 3px solid #24432e;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.priceRange .filed {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.priceRange .filed .filed-value {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+.priceRange .filed .filed-value .value {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #999;
+} 
+.priceRange .filed input {
+    -webkit-appearance: none;
+    height: 3px;
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgb(229, 229, 229);
+    border: none;
+    outline: none;
+    margin: 0 4px;
+}
+
+.priceRange .filed input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    background-color: #24432e;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.priceRange .filed input::-moz-range-progress {
+    background-color: #24432e;
+}
+
+
