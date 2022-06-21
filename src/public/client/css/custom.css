@@ -1107,11 +1107,12 @@ input[type=number].form-control::-webkit-outer-spin-button {
 }
 
 .user-avatar {
+    display: inline-block;
     min-width: 80px;
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-size: contain;
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
     /* padding-top: 100%; */
