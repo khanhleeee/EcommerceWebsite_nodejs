@@ -7,6 +7,8 @@ const logoutRouter = require('./logout');
 const forgotPassRouter = require('./forgotPass');
 const paymentRouter = require('./payment');
 
+const checkOrderRouter = require('./checkOrder');
+
 const customerRouter = require('./customer');
 
 const adminRouter = require('./admin');
@@ -30,6 +32,8 @@ function route(app) {
     app.use('/adminPromotion', adminPromotionRouter);
     app.use('/adminProduct', adminProductRouter);
     app.use('/admin', adminRouter);
+
+    app.use('/checkOrder', checkOrderRouter);
 
     app.use('/customer', customerRouter);
 

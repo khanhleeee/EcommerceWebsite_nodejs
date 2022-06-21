@@ -1054,7 +1054,7 @@ input[type=number].form-control::-webkit-outer-spin-button {
     position: absolute;
     content: "";
     width: 100%;
-    left: -17px;
+    left: 1px;
     top: 18px;
 }
 
@@ -1253,4 +1253,69 @@ input[type=number].form-control::-webkit-outer-spin-button {
     background-color: #24432e;
 }
 
+a {
+    color: #7e7e7e;
+}
+a {
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #68CF29;
+    font-size: 16px;
+}
+
+.badge-warning {
+    color: #fff;
+    background-color: #FFAB2D;
+    font-size: 16px;
+}
+
+.badge-secondary {
+    color: #fff;
+    background-color: #6418C3;
+    font-size: 16px;
+}
+
+.badge-info {
+    background-color: #51A6F5;
+    font-size: 16px;
+}
+
+.badge-primary {
+    background-color: var(--primary);
+    font-size: 16px;
+}
+
+.track .text{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form-group{
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.form-control{
+    font-size: 16px;
+}
+
+.product-price{
+    font-size: 16px;
+}
+
+.key-checkOrder{
+    font-size: 16px;
+}
+
+.btn-cancle{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
 
