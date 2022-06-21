@@ -129,7 +129,7 @@
             
             {{#if isAuthenticated}}
             <div class="comment-area px-3">
-                <form action="/product/detail/{{product._id}}/{{product.skus.0.sku}}/{{product.skus.0.sizes.0.size}}" method="POST">
+                <form style="display: flex;" action="/product/detail/{{product._id}}/{{product.skus.0.sku}}/{{product.skus.0.sizes.0.size}}" method="POST">
                     <input type="text" name="userInfo" value="{{user._id}}" hidden>
                     <input type="text" name="productInfo" value="{{product._id}}" hidden>
                     <div class="user-avatar"

@@ -226,13 +226,10 @@ const showOrder = async(req, res, next) => {
 // [POST] /payment/:id/order/:id/payOrder
 const payOrder = async(req, res, next) => {
     const orderid = await Order.findById(req.params.id);
-    const order = await Order.findOne({_id: req.params.id});
+    const order = await Order.findOne({ _id: req.params.id });
     for (var i in order.items) {
-    Product.updateOne(
-        {"skus.sku": order.items[i].sku},
-        { $inc: {'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty)}},
-        {arrayFilters: [{'size.size': order.items[i].size}]}
-    ).then(console.log('updated'))}
+        Product.updateOne({ "skus.sku": order.items[i].sku }, { $inc: { 'skus.$.sizes.$[size].qty': (-1 * order.items[i].qty) } }, { arrayFilters: [{ 'size.size': order.items[i].size }] }).then(console.log('updated'))
+    }
 
     //Check method payment
     if (orderid.orderType === 'Momo') {
@@ -244,9 +241,14 @@ const payOrder = async(req, res, next) => {
             var totalPriceOrder = orderid.orderTotalPromo;
         }
         var priceOrder = totalPriceOrder;
+        console.log('priceOrder', priceOrder);
+
         priceOrder = priceOrder.replace(/,/g, '')
-        priceOrder = priceOrder.replace(/./g, '')
-        var priceOrderInt = parseInt(priceOrder);
+        // priceOrder = priceOrder.replace(/./g, '')
+        console.log('priceOrderconvert', priceOrder);
+
+        var priceOrderInt = parseFloat(priceOrder);
+        console.log('priceConvert', priceOrderInt);
         //https://developers.momo.vn/#/docs/en/aiov2/?id=payment-method
         //parameters
         var partnerCode = "MOMOUW4Y20220414";
@@ -291,7 +293,8 @@ const payOrder = async(req, res, next) => {
             signature: signature,
             lang: 'en'
         });
-        //Create the HTTPS objects
+        console.log('1', requestBody)
+            //Create the HTTPS objects
         const https = require('https');
         const options = {
                 hostname: 'test-payment.momo.vn',
