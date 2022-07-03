@@ -1,0 +1,26 @@
+<!-- Modal -->
+<div class="container py-5">
+   <div class="row justify-content-center text-center">
+      <h3 class="text-center">ĐĂNG KÝ THÀNH VIÊN</h3>
+      <div class="col-12 col-lg-6">
+
+         {{#if message}}
+         <div style="text-align: center" class="alert alert-{{message.type}}">
+            <strong>{{message.intro}}</strong> {{message.message}}
+         </div>
+         {{/if}}
+
+         <form class="form mt-4" method="POST" action="">
+
+            <input class="form-control mb-3" type="password" placeholder="Nhập mật khẩu mới" name="password" required>
+            <input class="form-control mb-3" type="password" placeholder="Xác nhận mật khẩu mới" name="passwordConf"
+               required>
+
+            <button type="submit" class="col-12 btn btn-success mt-3">Lưu mật khẩu mới</button>
+            <a class="signup-link mt-3" href="/login">Quay về đăng nhập</a>
+
+         </form>
+
+      </div>
+   </div>
+</div>

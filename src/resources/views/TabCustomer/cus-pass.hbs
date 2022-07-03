@@ -1,0 +1,78 @@
+<!-- Modal -->
+<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="w-100 pt-1 mb-5 text-right">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                <button type="submit" class="input-group-text bg-success text-light">
+                    <i class="fa fa-fw fa-search text-white"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{!-- Sidebar --}}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-3">
+            <ul class="customer-function-list mt-5">
+                <li class="">
+                    <a class="function-link" href="/customer/{{userInfo._id}}/customerInfo">
+                        <span class="function-icon"><i class="fas fa-info-circle"></i></span>
+                        <span>Thông tin cá nhân</span> </a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+                <li class="">
+                    <a class="function-link" href="/customer/{{userInfo._id}}/customerTransaction">
+                        <span class="function-icon"><i class="fas fa-file-invoice"></i></span>
+                        <span>Đơn hàng của tôi</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+
+                <li class="">
+                    <a class="function-link" href="/customer">
+                        <span class="function-icon"><i class="fas fa-crown"></i></span>
+                        <span>Hạng thành viên</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+
+                <li class="">
+                    <a class="function-link active" href="/customer/{{userInfo._id}}/customerPass">
+                        <span class="function-icon"><i class="fas fa-lock"></i></span>
+                        <span>Đổi mật khẩu</span></a>
+                    {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="row">   
+                <h5 class="sub-title">Đổi mật khẩu</h5>
+                {{#if message}}
+                <div style="text-align: center" class="alert alert-{{message.type}}">
+                    <strong>{{message.intro}}</strong> {{message.message}}
+                </div>
+                {{/if}}
+                <form action="/customer/{{userInfo._id}}/customerPass" method="POST">
+                    <label for="oldPass">Nhập mật khẩu cũ</label><br>
+                    <input type="password" name="passwordOld" class="form-control"><br>
+                    <label for="newPass">Nhập mật khẩu mới</label><br>
+                    <input type="password" name="password" class="form-control"><br>
+                    <label for="name">Xác nhận mật khẩu mới</label><br>
+                    <input type="password" name="passwordConf" class="form-control"><br>
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <button type="submit" class="btn btn-success">Đổi mật khẩu</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

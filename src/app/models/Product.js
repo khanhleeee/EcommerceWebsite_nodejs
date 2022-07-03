@@ -1,0 +1,21 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const Product = new Schema({
+    name: { type: String },
+    category: { type: String },
+    gender: { type: String },
+    price: { type: String },
+    skus: [{
+        sku: { type: String },
+        img: { type: String },
+        color: {
+            title: { type: String },
+            color_code: { type: String }
+        },
+        sizes: [{ size: { type: String }, qty: { type: Number } }]
+    }],
+    isHide: { type: Boolean, default: false },
+})
+
+module.exports = mongoose.model('Products', Product);

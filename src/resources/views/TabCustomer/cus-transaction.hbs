@@ -1,0 +1,118 @@
+<!-- Modal -->
+<div
+  class="modal fade bg-white"
+  id="templatemo_search"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="w-100 pt-1 mb-5 text-right">
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <form action="" method="get" class="modal-content modal-body border-0 p-0">
+      <div class="input-group mb-2">
+        <input
+          type="text"
+          class="form-control"
+          id="inputModalSearch"
+          name="q"
+          placeholder="Search ..."
+        />
+        <button type="submit" class="input-group-text bg-success text-light">
+          <i class="fa fa-fw fa-search text-white"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{! Sidebar }}
+<div class="container py-5">
+  <div class="row">
+    <div class="col-3">
+      <ul class="customer-function-list mt-5">
+        <li class="">
+          <a
+            class="function-link"
+            href="/customer/{{userInfo._id}}/customerInfo"
+          >
+            <span class="function-icon"><i
+                class="fas fa-info-circle"
+              ></i></span>
+            <span>Thông tin cá nhân</span>
+          </a>
+          {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+        </li>
+        <li class="">
+          <a
+            class="function-link active"
+            href="/customer/{{userInfo._id}}/customerTransaction"
+          >
+            <span class="function-icon"><i
+                class="fas fa-file-invoice"
+              ></i></span>
+            <span>Đơn hàng của tôi</span></a>
+          {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+        </li>
+
+        <li class="">
+          <a class="function-link" href="/customer">
+            <span class="function-icon"><i class="fas fa-crown"></i></span>
+            <span>Hạng thành viên</span></a>
+          {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+        </li>
+
+        <li class="">
+          <a class="function-link" href="/customer/{{userInfo._id}}/customerPass">
+            <span class="function-icon"><i class="fas fa-lock"></i></span>
+            <span>Đổi mật khẩu</span></a>
+          {{!-- <a class="" href="/customer/{{userInfo._id}}/customerInfo">Thông tin tài khoản</a> --}}
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="row">
+        <h5 class="sub-title">Lịch sử đơn hàng</h5>
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Mã đơn hàng</th>
+              <th scope="col">Ngày đặt hàng</th>
+              <th scope="col">Tổng tiền</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each orderCus}}
+            <tr>
+              <th scope="row">{{inc @index}}</th>
+              <td>{{this._id}}</td>
+              <td>{{this.orderDate}}</td>
+              {{#ifCond this.orderType "Momo"}}
+                <td>{{orderTotal}}</td>
+                {{else}}
+                {{#ifNotCond this.orderPromoName "empty"}}
+                  <td>{{orderTotalPromo}}</td>
+                  {{else}}
+                <td>{{this.orderTotal}}</td>
+                {{/ifNotCond}}
+              {{/ifCond}}
+              <td><a href="/customer/elementTransaction/{{this._id}}">Xem chi tiết</a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

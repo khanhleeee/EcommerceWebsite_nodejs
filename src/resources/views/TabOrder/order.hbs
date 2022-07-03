@@ -1,0 +1,193 @@
+<!-- Opent content -->
+<div class="container py-5">
+   <div class="row">
+      <div class="col-sm-12 col-lg-7 order-lg-1 order-2">
+         <h2 class="payment-title mt-lg-0 mt-sm-3">Kiểm tra thông tin đặt hàng</h2>
+
+         <form class="mt-4 mb-4" method="post" action="/payment/{{order._id}}/order/{{order._id}}/payOrder">
+            <div>
+               <label for="nameCus" style="font-weight:bold; font-size: 12px">Tên khách hàng: </label>
+               <input type="text" class="form-control mb-3" id="" name="name" value="{{order.name}}" readonly>
+            </div>
+
+            <div class="">
+               <label for="phoneCus" style="font-weight:bold; font-size: 12px">Số điện thoại: </label>
+               <input type="text" class="form-control mb-3" id="" name="phonenumber" value="{{order.phonenumber}}"
+                  readonly required>
+            </div>
+
+            <div class="">
+               <label for="addressCus" style="font-weight:bold; font-size: 12px">Địa chỉ: </label>
+               <input type="text" class="form-control mb-3" id="" name="address" value="{{order.address}}" readonly
+                  required>
+            </div>
+
+            <div class="">
+               <label for="emailCus" style="font-weight:bold; font-size: 12px">Ghi chú: </label>
+               <input class="form-control mb-3" name="note" value="{{order.note}}" rows="3">
+            </div>
+
+            <h2 class="payment-title mt-lg-0 mt-sm-3">Phương thức vận chuyển</h2>
+            <div class="">
+               <label class="attr-check-btn sildeDown-item text-decoration-none">
+                  {{#ifCond order.orderType "COD"}}
+                  <span class="attr-text">Thanh toán khi nhận hàng</span>
+                  <input class="check-btn radio" type="radio" checked>
+                  {{else}}
+                  <span class="attr-text">Thanh toán qua Momo</span>
+                  <input class="check-btn radio" type="radio" checked>
+                  {{/ifCond}}
+                  <span class="checkmark"></span>
+            </div>
+            <div class="bill-payment mt-3">
+               <a class="bill-backtoshop" href="/product">
+                  <i class="fas fa-angle-left"></i>
+                  Tiếp tục mua sắm
+               </a>
+               <button type="submit" class="btn btn-success btn-sm remove-cart-btn">Xác nhận thanh toán {{order.orderType}}</button>
+            </div>
+         </form>
+      </div>
+
+      <!-- Bill Details -->
+      <div class="col-sm-12 col-lg-5 order-lg-2 order-1">
+         <h2 class="payment-title mt-lg-0 mt-sm-3" style="padding-bottom: 26px">Thông tin đơn hàng: </h2>
+
+         {{#if message}}
+         <div style="text-align: center" class="alert alert-{{message.type}}">
+            <strong>{{message.intro}}</strong> {{message.message}}
+         </div>
+         {{/if}}
+
+         <table class="cart-view" id="cart-view"></table>
+         <span class="line"></span>
+         <!-- Start Total Table -->
+         <table class="table-total">
+            <tbody style="font-weight: bold">
+               {{#ifCond order.orderPromoName "empty"}}
+               <tr>
+                  <td class="text-left">TẠM TÍNH:</td>
+                  <td class="cart-total-price text-right" id="cart-total-price"></td>
+               </tr>
+               <tr>
+                  <td class="text-left">PHÍ VẬN CHUYỂN:</td>
+                  <td class="text-right js-shipping-fee">30,000đ</td>
+               </tr>
+               <tr>
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right">{{order.orderTotal}}đ</td>
+               </tr>
+               {{else}}
+               <tr>
+                  <td class="text-left">TẠM TÍNH:</td>
+                  <td class="cart-total-price text-right" id="cart-total-price"></td>
+               </tr>
+               <tr>
+                  <td class="text-left">PHÍ VẬN CHUYỂN:</td>
+                  <td class="text-right js-shipping-fee">30,000đ</td>
+               </tr>
+               <tr>
+                  {{#if order.orderTotalPromo}}
+                  <td class="text-left">MÃ KHUYẾN MÃI: {{order.orderPromoName}}</td>
+                  <td class="text-right ">-{{order.convertToGiaKm}}đ</td>
+                  {{/if}}
+               </tr>
+               <tr>
+                  {{#if order.orderTotalPromo}}
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right">{{order.orderTotalPromo}}đ</td>
+                  {{else}}
+                  <td class="text-left">TỔNG TIỀN:</td>
+                  <td class="text-right js-order-total">0đ</td>
+                  {{/if}}
+               </tr>
+               {{/ifCond}}
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+{{!-- Show order items --}}
+<script>
+   var cartView = document.getElementsByClassName('cart-view')[0]
+   let cartData = ``;
+
+   if (JSON.parse(localStorage.getItem('items')) === null || JSON.parse(localStorage.getItem('items')) == '') {
+      cartData += `<tr class="cart-item cart-item-empty"><td>Chưa có sản phẩm trong giỏ hàng</td></tr>`
+      document.querySelector('.cart-total-price').innerHTML = '2' + 'đ';
+   }
+   else {
+      (JSON.parse(localStorage.getItem('items')).map(data => {
+         var productTotal = parseFloat(data.qty) * parseFloat(data.price)
+         productTotalFormat = Intl.NumberFormat().format(productTotal);
+         Total();
+
+         cartData += `
+		<tr class="cart-item" id="cart-item">
+		<td class="item-img col-4">
+		
+		<img class="cart-item-image" src="` + data.img + `" alt="Card image cap" id="product-detail">
+	</td>
+	<td class="col-8">
+		<a href="" class="item-title">` + data.name + `</a>
+		<input hidden value="` + data.size + `" class="cart-size" type="text">
+		<span class="item-properties">` + data.color + `, ` + data.size + `</span>
+		<div class="item-amount justify-content-center">
+			<input hidden value="` + data.sku + `" class="cart-sku" type="text">
+			<span class="cart-quantity-input">` + data.qty + `</span>
+
+			<span class="cart-price">` + productTotalFormat + `</span>
+		</div>
+	</td>
+	</tr>`
+
+      }));
+   }
+
+   // Total
+   function Total() {
+      var total = 0;
+      (JSON.parse(localStorage.getItem('items')).map(data => {
+         var productTotal = parseFloat(data.qty) * parseFloat(data.price)
+         total += productTotal;
+         document.getElementsByClassName('cart-total-price')[0].innerHTML = Intl.NumberFormat().format(total) + 'đ';
+      }))
+   }
+
+   cartView.innerHTML = cartData;
+</script>
+
+{{!-- Calculate order total --}}
+<script>
+   var orderTotal = document.querySelector('.js-order-total')
+   var itemsTotal = document.querySelector('#cart-total-price').innerText
+   var shippingTotal = document.querySelector('.js-shipping-fee').innerText
+   itemsTotal = itemsTotal.replaceAll(',', '')
+   itemsTotal = itemsTotal.replaceAll('đ', '')
+   shippingTotal = shippingTotal.replaceAll(',', '')
+   shippingTotal = shippingTotal.replaceAll('đ', '')
+
+   var total = 0;
+   total = parseFloat(itemsTotal) + parseFloat(shippingTotal);
+   console.log(total)
+   orderTotal.innerHTML = Intl.NumberFormat().format(total) + 'đ'
+</script>
+
+<script>
+   var orderTotal = document.querySelector('.js-order-total')
+   var itemsTotal = document.querySelector('#cart-total-price').innerText
+   var shippingTotal = document.querySelector('.js-shipping-fee').innerText
+   itemsTotal = itemsTotal.replaceAll(',', '')
+   itemsTotal = itemsTotal.replaceAll('.', '')
+   itemsTotal = itemsTotal.replaceAll('đ', '')
+   shippingTotal = shippingTotal.replaceAll(',', '')
+   shippingTotal = shippingTotal.replaceAll('đ', '')
+
+   var total = 0;
+   total = parseFloat(itemsTotal) + parseFloat(shippingTotal);
+   console.log(total)
+   orderTotal.innerHTML = Intl.NumberFormat().format(total) + 'đ'
+</script>
+
+<!-- End content -->

@@ -1,0 +1,132 @@
+<!-- Start Content -->
+<div class="container py-5">
+   <div class="row js-product-row">
+
+      {{!-- Category --}}
+      <div class="col-lg-3">
+         <h1 class="cate-title py-2">Danh mục</h1>
+         <ul class="list-unstyled">
+            <li class="pb-2">
+               <h3 class="subcate-title" href="#">Loại</h3>
+               <ul class="list-unstyled pl-3">
+                  {{#each category}}
+                  <li>
+                     {{!-- <a class="sildeDown-item text-decoration-none"
+                        href="/product/query/{{this._id}}">{{this.cat_title}}</a> --}}
+                     <label class="attr-check-btn sildeDown-item text-decoration-none">
+                        <span class="attr-text">{{this.title}}</span>
+                        <input name="fooby[1][]" class="check-btn radio" value="{{this.title}}" type="checkbox">
+                        <span class="checkmark"></span>
+                     </label>
+                  </li>
+                  {{/each}}
+               </ul>
+            </li>
+            <li class="pd-2">
+               <h3 class="subcate-title" href="#">Giá</h3>
+               <div class="priceRange">
+                  <div class="silderValue">
+                     <span>10</span>
+                  </div>
+                  <div class="filed">
+                     <input id="inputSlider" type="range" min="1" max="20" value="20" steps="1">
+                     <div class="filed-value">
+                        <div class="value left">1 triệu</div>
+
+                        <div class="value right">20 triệu</div>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+         </ul>
+      </div>
+      <div class="col-lg-9 js-product-area">
+         <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 pb-4 offset-lg-6">
+               <input type="text" class="form-control" id="myInput" name="q" placeholder="Tìm kiếm sản phẩm...">
+            </div>
+         </div>
+
+         {{!-- Empty product list --}}
+         <div class="row">
+            <div class="empty-p-list">
+               <i class="empty-icon fas fa-frown"></i>
+               <span class="empty-text">Không tìm thấy sản phẩm phù hợp</span>
+            </div>
+         </div>
+
+
+         <div class="row js-product-area-2">
+            {{#each p}}
+            <div id="myDIV" class="col-12 col-md-4 col-lg-4">
+               <a href="/product/detail/{{this._id}}/{{this.skus.0.sku}}/{{this.skus.0.sizes.0.size}}"
+                  class="text-decoration-none">
+                  <div class="card product-wap mb-4">
+
+                     {{!--Product image --}}
+                     <div class="card">
+                        <img class="card-img rounded-0 img-fluid" src="{{this.skus.0.img}}">
+                     </div>
+
+                     <div class="card-body">
+                        <span class="product-title text-decoration-none">{{this.name}}</span>
+                        <input class="input-hidden" hidden value="{{this.category}}" type="text">
+
+                        {{!-- Product color dot --}}
+                        <ul class="mb-1 list-unstyled">
+                           <li style="line-height: 1;">
+                              {{#each this.skus}}
+                              <span class="product-color-dot"
+                                 style="background-color: {{this.color.color_code}};"></span>
+                              <input class="input-hidden" hidden value="{{this.color.title}}" type="text">
+                              {{/each}}
+                           </li>
+                        </ul>
+
+                        <span class="product-price">{{this.price}}</span>
+                        <span class="product-price">vnđ</span>
+
+                     </div>
+                  </div>
+               </a>
+            </div>
+            {{/each}}
+
+
+         </div>
+      </div>
+
+   </div>
+</div>
+<!-- End Content -->
+
+<script>
+   var sliderValue = document.querySelector('.silderValue span');
+   var inputSlider = document.querySelector('#inputSlider');
+   var products = document.querySelectorAll('#myDIV');
+
+   //Khi thay doi input oninput
+   inputSlider.oninput = (() => {
+      let value = inputSlider.value;
+      sliderValue.innerText = value;
+      sliderValue.style.left = ((value*10)/2) + '%';
+      sliderValue.classList.add('show');
+      value = parseFloat(value) * 1e6;
+      //Filter san pham
+      for(var i in products) {
+         var productPriceElement = products[i].querySelector('.product-price');
+         var productPrice = parseFloat(productPriceElement.innerText.replace(/,/g,''));
+         if(productPrice <= value) {
+            products[i].classList.remove("product-none");
+         } else {
+            products[i].classList.add("product-none");
+         }
+      }
+   });
+   //Khi nhap ra ngoai onblur
+   inputSlider.onblur = (() => {
+      sliderValue.classList.remove('show');
+   });
+
+</script>

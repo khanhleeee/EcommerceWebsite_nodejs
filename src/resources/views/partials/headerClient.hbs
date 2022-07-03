@@ -1,0 +1,64 @@
+<!-- Start Top Nav -->
+<nav class="navbar bg-dark">
+    <div class="container">
+        <div class="home-logo-container">
+            <div>
+                <a class="kct-logo" href="/">Glamorous</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Close Top Nav -->
+
+<!-- Header -->
+<nav class="navbar navbar-expand-lg shadow">
+    <div class="container align-items-center justify-content-center">
+        <div class="nav-container">
+
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-link" href="/product">TẤT CẢ SẢN PHẨM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product/nam">TRANG SỨC NAM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product/nữ">TRANG SỨC NỮ</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/checkOrder">TRA CỨU ĐƠN HÀNG</a>
+                </li>
+            </ul>
+
+            <div class="nav-features align-self-center d-flex">
+                <span class="nav-features-item site-cart-open position-relative text-decoration-none">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-amount" id="cart-amount">0</span>
+                </span>
+
+                {{#if isAuthenticated}}
+                <div class="customer-avatar-area">
+                    <div class="customer-avatar" style="background-image: url({{user.avatar}});"></div>
+                    <div class="customer-dropdown">
+                        <div class="customer-welcome">
+                            <span>Xin chào, {{user.name}}</span>
+                        </div>
+                        <a href="/customer" class="customer-link">
+                            <span>Tài khoản</span>
+                        </a>
+                        <a href="/logout" class="customer-link">
+                            <span>Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+                {{else}}
+                <a class="nav-features-item nav-icon position-relative text-decoration-none" href="/login">
+                    <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                </a>
+                {{/if}}
+            </div>
+        </div>
+
+    </div>
+</nav>
+<!-- Close Header -->

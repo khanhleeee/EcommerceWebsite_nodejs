@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="container py-5">
+   <div class="row justify-content-center text-center">
+      <h3 class="text-center">LẤY LẠI MẬT KHẨU</h3>
+      <div class="col-12 col-lg-6">
+
+         {{#if message}}
+         <div style="text-align: center" class="alert alert-{{message.type}}">
+            <strong>{{message.intro}}</strong> {{message.message}}
+         </div>
+         {{/if}}
+
+         <form class="form mt-4" method="POST" action="/forgotPass/recoverPass">
+            <input class="form-control mb-3" type="email" placeholder="Nhập email của bạn" name="email" required />
+
+            <button type="submit" class="col-12 btn btn-success mt-3">Xác nhận email</button>
+            <a class="forgot-pass-link mt-2" href="/login">Quay về đăng nhập</a>
+         </form>
+      </div>
+   </div>
+</div>
+
+<!--End Brands-->

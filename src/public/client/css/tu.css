@@ -1,0 +1,277 @@
+* {
+    font-family: inherit;
+}
+
+
+/* Start my-rewards */
+
+.reward_header {
+    margin-bottom: 20px;
+}
+
+.reward_form-second-row {
+    display: flex;
+    border: solid 0.1rem #000000;
+    margin-bottom: 50px;
+}
+
+.reward_form-second-text {
+    width: 50%;
+    margin-left: 10px;
+}
+
+.reward_form-second-text h5 {
+    margin-top: 12px;
+}
+
+.reward_form-second-point {
+    width: 50%;
+    text-align: right;
+    margin: auto;
+}
+
+.reward_form-second-point strong {
+    font-size: 1.7rem;
+    margin-right: 10px;
+    color: #59ab6e;
+}
+
+.reward_form-final-row {
+    border: solid 0.01rem #000000;
+    text-align: center;
+    margin-bottom: 0.02rem;
+}
+
+.reward_form-final-row p {
+    margin-top: 65px;
+    height: 80px;
+}
+
+
+/* End my-rewards */
+
+
+/* Start momo-payment */
+
+.momo_payment-form {
+    border: solid 0.1rem black;
+    width: 700px;
+    height: 450px;
+    margin: 50px auto;
+}
+
+.momo_payment-title {
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #59ab6e;
+}
+
+.momo_payment-form-info .form-row {
+    margin-top: 30px;
+    margin: 30px 100px;
+    width: 70%;
+}
+
+.momo_payment-form-info label {
+    margin-bottom: 10px;
+}
+
+.momo_payment-btn {
+    margin-top: 45px;
+    text-align: center;
+}
+
+.form-group {
+    width: 100%;
+}
+
+
+/* reponsive */
+
+@media only screen and (max-width:800px) {
+    .momo_payment-form {
+        width: 400px;
+        height: 450px;
+    }
+    .momo_payment-form-info .form-row {
+        margin-left: 10px;
+    }
+    .form-group input {
+        width: 380px;
+    }
+}
+
+@media only screen and (max-width:414px) {
+    .momo_payment-title h5 {
+        font-size: 1.1rem;
+    }
+    .momo_payment-form {
+        width: 300px;
+        height: 450px;
+    }
+    .momo_payment-form-info .form-row {
+        margin-left: 10px;
+    }
+    .form-group input {
+        width: 280px;
+    }
+}
+
+
+/* End momo-payment */
+
+
+/* Start oder-details */
+
+.delivery-info_header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.delivery-container {
+    border-radius: 10px;
+    /* box-shadow: 10px 10px 10px #ccc; */
+    border: solid 1px black;
+}
+
+.delivery-info-header {
+    margin-left: 10px;
+}
+
+.delivery-info-header h5 {
+    margin-bottom: 20px;
+}
+
+.delivery-info-main {
+    display: flex;
+}
+
+.delivery-info-main p {
+    margin-left: 10px;
+    margin-bottom: 4px;
+}
+
+.delivery-info {
+    border-bottom: solid 0.001rem black;
+    display: flex;
+    margin-top: 30px;
+}
+
+.delivery-info-leftside {
+    display: flex;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.delivery-info-leftside img {
+    width: 120px;
+    height: 120px;
+    /* border-radius: 5px; */
+    border: solid 0.05rem black;
+}
+
+.delivery-info-item {
+    display: flex;
+}
+
+.delivery-info-leftside-text p {
+    margin-bottom: 4px;
+}
+
+.delivery-info-item p {
+    margin-left: 10px;
+    margin-bottom: 4px;
+}
+
+.delivery-info-leftside-text {
+    margin: auto 0;
+    margin-left: 20px;
+}
+
+.delivery-info-desc {
+    margin-right: 50px;
+}
+
+.delivery-info-payment-container {
+    margin-top: 30px;
+}
+
+.delivery-info-price {
+    margin: auto;
+}
+
+.delivery-info-price h5 {
+    text-align: right;
+    margin-right: 10px;
+    color: #59ab6e;
+}
+
+.delivery-info-payment-text,
+.delivery-info-payment-price {
+    text-align: right;
+}
+
+
+/* End order-details */
+
+
+/* Start order-history */
+
+.order-history-nav {
+    display: flex;
+    /* border: solid 1px black; */
+    background-color: rgba(235, 235, 235, 0.877);
+    margin-bottom: 20px;
+    height: 40px;
+}
+
+.order-history-nav-item {
+    width: 210px;
+    height: 40px;
+    text-align: center;
+    /* vertical-align: middle; */
+    line-height: 40px;
+}
+
+.order-history-nav-item a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.order-history-item-container {
+    /* border: solid 1px black; */
+    background-color: rgba(235, 235, 235, 0.877);
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 10px rgb(155, 152, 152);
+}
+
+.order-history-item-price {
+    margin: auto 0;
+}
+
+.order-history-item-price h5 {
+    text-align: right;
+    margin-right: 20px;
+    color: #59ab6e;
+}
+
+.order-history-leftside {
+    display: flex;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.order-history-leftside img {
+    width: 120px;
+    height: 120px;
+    margin-top: 20px;
+    border: solid 0.05rem black;
+}
+
+.order-history {
+    display: flex;
+    margin-top: 30px;
+}
+/* End order-history */

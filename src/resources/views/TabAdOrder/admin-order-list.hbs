@@ -1,0 +1,74 @@
+<div class="content-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body py-2 d-flex justify-content-between align-items-center">
+						<div>
+							<h4 class="m-0">Danh sách đơn hàng</h4>
+							<!-- <span>Lorem ipsum sit amet</span> -->
+						</div>
+						{{!-- <a href="/adminPromotion/createPromotion" class="btn btn-info light">+ Thêm khuyến mãi mới</a>
+						--}}
+					</div>
+				</div>
+			</div>
+
+
+			<!-- End Promotion -->
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-custom">
+						<thead class="thead-primary">
+							<tr class="">
+								<th scope="col">Mã đơn hàng</th>
+								<th scope="col">Tình trạng</th>
+								<th scope="col">Khách hàng</th>
+								<th scope="col">Ngày đặt</th>
+								<th scope="col">Số điện thoại</th>
+								<th scope="col">Tổng tiền</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each order}}
+							<a href="/adminOrder/{{this._id}}/editOrder" class="order-link" style="display: block;">
+								<tr>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this._id}}</a>
+									</td>
+									<td class="td-btn">
+										{{#ifTest orderStatus}}
+										{{/ifTest}}
+									</td>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.name}}</a>
+									</td>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.orderDate}}</a>
+									</td>
+									<td>
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.phonenumber}}</a>
+									</td>
+									{{#ifCond this.orderPromoName "empty"}}
+									<td> 
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.orderTotal}} vnđ</a>
+									</td>
+									{{else}}
+									<td> 
+										<a href="/adminOrder/{{this._id}}/editOrder">{{this.orderTotalPromo}} vnđ</a>
+									</td>
+									{{/ifCond}}
+									<td class="text-center td-details">
+										<a href="/adminOrder/{{this._id}}/editOrder" class="btn btn-primary btn-sm">Chi tiết</a>
+									</td>
+								</tr>
+							</a>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
